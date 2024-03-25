@@ -40,7 +40,7 @@ The full implementation detail can be found in **Table 1**'s *Ship Type*, *Ship 
 
 # Reference Tables
 
-## Table 1: MEPC337(76) Shipping Capacity
+## Table 1: MEPC.337(76) Shipping Capacity
 
 The following table describes how to determine a given ship type's *Capacity*.
 
@@ -64,10 +64,11 @@ Ro-ro cargo ship |  | DWT | 10,952 | 0.637
 Ro-ro passenger ship |  | GT | 7,540 | 0.587
 Cruise passenger ship |  | GT | 930 | 0.383
 
-Table source: [IMO: MEPC337(76)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.337(76).pdf)
+Table source: [IMO: MEPC.337(76)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.337(76).pdf)
 
+---
 
-## Table 2: Mass Conversion between fuel consumption and $CO_2$ emissions
+## Table 2: MEPC.364(79) Mass Conversion between fuel consumption and $CO_2$ emissions
 
 The following table describes how to convert from the fuel used by a ship's main engine $ME_{(i)}$ to the amount of $CO_2$ produced. Fuel consumption is measured in grams (g), as is the output $CO_2$ emission
 
@@ -84,6 +85,8 @@ The following table describes how to convert from the fuel used by a ship's main
 | 8 | Ethanol | 0.5217 | 1.913 | 26,800 | n/a |
 
 Table source: [IMO: MEPC.364(79)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.364(79).pdf)
+
+---
 
 
 ## Table 3: Common shipping measurement conversions
