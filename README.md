@@ -28,7 +28,7 @@ To calculate a ship's Capacity in accordance with the IMO's MEPC337(76) guidelin
 - If the ship is a `Ro-ro cargo ship (vehicle carrier)`, a `Ro-ro passenger ship` or a `Cruise passenger ship`, its capacity is equal to its Gross Tonnage
 - Otherwise, the ships capacity is equal to its DWT
 
-The full implementation detail can be found in **Table 1**'s *Ship Type*, *Ship weight*, and *Capacity* columns.
+The full implementation detail can be found in **[Table 1](#table-1-mepc33776-shipping-capacity)**'s *Ship Type*, *Ship weight*, and *Capacity* columns.
 
 **Exceptions**:
 
