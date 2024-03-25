@@ -7,6 +7,32 @@ An unofficial open source implementation of the International Maritime Organisat
 
 # Methodology
 
+## Ship $CO_2$ Emissions Methodology
+
+The sum of a ship's $CO_2$ emissions over a given year are calculated by multiplying the mass of consumed fuel by the fuel's emissions factor. 
+
+**Method Accepts**:
+- `fuelType`, an enum derrived from [Table 2](#table-2-mepc36479-mass-conversion-between-fuel-consumption-and-co_2-emissions)'s *Fuel Type* column
+- `fuelConsumptionMass`, a `long` representing the mass of fuel consumed in grams (g) over the given year
+
+
+**Method Returns**:
+
+- A `decimal` representing the $M$ mass of $CO_2$ emitted by the ship across one calendar year
+
+**Implementation**:
+
+The sum of $CO_2$ emissions $M$ from fuel consumption in a given calendar year is 
+
+$M = FC_j \times C_{f_j}$
+
+Where: 
+- $j$ is the fuel type
+- $FC_j$ is the mass in grams of the consumed fuel type `j` in one calendar year
+- $C_{f_j}$ is the fuel oil mass to CO2 mass conversion factor, given in Table 2's $C_F$ column
+
+
+
 ## Ship Capacity Methodology
 
 A ships capacity is measured by either its Deadweight Tonnage (DWT) or Gross Tonnage (GT). The only exception is `Bulk Carriers`, which have a capacity capped at 279,000. 
@@ -22,6 +48,8 @@ To calculate a ship's Capacity in accordance with the IMO's MEPC337(76) guidelin
 - a `double` representing the ship's capacity in imperial *long tons*
 
 **Implementation**:
+
+$Capacity$ of a given ship is calculated using the following rules:
 
 - If the ship is a `Bulk Carrier`, and its DWT is 279,000 or above, its capacity is capped at 279,000
 - If the ship is a `Bulk Carrier`, and its DWT is below 279,000, its capacity is equal to its DWT
