@@ -5,7 +5,7 @@ name: .NET Build & Test
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "stage", "develop" ]
   pull_request:
     branches: [ "main" ]
 
@@ -13,16 +13,24 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    env: 
+      working-directory: './EtiveMor.OpenImoCiiCalculator'
     steps:
     - uses: actions/checkout@v4
+    
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+
     - name: Restore dependencies
+      working-directory: ${{env.working-directory}}
       run: dotnet restore
+    
     - name: Build
+      working-directory: ${{env.working-directory}}
       run: dotnet build --no-restore
+    
     - name: Test
+      working-directory: ${{env.working-directory}}
       run: dotnet test --no-build --verbosity normal
