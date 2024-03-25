@@ -6,8 +6,10 @@ name: .NET Build & Test
 on:
   push:
     branches: [ "main", "stage", "develop" ]
+    paths-ignore: ["*.md"] # don't build on markdown file changes
   pull_request:
     branches: [ "main" ]
+    paths-ignore: ["*.md"] # don't build on markdown file changes
 
 jobs:
   build:
