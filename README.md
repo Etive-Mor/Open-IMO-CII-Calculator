@@ -83,7 +83,10 @@ Grades are then derived from these boundaries, by comparing the ship's *Attained
 | D |  10.6 | 11.8 | Above *Upper Boundary*,<br />Below  *Inferior Boundary* |
 | E |  11.8 | | Above *Inferior Boundary* |
 
-For example, if the ship's *Attained CII* was $9gCO_2/transportWork$, the ship receives a grade `B`, as its *Attained CII* was above the threshold for *Superior Boundary*, but below the threshold for *Lower Boundary*. Whereas if the ship's *Attained CII* was $11gCO_2/transportWork$, the ship receives a grade `D`, as its *Attained CII* was above the threshold for *Upper Boundary*, but below the threshold for *Inferior Boundary*.
+**Example Results**:
+
+- If the ship's *Attained CII* was $9gCO_2/ DWT \times NM$, the ship receives a grade `B`, as its *Attained CII* was above the threshold for *Superior Boundary*, but below the threshold for *Lower Boundary*.
+- If the ship's *Attained CII* was $11gCO_2/ DWT \times NM$, the ship receives a grade `D`, as its *Attained CII* was above the threshold for *Upper Boundary*, but below the threshold for *Inferior Boundary*.
 
 ---
 
