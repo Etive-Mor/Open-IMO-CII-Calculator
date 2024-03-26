@@ -66,7 +66,7 @@ Then the boundaries are calculated with:
 
 The $exp(d_i)$ rating boundaries for each ship type can be found in [Table 3](#table-3-mepc33976---ship-grading-boundaries). 
 
-The resultant boundaries are:
+The resultant boundaries for the *Bulk Carrier* in question are:
 
 | Boundary Type | Required CII | Boundary's Lower Threshold |
 | ------------- | --------------- | --------------- |
@@ -97,12 +97,12 @@ Grades are then derived from these boundaries, by comparing the ship's *Attained
 
 ## Ship Attained Carbon Intensity Methodology
 
-A ship's attained carbon intensity in a calendar year is calculated by taking the [mass of its aggregate CO<sub>2</sub> emissions](#ship-co_2-emissions-methodology) in the calendar year, and multiplying it by its [transport work done](#ship-transport-work-methodology).
+A ship's attained carbon intensity is calculated by taking the [mass of its aggregate CO<sub>2</sub> emissions](#ship-co_2-emissions-methodology) in a calendar year, and multiplying it by its [transport work done](#ship-transport-work-methodology) in the calendar year.
 
 > $massOfCo2Emissions \times transportWork$
 > 
 **Method accepts**:
-- `massOfCo2Emissions`, the mass of $CO_2$ emissions in one calendar year 
+- `massOfCo2Emissions`, the mass of $CO_2$ emissions in the calendar year 
     - See [co2 emissions methodology](#ship-co_2-emissions-methodology) to calculate
 - `transportWork`, the work carried out by the ship in the calendar year
     - See [transport work methodology](#ship-transport-work-methodology) to calculate
@@ -138,18 +138,18 @@ The sum of a ship's $CO_2$ emissions over a given year are calculated by multipl
 
 **Method Accepts**:
 - `fuelType`, an enum derrived from [Table 2](#table-2-mepc36479-mass-conversion-between-fuel-consumption-and-co_2-emissions)'s *Fuel Type* column
-- `fuelConsumptionMass`, a `long` representing the mass of fuel consumed in grams (g) over the given year
+- `fuelConsumptionMass`, a `double` representing the mass of fuel consumed in grams (g) over the given year
 
 
 **Method Returns**:
 
-- A `decimal` representing the $M$ mass of $CO_2$ emitted by the ship across one calendar year
+- A `double` representing the $M$ mass of $CO_2$ emitted by the ship across one calendar year
 
 **Implementation**:
 
 The sum of $CO_2$ emissions $M$ from fuel consumption in a given calendar year is 
 
-$M = FC_j \times C_{f_j}$
+> $M = FC_j \times C_{f_j}$
 
 Where: 
 - $j$ is the fuel type
@@ -160,7 +160,7 @@ Where:
 
 ## Ship Capacity Methodology
 
-A ships capacity is measured by either its Deadweight Tonnage (DWT) or Gross Tonnage (GT). The only exception is `Bulk Carriers`, which have a capacity capped at 279,000. 
+A ship's capacity is measured by either its Deadweight Tonnage (DWT) or Gross Tonnage (GT). The only exception is `Bulk Carriers`, which have a capacity capped at 279,000. 
 
 To calculate a ship's Capacity in accordance with the IMO's MEPC337(76) guidelines:
 
