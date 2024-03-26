@@ -12,6 +12,7 @@ An unofficial open source implementation of the International Maritime Organisat
   - [Ship Grade Methodology](#ship-grade-methodology)
     - [Ship Grade Worked example](#ship-grade-worked-example)
   - [Ship Attained Carbon Intensity Methodology](#ship-attained-carbon-intensity-methodology)
+  - [Ship transport work methodology](#ship-transport-work-methodology)
   - [Ship $CO\_2$ Emissions Methodology](#ship-co_2-emissions-methodology)
   - [Ship Capacity Methodology](#ship-capacity-methodology)
 - [Reference Tables](#reference-tables)
@@ -37,7 +38,7 @@ The grading scheme for a ship's Carbon Intensity Indicator (CII) is in the range
 | D |   CII above the *Upper Boundary* and below the *Inferior Boundary* |
 | E |   CII above the *Inferior Boundary* |
 
-Ships are split into 12 categories, including "Bulk Carrier", "Tanker", "Cruise Passenger Ship" among others. The full list can be found in [Table 1](#table-1-mepc33776---shipping-capacity-tables). A ship is compared internally among its category peers but never across categories, for example, a *Bulk Carrier* is not directly compared to a *LNG Carrier* in this system.
+Ships are split into 12 categories, including "Bulk Carrier", "Tanker", "Cruise Passenger Ship" among others (see [Table 1](#table-1-mepc33776---shipping-capacity-tables)). A ship is compared internally among its category peers but never across categories, for example, a *Bulk Carrier* is not directly compared to a *LNG Carrier* in this system.
 
 ## Ship Grade Methodology
 
@@ -88,8 +89,41 @@ For example, if the ship's *Attained CII* was $9gCO_2/transportWork$, the ship r
 
 ## Ship Attained Carbon Intensity Methodology
 
-The product of a ship's mass of $CO_2$ emissions and its $transportWork$
+A ship's attained carbon intensity in a calendar year is calculated by taking the [mass of its aggregate $CO_2$ emissions](#ship-co_2-emissions-methodology) in the calendar year, and multiplying it by its [transport work done](#ship-transport-work-methodology).
 
+> $massOfCo2Emissions \times transportWork$
+> 
+**Method accepts**:
+- `massOfCo2Emissions`, the mass of $CO_2$ emissions in one calendar year 
+    - See [co2 emissions methodology](#ship-co_2-emissions-methodology) to calculate
+- `transportWork`, the work carried out by the ship in the calendar year
+    - See [transport work methodology](#ship-transport-work-methodology) to calculate
+
+**Method Returns**:
+- A `double` representing the ship's *Attained Carbon Intensity*
+
+**Implementation**:
+
+Returns the product of a ship's mass of $CO_2$ emissions and its $transportWork$.
+
+
+
+
+## Ship transport work methodology
+
+A ship's transport work is calculated by taking its [capacity](#ship-capacity-methodology) and multiplying it by the distance sailed in nautical miles in the calendar year. 
+
+> $capacity \times distanceSailed$
+
+**Method accepts**:
+- `capacity` the ship's capacity for cargo or passengers
+    - See [ship capacity methodology](#ship-capacity-methodology) to calculate
+-  `distanceSailed` the distance sailed in Nautical Miles in the calendar year
+
+
+**Implementation**:
+
+Returns the product of a ship's capacity and its distance sailed
 
 ## Ship $CO_2$ Emissions Methodology
 
