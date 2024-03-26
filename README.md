@@ -13,11 +13,11 @@ An unofficial open source implementation of the International Maritime Organisat
     - [Ship Grade Worked example](#ship-grade-worked-example)
   - [Ship Attained Carbon Intensity Methodology](#ship-attained-carbon-intensity-methodology)
   - [Ship transport work methodology](#ship-transport-work-methodology)
-  - [Ship $CO\_2$ Emissions Methodology](#ship-co_2-emissions-methodology)
+  - [Ship CO2 Emissions Methodology](#ship-co2-emissions-methodology)
   - [Ship Capacity Methodology](#ship-capacity-methodology)
 - [Reference Tables](#reference-tables)
   - [Table 1: MEPC.337(76) - Shipping Capacity Tables](#table-1-mepc33776---shipping-capacity-tables)
-  - [Table 2: MEPC.364(79) Mass Conversion between fuel consumption and $CO\_2$ emissions](#table-2-mepc36479-mass-conversion-between-fuel-consumption-and-co_2-emissions)
+  - [Table 2: MEPC.364(79) Mass Conversion between fuel consumption and CO2 emissions](#table-2-mepc36479-mass-conversion-between-fuel-consumption-and-co2-emissions)
   - [Table 3: MEPC.339(76) - Ship Grading Boundaries](#table-3-mepc33976---ship-grading-boundaries)
   - [Table 4: Common shipping measurement conversions](#table-4-common-shipping-measurement-conversions)
 - [Shipping Terminology \& Glossary](#shipping-terminology--glossary)
@@ -89,7 +89,7 @@ For example, if the ship's *Attained CII* was $9gCO_2/transportWork$, the ship r
 
 ## Ship Attained Carbon Intensity Methodology
 
-A ship's attained carbon intensity in a calendar year is calculated by taking the [mass of its aggregate $CO_2$ emissions](#ship-co_2-emissions-methodology) in the calendar year, and multiplying it by its [transport work done](#ship-transport-work-methodology).
+A ship's attained carbon intensity in a calendar year is calculated by taking the [mass of its aggregate CO<sub>2</sub> emissions](#ship-co_2-emissions-methodology) in the calendar year, and multiplying it by its [transport work done](#ship-transport-work-methodology).
 
 > $massOfCo2Emissions \times transportWork$
 > 
@@ -105,7 +105,6 @@ A ship's attained carbon intensity in a calendar year is calculated by taking th
 **Implementation**:
 
 Returns the product of a ship's mass of $CO_2$ emissions and its $transportWork$.
-
 
 
 
@@ -125,7 +124,7 @@ A ship's transport work is calculated by taking its [capacity](#ship-capacity-me
 
 Returns the product of a ship's capacity and its distance sailed
 
-## Ship $CO_2$ Emissions Methodology
+## Ship CO<sub>2</sub> Emissions Methodology
 
 The sum of a ship's $CO_2$ emissions over a given year are calculated by multiplying the mass of consumed fuel by the fuel's emissions factor. 
 
@@ -216,7 +215,7 @@ Cruise passenger ship |  | GT | 930 | 0.383
 
 ---
 
-## Table 2: MEPC.364(79) Mass Conversion between fuel consumption and $CO_2$ emissions
+## Table 2: MEPC.364(79) Mass Conversion between fuel consumption and CO<sub>2</sub> emissions
 
 The following table describes how to convert from the fuel used by a ship's main engine $ME_{(i)}$ to the amount of $CO_2$ produced. Fuel consumption is measured in grams (g), as is the output $CO_2$ emission
 
