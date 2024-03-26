@@ -7,11 +7,15 @@
     public enum TypeOfFuel
     {
         UNKNOWN = 0,
-        DIESEL_OR_GASOIL = 1,
-        LIGHTFUELOIL = 2,
-        HEAVYFUELOIL = 3,
-        LIQUIFIEDPETROLEUMGAS = 4,
-        LIQUIFIEDNATURALGAS = 5,
-        OTHER = 6
+        DIESEL_OR_GASOIL = 10,
+        LIGHTFUELOIL = 20,
+        HEAVYFUELOIL = 30,
+        LIQUIFIEDPETROLEUM_PROPANE = 40,
+        LIQUIFIEDPETROLEUM_BUTANE = 50,
+        ETHANE = 60,
+        LIQUIFIEDNATURALGAS = 70,
+        METHANOL = 80,
+        ETHANOL = 90,
+        OTHER = 100
     }
 }
