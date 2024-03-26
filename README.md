@@ -4,9 +4,91 @@
 
 An unofficial open source implementation of the International Maritime Organisation (IMO)'s Carbon Intensity Indicator (CII). The specification for this software can be found in [IMO's resoluton MEPC.337(76)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.337(76).pdf), adopted in June 2021.
 
+# Table of Contents
+- [Open IMO Carbon Intensity Indicator (CII) Calculator 🚢](#open-imo-carbon-intensity-indicator-cii-calculator-)
+  - [What is this?](#what-is-this)
+- [Table of Contents](#table-of-contents)
+- [Methodology](#methodology)
+  - [Ship Grade Methodology](#ship-grade-methodology)
+    - [Ship Grade Worked example](#ship-grade-worked-example)
+  - [Ship Attained Carbon Intensity Methodology](#ship-attained-carbon-intensity-methodology)
+  - [Ship $CO\_2$ Emissions Methodology](#ship-co_2-emissions-methodology)
+  - [Ship Capacity Methodology](#ship-capacity-methodology)
+- [Reference Tables](#reference-tables)
+  - [Table 1: MEPC.337(76) - Shipping Capacity Tables](#table-1-mepc33776---shipping-capacity-tables)
+  - [Table 2: MEPC.364(79) Mass Conversion between fuel consumption and $CO\_2$ emissions](#table-2-mepc36479-mass-conversion-between-fuel-consumption-and-co_2-emissions)
+  - [Table 3: MEPC.339(76) - Ship Grading Boundaries](#table-3-mepc33976---ship-grading-boundaries)
+  - [Table 4: Common shipping measurement conversions](#table-4-common-shipping-measurement-conversions)
+- [Shipping Terminology \& Glossary](#shipping-terminology--glossary)
+- [References \& datasets](#references--datasets)
+  - [Further Reading](#further-reading)
+  - [Useful datasets (miced public and private)](#useful-datasets-miced-public-and-private)
+
 
 # Methodology
 
+The grading scheme for a ship's Carbon Intensity Indicator (CII) is in the range A to E, where A is the most efficient bracket, and E is the least efficient. 
+
+| Grade |  Description |
+| ----- | ---- |
+| A |   CII below the *Superior Boundary* |
+| B |   CII above the *Superior Boundary* and below the *Lower Boundary* |
+| C |   CII above the *Lower Boundary* and below the *Upper Boundary* |
+| D |   CII above the *Upper Boundary* and below the *Inferior Boundary* |
+| E |   CII above the *Inferior Boundary* |
+
+Ships are split into 12 categories, including "Bulk Carrier", "Tanker", "Cruise Passenger Ship" among others. The full list can be found in [Table 1](#table-1-mepc33776---shipping-capacity-tables). A ship is compared internally among its category peers but never across categories, for example, a *Bulk Carrier* is not directly compared to a *LNG Carrier* in this system.
+
+## Ship Grade Methodology
+
+A ship's grade is calculated by comparing its ***Attained CII*** to its ***Required CII*** to receive its performance ratio. If the ship 's performance ratio falls below the boundary for its class of [Ship Type](#table-3-mepc33976---ship-grading-boundaries), it attains a better grade.  Boundaries are calculated as:
+
+> $shipTypeRequiredCII \times exp(d_i)$. 
+
+### Ship Grade Worked example
+The worked example below considers a *Bulk Carrier*, with a Deadweight Tonnage below 279,000. Assuming the *Bulk Carrier*'s $required CII$ is:
+
+
+> $10g CO_2 / DWT.NM$
+
+
+Then the boundaries are:
+ 
+- $10 \times exp(d1)$
+- $10 \times exp(d2)$
+- $10 \times exp(d3)$
+- $10 \times exp(d4)$. 
+
+$d_i$ for each ship type can be found in [Table 3](#table-3-mepc33976---ship-grading-boundaries) 
+
+Then the resulting boundaries are:
+
+| Boundary Type | Required CII | Boundary Calculation           |
+| ------------- | --------------- | --------------- |
+| Superior      | $= 10 \times exp(d1)$ <br /> $= 10 \times 0.86$<br />  $= 8.6$ |  $8.6 gCO_2/transportWork$ |
+| Lower         | $= 10 \times exp(d2)$ <br /> $= 10 \times 0.94$<br />  $= 9.4$ |  $9.4 gCO_2/transportWork$ |
+| Upper         | $= 10 \times exp(d3)$ <br /> $= 10 \times 1.06$<br />  $= 10.6$ | $10.6 gCO_2/transportWork$ |
+| Inferior      | $= 10 \times exp(d4)$ <br /> $= 10 \times 1.18$<br />  $= 11.8$ | $11.8 gCO_2/transportWork$ |
+
+
+Grades are then derived from these boundaries, by comparing them to the ship's *Attained CII* to the thresholds across a given calendar year:
+
+
+| Grade | Higher than<br />$gCO_2/transportWork$ | Lower than <br />$gCO_2/transportWork$ | Description |
+| ----- | :----: | :----: | ---- |
+| A |  | 8.6 | Below *Superior Boundary* |
+| B |  8.6 | 9.4 | Above *Superior Boundary*,<br />Below  *Lower Boundary* |
+| C |  9.4 | 10.6 | Above *Lower Boundary*,<br />Below  *Upper Boundary* |
+| D |  10.6 | 11.8 | Above *Upper Boundary*,<br />Below  *Inferior Boundary* |
+| E |  11.8 | | Above *Inferior Boundary* |
+
+For example, if the ship's *Attained CII* was $9gCO_2/transportWork$, the ship receives a grade `B`, as its *Attained CII* was above the threshold for *Superior Boundary*, but below the threshold for *Lower Boundary*.
+
+---
+
+## Ship Attained Carbon Intensity Methodology
+
+The product of a ship's mass of $CO_2$ emissions and its $transportWork$
 
 
 ## Ship $CO_2$ Emissions Methodology
@@ -150,27 +232,6 @@ the boundaries the IMO's rating system.
 | 12 | Cruise Passenger Ship                |                           | GT  | 0.87 | 0.95 | 1.06 | 1.16 |
 
 
-Boundaries are calculated as $shipTypeRequiredCII \times exp(d_i)$. So, assuming a bulk carrier's *required CII* is $\frac{10g CO_2}{DWT \times NM}$, then the boundaries are $10 \times exp(d1)$. The resulting boundaries are:
-
-| Boundary Type | Value           |
-| ------------- | --------------- |
-| Superior      | 8.6 $gCO_2 / DWT.NM$ |
-| Lower         | 9.4 $gCO_2 / DWT.NM$ |
-| Upper         | 10.6 $gCO_2 / DWT.NM$ |
-| Inferior      | 11.8 $gCO_2 / DWT.NM$ |
-
-Grades are derived from these boundaries:
-
-
-
-| Grade | Higher than<br />$\frac{g CO_2}{DWT \times NM}$ | Lower than <br />$\frac{g CO_2}{DWT \times NM}$ | Desription |
-| ----- | :----: | :----: | ---- |
-| A |  | 8.6 | Below *Superior Boundary* |
-| B |  8.6 | 9.4 | Above *Superior Boundary*,<br />Below  *Lower Boundary* |
-| C |  9.4 | 10.6 | Above *Lower Boundary*,<br />Below  *Upper Boundary* |
-| D |  10.6 | 11.8 | Above *Upper Boundary*,<br />Below  *Inferior Boundary* |
-| E |  11.8 | | Above *Inferior Boundary* |
-
 
 
 ---
@@ -183,6 +244,7 @@ Often in shipping, non-metric measurements are used. Conversions are detailed be
 | ------------- | ------------- | ------------- |
 | Deadweight Tonne (DWT) | $1016.0469088kg$ | DWT is a ship's total weight excluding boiler water, measured in Imperial long tons |
 | Gross Tonne (GT) | $1016.0469088kg$ | GT is a ship's area, measured in Imperial long tons |
+| Nautical Mile (NM) | $1.852km$, $1,852m$ | NM is equal to 1 minute of latitude at the equator. $1NM = 1.5078 miles = 1.852km$ |
 
 ---
 
@@ -198,9 +260,9 @@ Often in shipping, non-metric measurements are used. Conversions are detailed be
 | International Maritime Organisation (IMO) | A UN Agency responsible for regulating maritime transport rules & regulations |  |
 | International Organization for Standardization (ISO) | Independent, non-governmental, international standard development organization |  |
 | Liquefied natural gas (LNG) | Gas, compressed into liquid form for easier transport |  |
+| Nautical Miles (NM, nmile) | Distance travelled over water, different to land measured miles (statute miles) | Expressed in minutes of latitude at the equator |
 | Resolution MEPC.337(76) | Internationally standardised reference guide to shipping carbon intensity |  |
 | Roll-on-roll-off (Ro-ro, Roro, Ro ro) | A ship designed to take cargo which can be wheeled (or rolled) in and out of a cargo hold |  |
-
 
 
 # References & datasets

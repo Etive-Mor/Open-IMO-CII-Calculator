@@ -35,5 +35,11 @@
 
             return massOfCo2Emissions / transportWork;
         }
+
+
+        public void GetReferenceCarbonIntensity()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
