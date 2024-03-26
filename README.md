@@ -9,12 +9,12 @@ An unofficial open source implementation of the International Maritime Organisat
   - [What is this?](#what-is-this)
 - [Table of Contents](#table-of-contents)
 - [Methodology](#methodology)
-  - [Ship Grade Methodology](#ship-grade-methodology)
-    - [Ship Grade Worked example](#ship-grade-worked-example)
+  - [Ship Grade Ratio Methodology](#ship-grade-ratio-methodology)
   - [Ship Attained Carbon Intensity Methodology](#ship-attained-carbon-intensity-methodology)
   - [Ship transport work methodology](#ship-transport-work-methodology)
   - [Ship CO2 Emissions Methodology](#ship-co2-emissions-methodology)
   - [Ship Capacity Methodology](#ship-capacity-methodology)
+  - [Ship Grade Worked example](#ship-grade-worked-example)
 - [Reference Tables](#reference-tables)
   - [Table 1: MEPC.337(76) - Shipping Capacity Tables](#table-1-mepc33776---shipping-capacity-tables)
   - [Table 2: MEPC.364(79) Mass Conversion between fuel consumption and CO2 emissions](#table-2-mepc36479-mass-conversion-between-fuel-consumption-and-co2-emissions)
@@ -38,52 +38,13 @@ The grading scheme for a ship's Carbon Intensity Indicator (CII) is in the range
 | D |   CII above the *Upper Boundary* and below the *Inferior Boundary* |
 | E |   CII above the *Inferior Boundary* |
 
-Ships are split into 12 categories, including "Bulk Carrier", "Tanker", "Cruise Passenger Ship" among others (see [Table 1](#table-1-mepc33776---shipping-capacity-tables)). A ship is compared internally among its category peers but never across categories, for example, a *Bulk Carrier* is not directly compared to a *LNG Carrier* in this system.
+Ships are split into 12 categories, for example "Bulk Carrier", "Tanker", "Cruise Passenger Ship" among others (see [Table 1](#table-1-mepc33776---shipping-capacity-tables) for a comprehensive list). A ship is compared internally among its category peers but never across categories, for example, a *Bulk Carrier* is not directly compared to a *LNG Carrier* in this system.
 
-## Ship Grade Methodology
+## Ship Grade Ratio Methodology
 
-A ship's grade is calculated by comparing its ***Attained CII*** to its ***Required CII*** to receive its performance ratio. If the ship 's performance ratio falls below the boundary for its class of [Ship Type](#table-3-mepc33976---ship-grading-boundaries), it attains a better grade.  Boundaries are calculated as:
+A ship's grade is calculated by comparing its ***Attained CII*** to its ***Required CII*** to give its performance $A/R$ ratio. If the ship's $A/R$ ratio falls below the boundary for its class of [Ship Type](#table-3-mepc33976---ship-grading-boundaries), it attains a higher (better) grade.  Boundaries are calculated as:
 
 > $shipTypeRequiredCII \times exp(d_i)$. 
-
-### Ship Grade Worked example
-The worked example below considers a *Bulk Carrier*, with a Deadweight Tonnage below 279,000. Assuming the *Bulk Carrier*'s $required CII$ is:
-
-
-> $10g CO_2 / DWT.NM$
-
-
-Then the boundaries are:
- 
-- $10 \times exp(d1)$
-- $10 \times exp(d2)$
-- $10 \times exp(d3)$
-- $10 \times exp(d4)$. 
-
-$d_i$ for each ship type can be found in [Table 3](#table-3-mepc33976---ship-grading-boundaries) 
-
-Then the resulting boundaries are:
-
-| Boundary Type | Required CII | Boundary Calculation           |
-| ------------- | --------------- | --------------- |
-| Superior      | $= 10 \times exp(d1)$ <br /> $= 10 \times 0.86$<br />  $= 8.6$ |  $8.6 gCO_2/transportWork$ |
-| Lower         | $= 10 \times exp(d2)$ <br /> $= 10 \times 0.94$<br />  $= 9.4$ |  $9.4 gCO_2/transportWork$ |
-| Upper         | $= 10 \times exp(d3)$ <br /> $= 10 \times 1.06$<br />  $= 10.6$ | $10.6 gCO_2/transportWork$ |
-| Inferior      | $= 10 \times exp(d4)$ <br /> $= 10 \times 1.18$<br />  $= 11.8$ | $11.8 gCO_2/transportWork$ |
-
-
-Grades are then derived from these boundaries, by comparing them to the ship's *Attained CII* to the thresholds across a given calendar year:
-
-
-| Grade | Higher than<br />$gCO_2/transportWork$ | Lower than <br />$gCO_2/transportWork$ | Description |
-| ----- | :----: | :----: | ---- |
-| A |  | 8.6 | Below *Superior Boundary* |
-| B |  8.6 | 9.4 | Above *Superior Boundary*,<br />Below  *Lower Boundary* |
-| C |  9.4 | 10.6 | Above *Lower Boundary*,<br />Below  *Upper Boundary* |
-| D |  10.6 | 11.8 | Above *Upper Boundary*,<br />Below  *Inferior Boundary* |
-| E |  11.8 | | Above *Inferior Boundary* |
-
-For example, if the ship's *Attained CII* was $9gCO_2/transportWork$, the ship receives a grade `B`, as its *Attained CII* was above the threshold for *Superior Boundary*, but below the threshold for *Lower Boundary*.
 
 ---
 
@@ -180,6 +141,47 @@ The full implementation detail can be found in **[Table 1](#table-1-mepc33776-sh
 - `ArgumentOutOfRangeException` is thrown if the DWT is set to 0, when ship type is set to anything other than `Ro-ro cargo ship (vehicle carrier)`, `Ro-ro passenger ship` or `Cruise passenger ship`
 - `ArgumentOutOfRangeException` is thrown if the GT is set to 0, when ship type is set to `Ro-ro cargo ship (vehicle carrier)`, `Ro-ro passenger ship` or `Cruise passenger ship`
 
+
+---
+
+## Ship Grade Worked example
+The worked example below considers a *Bulk Carrier*, with a Deadweight Tonnage below 279,000. Assuming the *Bulk Carrier*'s $required CII$ is:
+
+
+> $10g CO_2 / DWT.NM$
+
+
+Then the boundaries are calculated with:
+ 
+- $10 \times exp(d1)$
+- $10 \times exp(d2)$
+- $10 \times exp(d3)$
+- $10 \times exp(d4)$. 
+
+The $exp(d_i)$ rating boundaries for each ship type can be found in [Table 3](#table-3-mepc33976---ship-grading-boundaries). 
+
+The resultant boundaries are:
+
+| Boundary Type | Required CII | Boundary's Lower Threshold |
+| ------------- | --------------- | --------------- |
+| Superior      | $= 10 \times exp(d1)$ <br /> $= 10 \times 0.86$<br />  $= 8.6$ |  $8.6 gCO_2/transportWork$ |
+| Lower         | $= 10 \times exp(d2)$ <br /> $= 10 \times 0.94$<br />  $= 9.4$ |  $9.4 gCO_2/transportWork$ |
+| Upper         | $= 10 \times exp(d3)$ <br /> $= 10 \times 1.06$<br />  $= 10.6$ | $10.6 gCO_2/transportWork$ |
+| Inferior      | $= 10 \times exp(d4)$ <br /> $= 10 \times 1.18$<br />  $= 11.8$ | $11.8 gCO_2/transportWork$ |
+
+
+Grades are then derived from these boundaries, by comparing the ship's *Attained CII* to the thresholds across a given calendar year:
+
+
+| Grade | Higher than | Lower than | Description |
+| ----- | :----: | :----: | ---- |
+| A |  | 8.6 | Below *Superior Boundary* |
+| B |  8.6 | 9.4 | Above *Superior Boundary*,<br />Below  *Lower Boundary* |
+| C |  9.4 | 10.6 | Above *Lower Boundary*,<br />Below  *Upper Boundary* |
+| D |  10.6 | 11.8 | Above *Upper Boundary*,<br />Below  *Inferior Boundary* |
+| E |  11.8 | | Above *Inferior Boundary* |
+
+For example, if the ship's *Attained CII* was $9gCO_2/transportWork$, the ship receives a grade `B`, as its *Attained CII* was above the threshold for *Superior Boundary*, but below the threshold for *Lower Boundary*. Whereas if the ship's *Attained CII* was $11gCO_2/transportWork$, the ship receives a grade `D`, as its *Attained CII* was above the threshold for *Upper Boundary*, but below the threshold for *Inferior Boundary*.
 
 ---
 
