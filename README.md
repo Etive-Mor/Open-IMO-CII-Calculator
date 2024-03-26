@@ -7,6 +7,8 @@ An unofficial open source implementation of the International Maritime Organisat
 
 # Methodology
 
+
+
 ## Ship $CO_2$ Emissions Methodology
 
 The sum of a ship's $CO_2$ emissions over a given year are calculated by multiplying the mass of consumed fuel by the fuel's emissions factor. 
@@ -68,11 +70,13 @@ The full implementation detail can be found in **[Table 1](#table-1-mepc33776-sh
 
 # Reference Tables
 
-## Table 1: MEPC.337(76) Shipping Capacity
+## Table 1: MEPC.337(76) - Shipping Capacity Tables
 
 The following table describes how to determine a given ship type's *Capacity*.
 
-Ship Type | Ship weight param (optional) | Capacity | $a$ | $c$
+*Table source*: [IMO: MEPC.337(76)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.337(76).pdf)
+
+Ship Type | Weight Classification | Capacity | $a$ | $c$
 -- | -- | -- | -- | --
 Bulk carrier | 279,000 DWT and above | 279,000 | 4,745 | 0.622
 Bulk carrier | Less than 279,000 | DWT | 4,745 | 0.622
@@ -92,7 +96,7 @@ Ro-ro cargo ship |  | DWT | 10,952 | 0.637
 Ro-ro passenger ship |  | GT | 7,540 | 0.587
 Cruise passenger ship |  | GT | 930 | 0.383
 
-Table source: [IMO: MEPC.337(76)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.337(76).pdf)
+
 
 ---
 
@@ -100,24 +104,78 @@ Table source: [IMO: MEPC.337(76)](https://wwwcdn.imo.org/localresources/en/Knowl
 
 The following table describes how to convert from the fuel used by a ship's main engine $ME_{(i)}$ to the amount of $CO_2$ produced. Fuel consumption is measured in grams (g), as is the output $CO_2$ emission
 
-| ID | Fuel Type | Carbon Content | $C_F (\frac{t-CO_2}{t-Fuel})$ | Lower calorific value (kJ/kg) | Source/Reference |
-| ------------- | ------------- | -------------- | ------------- | -------------- | -------------- |
-| 1  | Diesel / Gas Oil | 0.8744 | 3.206 | 42,700 | ISO 8217 Grade DMX to DMB |
-| 2 | Light Fuel Oil (LFO) | 0.8594 | 3.151 | 41,200 | ISO 8217 Grade RMA to RMD |
-| 3 | Heavy Fuel Oil (HFO) | 0.8493 | 3.114 | 40,200 | ISO 8217 Grade RME to RMK |
-| 4a | Liquified Petroleum (Propane) | 0.8182 | 3.000 | 46,300 | Propane |
-| 4b | Liquified Petroleum (Butane) | 0.8264 | 3.030 | 45,700 | Butane |
-| 5 | Ethane | 0.7989 | 2.927 | 46,400 |  |
-| 6 | Liquified Natural Gas (LNG) | 0.7500 | 2.750 | 48,000 | n/a |
-| 7 | Methanol | 0.3750 | 1.375 | 19,900 | n/a |
-| 8 | Ethanol | 0.5217 | 1.913 | 26,800 | n/a |
+*Table source*: [IMO: MEPC.364(79)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.364(79).pdf)
 
-Table source: [IMO: MEPC.364(79)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.364(79).pdf)
+| ID | Fuel Type            | Source/Reference          | Carbon Content | $C_F (\frac{t-CO_2}{t-Fuel})$ | Lower calorific value (kJ/kg) |
+|----|----------------------|---------------------------|----------------|--------------------------------|--------------------------------|
+| 1  | Diesel / Gas Oil     | ISO 8217 Grade DMX to DMB |           0.8744 |                          3.206 |                         42,700 |
+| 2  | Light Fuel Oil (LFO) | ISO 8217 Grade RMA to RMD |           0.8594 |                          3.151 |                         41,200 |
+| 3  | Heavy Fuel Oil (HFO) | ISO 8217 Grade RME to RMK |           0.8493 |                          3.114 |                         40,200 |
+| 4a | Liquified Petroleum (Propane) | Propane                  |           0.8182 |                          3.000 |                         46,300 |
+| 4b | Liquified Petroleum (Butane)  | Butane                   |           0.8264 |                          3.030 |                         45,700 |
+| 5  | Ethane               | -                         |           0.7989 |                          2.927 |                         46,400 |
+| 6  | Liquified Natural Gas (LNG)   | n/a                      |           0.7500 |                          2.750 |                         48,000 |
+| 7  | Methanol             | n/a                      |           0.3750 |                          1.375 |                         19,900 |
+| 8  | Ethanol              | n/a                      |           0.5217 |                          1.913 |                         26,800 |
+
+
 
 ---
 
+## Table 3: MEPC.339(76) - Ship Grading Boundaries
 
-## Table 3: Common shipping measurement conversions
+The following table describes the $dd$ vectors used to determine the rating boundaries for ship types. The columns $dd$ $exp(d_i)$ values represent
+the boundaries the IMO's rating system. 
+
+
+
+*Table source*: [IMO: MEPC.339(76)](https://wwwcdn.imo.org/localresources/en/OurWork/Environment/Documents/Air%20pollution/MEPC.339(76).pdf)
+
+
+| Id | Ship Type | Weight Classification | Capacity in CII Calculation | *dd* vector exp(d1) | *dd* vector exp(d2) | *dd* vector exp(d3) | *dd* vector exp(d4) | 
+| ----------- | ----------- | ----------- | ----------- | ----------: | ----------: | ----------: | ----------: |
+| 1 | Bulk Carrier                          |                           | DWT | 0.86 | 0.94 | 1.06 | 1.18 |
+| 2.a | Gas Carrier                         | 65,000 DWT and above      | DWT | 0.81 | 0.91 | 1.12 | 1.44 |
+| 2.b | Gas Carrier                         | Less than 65,000 DWT      | DWT | 0.85 | 0.95 | 1.06 | 1.25 |
+| 3 | Tanker                                |                           | DWT | 0.82 | 0.93 | 1.08 | 1.28 |
+| 4 | Container Ship                        |                           | DWT | 0.83 | 0.94 | 1.07 | 1.19 |
+| 5 | General Cargo Ship                    |                           | DWT | 0.83 | 0.94 | 1.06 | 1.19 |
+| 6 | Refrigerated Cargo Carrier            |                           | DWT | 0.78 | 0.91 | 1.07 | 1.20 |
+| 7 | Combination Carrier                   |                           | DWT | 0.87 | 0.96 | 1.06 | 1.14 |
+| 8.a | LNG Carrier                         | 100,000 DWT and above     | DWT | 0.89 | 0.98 | 1.06 | 1.13 |
+| 8.b | LNG Carrier                         | Less than 100,000 DWT     | DWT | 0.78 | 0.92 | 1.10 | 1.37 |
+| 9 | Ro-ro Cargo Ship (Vehicle Carrier)    |                           | GT  | 0.86 | 0.94 | 1.06 | 1.16 |
+| 10 | Ro-ro Cargo Ship                     |                           | DWT | 0.66 | 0.90 | 1.11 | 1.37 |
+| 11 | Ro-ro Passenger Ship                 |                           | GT  | 0.72 | 0.90 | 1.12 | 1.41 |
+| 12 | Cruise Passenger Ship                |                           | GT  | 0.87 | 0.95 | 1.06 | 1.16 |
+
+
+Boundaries are calculated as $shipTypeRequiredCII \times exp(d_i)$. So, assuming a bulk carrier's *required CII* is $\frac{10g CO_2}{DWT \times NM}$, then the boundaries are $10 \times exp(d1)$. The resulting boundaries are:
+
+| Boundary Type | Value           |
+| ------------- | --------------- |
+| Superior      | 8.6 $gCO_2 / DWT.NM$ |
+| Lower         | 9.4 $gCO_2 / DWT.NM$ |
+| Upper         | 10.6 $gCO_2 / DWT.NM$ |
+| Inferior      | 11.8 $gCO_2 / DWT.NM$ |
+
+Grades are derived from these boundaries:
+
+
+
+| Grade | Higher than<br />$\frac{g CO_2}{DWT \times NM}$ | Lower than <br />$\frac{g CO_2}{DWT \times NM}$ | Desription |
+| ----- | :----: | :----: | ---- |
+| A |  | 8.6 | Below *Superior Boundary* |
+| B |  8.6 | 9.4 | Above *Superior Boundary*,<br />Below  *Lower Boundary* |
+| C |  9.4 | 10.6 | Above *Lower Boundary*,<br />Below  *Upper Boundary* |
+| D |  10.6 | 11.8 | Above *Upper Boundary*,<br />Below  *Inferior Boundary* |
+| E |  11.8 | | Above *Inferior Boundary* |
+
+
+
+---
+
+## Table 4: Common shipping measurement conversions
 
 Often in shipping, non-metric measurements are used. Conversions are detailed below
 
@@ -126,6 +184,7 @@ Often in shipping, non-metric measurements are used. Conversions are detailed be
 | Deadweight Tonne (DWT) | $1016.0469088kg$ | DWT is a ship's total weight excluding boiler water, measured in Imperial long tons |
 | Gross Tonne (GT) | $1016.0469088kg$ | GT is a ship's area, measured in Imperial long tons |
 
+---
 
 # Shipping Terminology & Glossary
 
@@ -144,12 +203,11 @@ Often in shipping, non-metric measurements are used. Conversions are detailed be
 
 
 
-
-
 # References & datasets
 
 - IMO: MEPC.337(76) - Carbon Intensity Index (CII) spec: https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.337(76).pdf
 - IMO: MEPC.364(79) - Energy Efficiency Design Index (EEDI) spec: https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.364(79).pdf
+- IMO: MEPC.339(76) - 2021 Guidelines on the operational carbon intensity rating of ships (CII Rating Guidelines, G4): https://wwwcdn.imo.org/localresources/en/OurWork/Environment/Documents/Air%20pollution/MEPC.339(76).pdf
 - ISO 8217:2017 (Current standard) - Petroleum products, Fuels (class F), Specifications of marine fuels: https://www.iso.org/standard/64247.html
 - ISO/FDIS 8217 (Standard under development) - Products from petroleum, synthetic and renewable sources, Fuels (class F), Specifications of marine fuel: https://www.iso.org/standard/80579.html
 
@@ -163,4 +221,4 @@ Often in shipping, non-metric measurements are used. Conversions are detailed be
 
 - UNStats (public, non-commercial dataset): https://unstats.un.org/bigdata/task-teams/ttt-dashboards/
 - Dataliastic (private commercial dataset): https://datalastic.com/pricing/
-- Marine Traffic (private commercial dataset): https://servicedocs.marinetraffic.com/
+- Marine Traffic (private commercial dataset): https://servicedocs.marinetraffic.com/ 
