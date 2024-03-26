@@ -5,9 +5,6 @@ namespace EtiveMor.OpenImoCiiCalculator.Core
     public class Calculator
     {
         /// <summary>
-        /// 
-        /// 
-        /// 
         /// CII = (annualFuelConsumption * co2eqEmissionsFactor) / (distanceSailed * capacity)
         /// </summary>
         /// <param name="annualFuelConsumption"></param>
