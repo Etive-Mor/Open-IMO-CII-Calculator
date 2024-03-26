@@ -134,14 +134,33 @@ Often in shipping, non-metric measurements are used. Conversions are detailed be
 | Carbon Dioxide Equivalent (CO2eq, CO2, CO2e, $CO_2$) | A ship's carbon dioxide emissions | Expressed in this implementation in grams (metric) |
 | Carbon Intensity Index (CII) | The relative measure of a ship's carbon dioxide emissions, taking distance travelled and fuel type used into account |  |
 | Deadweight Tonnage (DWT) | The measure of a the total contents of a ship, including cargo, fuel, crew, passengers, and water (Excludes water in a ship's boiler) | Expressed in long tons (British Imperial) |
+| Final Draft International Standard (FDIS) | A draft status for an ISO Standard, indicating the standard is in its final stage of approval |  |
 | Gross Tonnage (GT) | A ship's internal volume | Expressed in long tons (British Imperial) |
 | International Maritime Organisation (IMO) | A UN Agency responsible for regulating maritime transport rules & regulations |  |
+| International Organization for Standardization (ISO) | Independent, non-governmental, international standard development organization |  |
 | Liquefied natural gas (LNG) | Gas, compressed into liquid form for easier transport |  |
 | Resolution MEPC.337(76) | Internationally standardised reference guide to shipping carbon intensity |  |
 | Roll-on-roll-off (Ro-ro, Roro, Ro ro) | A ship designed to take cargo which can be wheeled (or rolled) in and out of a cargo hold |  |
 
 
-# References
+
+
+
+# References & datasets
 
 - IMO: MEPC.337(76) - Carbon Intensity Index (CII) spec: https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.337(76).pdf
 - IMO: MEPC.364(79) - Energy Efficiency Design Index (EEDI) spec: https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.364(79).pdf
+- ISO 8217:2017 (Current standard) - Petroleum products, Fuels (class F), Specifications of marine fuels: https://www.iso.org/standard/64247.html
+- ISO/FDIS 8217 (Standard under development) - Products from petroleum, synthetic and renewable sources, Fuels (class F), Specifications of marine fuel: https://www.iso.org/standard/80579.html
+
+## Further Reading
+
+- Society of Naval Architecture Students summary of CII Calculations: https://github.com/snascusat/CII-Calculator
+- DNV's summary of EEXI and CII requirements: https://www.dnv.com/news/eexi-and-cii-requirements-taking-effect-from-1-january-2023-237817/
+
+
+## Useful datasets (miced public and private)
+
+- UNStats (public, non-commercial dataset): https://unstats.un.org/bigdata/task-teams/ttt-dashboards/
+- Dataliastic (private commercial dataset): https://datalastic.com/pricing/
+- Marine Traffic (private commercial dataset): https://servicedocs.marinetraffic.com/
