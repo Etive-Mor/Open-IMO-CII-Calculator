@@ -52,6 +52,10 @@ The worked example below considers a *Bulk Carrier*, with a Deadweight Tonnage b
 
 > $10g CO_2 / DWT.NM$
 
+> [!IMPORTANT]
+For some ship types, $GT \times NM$ should be used instead of $DWT \times NM$, see [Table 1](#table-1-mepc33776---shipping-capacity-tables) and [transport work done methodology](#ship-transport-work-methodology) for a comprehensive guide. 
+
+
 
 Then the boundaries are calculated with:
  
@@ -88,7 +92,6 @@ Grades are then derived from these boundaries, by comparing the ship's *Attained
 - If the ship's *Attained CII* was $9gCO_2/ DWT \times NM$, the ship receives a grade `B`, as its *Attained CII* was above the threshold for *Superior Boundary*, but below the threshold for *Lower Boundary*.
 - If the ship's *Attained CII* was $11gCO_2/ DWT \times NM$, the ship receives a grade `D`, as its *Attained CII* was above the threshold for *Upper Boundary*, but below the threshold for *Inferior Boundary*.
 
----
 
 ---
 
