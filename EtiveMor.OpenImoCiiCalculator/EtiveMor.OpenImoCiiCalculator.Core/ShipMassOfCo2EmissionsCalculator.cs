@@ -5,25 +5,33 @@ namespace EtiveMor.OpenImoCiiCalculator.Core
     public class ShipMassOfCo2EmissionsCalculator
     {
         /// <summary>
-        /// Gets the mass of CO2 emissions for a given fuel type and fuel consumption mass.
+        /// Gets the mass of CO2 emissions in grams (g) for a given fuel type and fuel consumption mass.
         /// </summary>
         /// <param name="fuelType">
         /// The fuel type in use by the ship's engine
         /// </param>
-        /// <param name="fuelConsumptionMass">
-        /// the cumulative mass of consumed fuel across the calendar year
+        /// <param name="fuelConsumptionMassInGrams">
+        /// the cumulative mass of consumed fuel across the calendar year in grams (g)
         /// </param>
         /// <returns>
-        /// A double representing the mass of CO2 emissions for a ship in a calendar year
+        /// A double representing the mass of CO2 emissions for a ship in a calendar year in grams (g)
         /// </returns>
         /// <exception cref="ArgumentException">
         /// Thrown if an unsupported fuel type is provided
         /// </exception>
-        public double GetMassOfCo2Emissions(TypeOfFuel fuelType, double fuelConsumptionMass)
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown if fuelConsumptionMassInGrams is less than or equal to zero
+        /// </exception>
+        public double GetMassOfCo2Emissions(TypeOfFuel fuelType, double fuelConsumptionMassInGrams)
         {
+            if (fuelConsumptionMassInGrams <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Fuel consumption mass must be a positive value", 
+                    nameof(fuelConsumptionMassInGrams));
+            }
             double fuelMassConversionFactor = GetFuelMassConversionFactor(fuelType);
 
-            var massOfCo2Emissions = fuelConsumptionMass * fuelMassConversionFactor;
+            var massOfCo2Emissions = fuelConsumptionMassInGrams * fuelMassConversionFactor;
 
             return massOfCo2Emissions;
         }
