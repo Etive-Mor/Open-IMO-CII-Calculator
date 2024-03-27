@@ -25,7 +25,8 @@ The specification for this software can be found in [IMO's resolution MEPC.353(7
   - [Table 1: MEPC.353(78) - Shipping Capacity Tables](#table-1-mepc35378---shipping-capacity-tables)
   - [Table 2: MEPC.364(79) Mass Conversion between fuel consumption and CO2 emissions](#table-2-mepc36479-mass-conversion-between-fuel-consumption-and-co2-emissions)
   - [Table 3: MEPC.339(76) - Ship Grading Boundaries](#table-3-mepc33976---ship-grading-boundaries)
-  - [Table 4: Common shipping measurement conversions](#table-4-common-shipping-measurement-conversions)
+  - [Table 4: Annual Carbon Reduction Factors (Z%)](#table-4-annual-carbon-reduction-factors-z)
+  - [Table 5: Common shipping measurement conversions](#table-5-common-shipping-measurement-conversions)
 - [Shipping Terminology \& Glossary](#shipping-terminology--glossary)
 - [References \& datasets](#references--datasets)
   - [Further Reading](#further-reading)
@@ -271,7 +272,7 @@ The following table describes how to convert from the fuel used by a ship's main
 ## Table 3: MEPC.339(76) - Ship Grading Boundaries
 
 The following table describes the $dd$ vectors used to determine the rating boundaries for ship types. The columns $dd$ $exp(d_i)$ values represent
-the boundaries the IMO's rating system. 
+the boundaries the IMO's rating system in the baseline year (2019). 
 
 
 
@@ -296,11 +297,36 @@ the boundaries the IMO's rating system.
 | 12 | Cruise Passenger Ship                |                           | GT  | 0.87 | 0.95 | 1.06 | 1.16 |
 
 
+---
+
+## Table 4: Annual Carbon Reduction Factors (Z%)
+
+The following table describes the reduction factor to be applied to a ship's $requiredCII$ on an annual basis. IMO have 
+to date released figures up to 2026. In the table, the values from 2027 onwards are **unofficial estimates** based on the pattern to 2026. IMO aims to release
+new reduction factors
+
+*Table Source*: [IMO: MEPC.338(76)](https://wwwcdn.imo.org/localresources/en/OurWork/Environment/Documents/Air%20pollution/MEPC.338(76).pdf)
+
+| Year | Reduction factor<br /> Relative to 2019 | Estimated Reduction Factor |
+| ---- | -----: | ---: |
+| 2019 | 0%     | -- % |
+| 2020 | 1%     | -- % |
+| 2021 | 2%     | -- % |
+| 2022 | 3%     | -- % |
+| 2023 | 5%     | -- % |
+| 2024 | 7%     | -- % |
+| 2025 | 9%     | -- % |
+| 2026 | 11%    | -- % |
+| 2027 | -- %   | 13%  |
+| 2028 | -- %   | 15%  |
+| 2029 | -- %   | 17%  |
+| 2030 | -- %   | 19%  |
+
 
 
 ---
 
-## Table 4: Common shipping measurement conversions
+## Table 5: Common shipping measurement conversions
 
 Often in shipping, non-metric measurements are used. Conversions are detailed below
 
