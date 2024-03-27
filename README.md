@@ -23,22 +23,38 @@ An unofficial open source implementation of the International Maritime Organisat
 - [Shipping Terminology \& Glossary](#shipping-terminology--glossary)
 - [References \& datasets](#references--datasets)
   - [Further Reading](#further-reading)
-  - [Useful datasets (miced public and private)](#useful-datasets-miced-public-and-private)
+  - [Useful datasets (mixed public and private)](#useful-datasets-mixed-public-and-private)
 
 
 # Methodology
 
-The grading scheme for a ship's Carbon Intensity Indicator (CII) is in the range A to E, where A is the most efficient bracket, and E is the least efficient. 
+A ship's Carbon Intensity Indicator (CII) is measured by calculating its transport workload in a given calendar year, then calculating the mass of $CO_2$ produced by the ship in that year. The ship's *Attained CII* is the product of its $transportWork$ and the $massOfCO_2Emissions$ in one calendar year.
+
+> $AttainedCII = massOfCo2Emissions \times transportWork$
+
+Ships are split into 12 categories, for example "Bulk Carrier", "Tanker", "Cruise Passenger Ship" among others (see [Table 1](#table-1-mepc33776---shipping-capacity-tables) for a comprehensive list). A ship is compared internally among its category peers but never across categories, for example, a *Bulk Carrier* is not directly comparable to a *LNG Carrier* in this system.
+
+
+**Inputs**
+- The type of ship
+- The type of fuel used by the ship's main engine 
+- The capacity of the ship, measured in either Deadweight Tonnage (DWT) or Gross Tonnage (GT)
+- The distance travelled by the ship in one calendar year, measured in nautical miles
+
+The ship's *Attained CII* is then compared to its *Required CII* to produce an easy to understand grade for the ship. The grading scheme is in the range A to E, where A is the most efficient bracket, and E is the least efficient. 
 
 | Grade |  Description |
 | ----- | ---- |
 | A |   CII below the *Superior Boundary* |
 | B |   CII above the *Superior Boundary* and below the *Lower Boundary* |
-| C |   CII above the *Lower Boundary* and below the *Upper Boundary* |
+| C |   CII between the *Lower Boundary* and the *Upper Boundary* |
 | D |   CII above the *Upper Boundary* and below the *Inferior Boundary* |
 | E |   CII above the *Inferior Boundary* |
 
-Ships are split into 12 categories, for example "Bulk Carrier", "Tanker", "Cruise Passenger Ship" among others (see [Table 1](#table-1-mepc33776---shipping-capacity-tables) for a comprehensive list). A ship is compared internally among its category peers but never across categories, for example, a *Bulk Carrier* is not directly compared to a *LNG Carrier* in this system.
+
+![Graphical representation of IMO's ship boundaries, indicating the CII requirements to attain an A, B, C, D, E grade](.\README_assets\imo_boundaries_diagram.png "IMO Shipping Grades Diagram")
+<p align=center>Fig1. IMO Boundaries, after [IMO MEPC.339(76)](https://wwwcdn.imo.org/localresources/en/OurWork/Environment/Documents/Air%20pollution/MEPC.339(76).pdf)</p>
+
 
 ## Ship Grade Ratio Methodology
 
@@ -97,10 +113,10 @@ Grades are then derived from these boundaries, by comparing the ship's *Attained
 
 ## Ship Attained Carbon Intensity Methodology
 
-A ship's attained carbon intensity is calculated by taking the [mass of its aggregate CO<sub>2</sub> emissions](#ship-co_2-emissions-methodology) in a calendar year, and multiplying it by its [transport work done](#ship-transport-work-methodology) in the calendar year.
+A ship's Attained carbon intensity is calculated by taking the [mass of its aggregate CO<sub>2</sub> emissions](#ship-co_2-emissions-methodology) in a calendar year, and multiplying it by its [transport work done](#ship-transport-work-methodology) in the calendar year.
 
 > $massOfCo2Emissions \times transportWork$
-> 
+
 **Method accepts**:
 - `massOfCo2Emissions`, the mass of $CO_2$ emissions in the calendar year 
     - See [co2 emissions methodology](#ship-co_2-emissions-methodology) to calculate
@@ -322,7 +338,7 @@ Often in shipping, non-metric measurements are used. Conversions are detailed be
 - DNV's summary of EEXI and CII requirements: https://www.dnv.com/news/eexi-and-cii-requirements-taking-effect-from-1-january-2023-237817/
 
 
-## Useful datasets (miced public and private)
+## Useful datasets (mixed public and private)
 
 - UNStats (public, non-commercial dataset): https://unstats.un.org/bigdata/task-teams/ttt-dashboards/
 - Dataliastic (private commercial dataset): https://datalastic.com/pricing/
