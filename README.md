@@ -218,28 +218,30 @@ The full implementation detail can be found in **[Table 1](#table-1-mepc33776-sh
 
 The following table describes how to determine a given ship type's *Capacity*.
 
-*Table source*: [IMO: MEPC.337(76)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.337(76).pdf)
+*Table Source*: [IMO: MEPC.353(78)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.353(78).pdf)
 
-Ship Type | Weight Classification | Capacity | $a$ | $c$
--- | -- | -- | -- | --
-Bulk carrier | 279,000 DWT and above | 279,000 | 4,745 | 0.622
-Bulk carrier | Less than 279,000 | DWT | 4,745 | 0.622
-Gas carrier | 65,000 and above | DWT | 14405E7 | 2.071
-Gas carrier | Less than 65,000 | DWT | 8,104 | 0.639
-Tanker |  | DWT | 5,247 | 0.610
-Container Ship |  | DWT | 1,984 | 0.489
-General cargo ship | 20,000 DWT and above | DWT | 31,948 | 0.792
-General cargo ship | Less than 20,000 DWT | DWT | 588 | 0.3885
-Refrigerated cargo carrier | | DWT | 4,600 | 0.557
-Combination carrier | | DWT | 40,853 | 0.812
-LNG Carrier | 100,000 DWT and above | DWT | 9.827 | 0.000
-LNG Carrier | 65,000 and above, less than 100,000 | DWT | 14479E10 | 2.673
-LNG Carrier | less than 65,000 | DWT | 14479E10 | 2.673
-Ro-ro cargo ship (vehicle carrier) |  | GT | 5,739 | 0.631
-Ro-ro cargo ship |  | DWT | 10,952 | 0.637
-Ro-ro passenger ship |  | GT | 7,540 | 0.587
-Cruise passenger ship |  | GT | 930 | 0.383
-
+Ship Type               | Conditional Specification        | Capacity     | $a$          | $c$
+------------------------|-----------------------------|--------------|--------------|--------------
+Bulk carrier            | 279,000 DWT and above       | 279,000      | 4,745         | 0.622
+Bulk carrier            | Less than 279,000 DWT        | DWT          | 4,745        | 0.622
+Gas carrier             | 65,000 and above            | DWT          | 14405E7      | 2.071
+Gas carrier             | Less than 65,000 DWT         | DWT          | 8,104        | 0.639
+Tanker                  |                             | DWT          | 5,247        | 0.610
+Container Ship          |                             | DWT          | 1,984        | 0.489
+General cargo ship      | 20,000 DWT and above        | DWT          | 31,948       | 0.792
+General cargo ship      | Less than 20,000 DWT         | DWT          | 588          | 0.3885
+Refrigerated cargo carrier|                             | DWT          | 4,600        | 0.557
+Combination carrier     |                             | DWT          | 5,119       | 0.622
+LNG Carrier             | 100,000 DWT and above        | DWT          | 9.827        | 0.000
+LNG Carrier             | 65,000 and above, less than 100,000 | DWT   | 14479E10     | 2.673
+LNG Carrier             | less than 65,000 DWT         | DWT          | 14779E10     | 2.673
+Ro-ro cargo ship (vehicle carrier) | 57,700 and above   | 57,000      | 3,627        | 0.590
+Ro-ro cargo ship (vehicle carrier) | 30,000 and above, less than 57,700 | 3627   | 5,739   | 0.590
+Ro-ro cargo ship (vehicle carrier) | less than 30,000     | GT          | 330        | 0.329
+Ro-ro cargo ship         |                             | GT          | 1,967       | 0.485
+Ro-ro passenger ship     | Ro-ro passenger ship        | GT          | 2,023       | 0.460
+Ro-ro passenger ship     | High-speed craft designed to SOLAS chapter X | 4,196          | 7,540        | 0.460
+Cruise passenger ship    |                             | GT          | 930          | 0.383
 
 
 ---
