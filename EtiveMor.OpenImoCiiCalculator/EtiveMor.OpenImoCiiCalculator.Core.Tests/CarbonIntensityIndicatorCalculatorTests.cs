@@ -1,4 +1,6 @@
-﻿namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
+﻿using EtiveMor.OpenImoCiiCalculator.Core.Services.Impl;
+
+namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
 {
     [TestClass]
     public class CarbonIntensityIndicatorCalculatorTests
@@ -16,7 +18,7 @@
         [DataRow(5000, 10000, 0.5)]
         public void GetAttainedCarbonIntensity_Success_ReturnsCorrectRatio(double massOfCo2Emissions, double transportWork, double expectedRatio)
         {
-            var calculator = new CarbonIntensityIndicatorCalculator();
+            var calculator = new CarbonIntensityIndicatorCalculatorService();
             double result = calculator.GetAttainedCarbonIntensity(massOfCo2Emissions, transportWork);
             Assert.AreEqual(expectedRatio, result, 0.001); // Using a tolerance of 0.001 for floating point comparison
         }
@@ -34,7 +36,7 @@
         [DataRow(5000, -200)]
         public void GetAttainedCarbonIntensity_Failure_ThrowsArgumentOutOfRangeException(double massOfCo2Emissions, double transportWork)
         {
-            var calculator = new CarbonIntensityIndicatorCalculator();
+            var calculator = new CarbonIntensityIndicatorCalculatorService();
 
             ArgumentOutOfRangeException ex = Assert.ThrowsException<ArgumentOutOfRangeException>(() => calculator.GetAttainedCarbonIntensity(massOfCo2Emissions, transportWork));
             Assert.IsTrue(!string.IsNullOrEmpty(ex.Message));

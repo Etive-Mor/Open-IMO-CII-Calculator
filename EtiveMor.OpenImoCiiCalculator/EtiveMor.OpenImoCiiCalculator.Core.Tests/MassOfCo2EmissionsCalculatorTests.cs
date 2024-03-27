@@ -1,4 +1,5 @@
 ﻿using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
+using EtiveMor.OpenImoCiiCalculator.Core.Services.Impl;
 
 namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
 {
@@ -34,7 +35,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
             // Arrange, set the  fuel consumption value to 1000 grams
             var fuelConsumption = 1000;
 
-            var fuelCalculation = new ShipMassOfCo2EmissionsCalculator();
+            var fuelCalculation = new ShipMassOfCo2EmissionsCalculatorService();
 
             // Act
             var result = fuelCalculation.GetMassOfCo2Emissions(fuelType, fuelConsumption);
@@ -55,7 +56,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
             // Arrange, set the  fuel consumption value to 1000 grams
             var fuelConsumption = 1000;
 
-            var fuelCalculation = new ShipMassOfCo2EmissionsCalculator();
+            var fuelCalculation = new ShipMassOfCo2EmissionsCalculatorService();
 
             // Act & Assert
             Assert.ThrowsException<ArgumentException>(() => fuelCalculation.GetMassOfCo2Emissions(fuelType, fuelConsumption));
@@ -81,7 +82,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
             // Arrange, set the  fuel consumption value to 0 grams (an invalid number)
             var fuelConsumption = 0;
 
-            var fuelCalculation = new ShipMassOfCo2EmissionsCalculator();
+            var fuelCalculation = new ShipMassOfCo2EmissionsCalculatorService();
 
             // Act & Assert
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => fuelCalculation.GetMassOfCo2Emissions(fuelType, fuelConsumption));
@@ -107,7 +108,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
             // Arrange, set the  fuel consumption value to -100 grams (an invalid number)
             var fuelConsumption = -100;
 
-            var fuelCalculation = new ShipMassOfCo2EmissionsCalculator();
+            var fuelCalculation = new ShipMassOfCo2EmissionsCalculatorService();
 
             // Act & Assert
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => fuelCalculation.GetMassOfCo2Emissions(fuelType, fuelConsumption));
@@ -133,7 +134,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         public void TestGetFuelMassConversionFactor_SupportedFuelTypes(TypeOfFuel fuelType, double expectedResult)
         {
             // Arrange
-            var fuelCalculation = new ShipMassOfCo2EmissionsCalculator(); 
+            var fuelCalculation = new ShipMassOfCo2EmissionsCalculatorService(); 
 
             // Act
             var result = fuelCalculation.GetFuelMassConversionFactor(fuelType);
@@ -151,7 +152,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         public void TestGetFuelMassConversionFactor_UnsupportedFuelType_ThrowsArgumentException(TypeOfFuel fuelType)
         {
             // Arrange
-            var fuelCalculation = new ShipMassOfCo2EmissionsCalculator(); 
+            var fuelCalculation = new ShipMassOfCo2EmissionsCalculatorService(); 
 
             // Act & Assert
             Assert.ThrowsException<ArgumentException>(() => fuelCalculation.GetFuelMassConversionFactor(fuelType));
@@ -174,7 +175,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         public void TestGetFuelCarbonContent_SupportedFuelTypes(TypeOfFuel fuelType, double expectedResult)
         {
             // Arrange
-            var fuelCalculation = new ShipMassOfCo2EmissionsCalculator();
+            var fuelCalculation = new ShipMassOfCo2EmissionsCalculatorService();
 
             // Act
             var result = fuelCalculation.GetFuelCarbonContent(fuelType);
@@ -192,7 +193,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         public void TestGetFuelCarbonContent_UnsupportedFuelType_ThrowsArgumentException(TypeOfFuel fuelType)
         {
             // Arrange
-            var fuelCalculation = new ShipMassOfCo2EmissionsCalculator();
+            var fuelCalculation = new ShipMassOfCo2EmissionsCalculatorService();
 
             // Act & Assert
             Assert.ThrowsException<ArgumentException>(() => fuelCalculation.GetFuelCarbonContent(fuelType));
@@ -216,7 +217,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         public void TestGetFuelLowerCalorificValue_SupportedFuelTypes(TypeOfFuel fuelType, double expectedResult)
         {
             // Arrange
-            var fuelCalculation = new ShipMassOfCo2EmissionsCalculator();
+            var fuelCalculation = new ShipMassOfCo2EmissionsCalculatorService();
 
             // Act
             var result = fuelCalculation.GetFuelLowerCalorificValue(fuelType);
@@ -234,7 +235,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         public void TestGetFuelLowerCalorificValue_UnsupportedFuelType_ThrowsArgumentException(TypeOfFuel fuelType)
         {
             // Arrange
-            var fuelCalculation = new ShipMassOfCo2EmissionsCalculator();
+            var fuelCalculation = new ShipMassOfCo2EmissionsCalculatorService();
 
             // Act & Assert
             Assert.ThrowsException<ArgumentException>(() => fuelCalculation.GetFuelLowerCalorificValue(fuelType));

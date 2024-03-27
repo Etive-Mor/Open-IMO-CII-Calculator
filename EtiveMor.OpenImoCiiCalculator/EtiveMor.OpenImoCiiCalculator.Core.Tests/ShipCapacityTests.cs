@@ -1,5 +1,6 @@
 ﻿using EtiveMor.OpenImoCiiCalculator.Core.Models;
 using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
+using EtiveMor.OpenImoCiiCalculator.Core.Services.Impl;
 
 namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
 {
@@ -27,7 +28,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
                 GrossTonnage = 0
             };
 
-            var capacity = new ShipCapacityCalculator().GetShipCapacity(ship);
+            var capacity = new ShipCapacityCalculatorService().GetShipCapacity(ship);
 
             Assert.AreEqual(250000, capacity);
         }
@@ -64,7 +65,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
                 GrossTonnage = grossTonnage
             };
 
-            new ShipCapacityCalculator().GetShipCapacity(ship);
+            new ShipCapacityCalculatorService().GetShipCapacity(ship);
         }
 
 
@@ -98,7 +99,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
                 GrossTonnage = grossTonnage
             };
 
-            var capacity = new ShipCapacityCalculator().GetShipCapacity(ship);
+            var capacity = new ShipCapacityCalculatorService().GetShipCapacity(ship);
 
             Assert.AreEqual(expectedCapacity, capacity);
         }
