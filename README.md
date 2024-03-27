@@ -41,7 +41,7 @@ Ships are split into 12 categories, for example "Bulk Carrier", "Tanker", "Cruis
 - The capacity of the ship, measured in either Deadweight Tonnage (DWT) or Gross Tonnage (GT)
 - The distance travelled by the ship in one calendar year, measured in nautical miles
 
-The ship's *Attained CII* is then compared to its *Required CII* to produce an easy to understand grade for the ship. The grading scheme is in the range A to E, where A is the most efficient bracket, and E is the least efficient. 
+The ship's *Attained CII* is then compared to its *Required CII* to produce an easy to understand grade for the ship. The grading scheme is in the range A to E, where A is the most efficient bracket, C represents a ship at-or-near its CII, and E is the least efficient. 
 
 | Grade |  Description |
 | ----- | ---- |
