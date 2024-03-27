@@ -52,8 +52,9 @@ The ship's *Attained CII* is then compared to its *Required CII* to produce an e
 | E |   CII above the *Inferior Boundary* |
 
 
-![Graphical representation of IMO's ship boundaries, indicating the CII requirements to attain an A, B, C, D, E grade](.\README_assets\imo_boundaries_diagram.png "IMO Shipping Grades Diagram")
-<p align=center>Fig1. IMO Boundaries, after [IMO MEPC.339(76)](https://wwwcdn.imo.org/localresources/en/OurWork/Environment/Documents/Air%20pollution/MEPC.339(76).pdf)</p>
+![Graphical representation of IMO's ship boundaries, indicating the CII requirements to attain an A, B, C, D, E grade](./README_assets/imo_boundaries_diagram.png "IMO Shipping Grades Diagram")
+
+*Fig1.* IMO Boundaries, after [IMO MEPC.339(76)](https://wwwcdn.imo.org/localresources/en/OurWork/Environment/Documents/Air%20pollution/MEPC.339(76).pdf)
 
 
 ## Ship Grade Ratio Methodology
