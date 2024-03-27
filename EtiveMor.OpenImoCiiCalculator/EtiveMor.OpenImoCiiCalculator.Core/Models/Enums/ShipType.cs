@@ -77,6 +77,12 @@
         /// </summary>
         /// <seealso cref="RoRoCruisePassengerShip"/>
         RoRoPassengerShip = 110,
+        
+        /// <summary>
+        /// A type of high-speed ship designed to conform to SOLAS Chapter X standards 
+        /// </summary>
+        /// <seealso cref="RoRoCruisePassengerShip"/>
+        RoRoPassengerShip_HighSpeedSOLAS = 111,
 
         /// <summary>
         /// A type of ship designed primarily for passenger accommodation and leisure 

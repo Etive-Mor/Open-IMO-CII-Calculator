@@ -8,13 +8,13 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
     public class ShipCapacityCalculatorService : IShipCapacityCalculatorService
     {
         /// <summary>
-        /// Calculates the ship's capacity according to the MEPC 337(76) guidelines
+        /// Calculates the ship's capacity according to the MEPC.353(78)guidelines
         /// </summary>
         /// <param name="ship">
         /// The ship to calculate the capacity for
         /// </param>
         /// <returns>
-        /// The ship's type capacity according to MEPC 337(76) 
+        /// The ship's type capacity according to MEPC.353(78)
         /// </returns>
         public double GetShipCapacity(Ship ship)
         {
@@ -22,7 +22,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
         }
 
         /// <summary>
-        /// Calculates the ship's capacity according to the MEPC 337(76) guidelines
+        /// Calculates the ship's capacity according to the MEPC.353(78)guidelines
         /// </summary>
         /// <param name="shipType">
         /// The type of the ship (e.g., BulkCarrier, RoRoCargoShip, CruisePassengerShip, etc.)
@@ -38,7 +38,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
         /// fees.
         /// </param>
         /// <returns>
-        /// The ship's type capacity according to MEPC 337(76) 
+        /// The ship's type capacity according to MEPC.353(78)
         /// </returns>
         public double GetShipCapacity(ShipType shipType, double deadweightTonnage, double grossTonnage)
         {
@@ -48,13 +48,33 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
             switch (shipType)
             {
                 case ShipType.BulkCarrier:
-                    return deadweightTonnage > 279000 ? 279000 : deadweightTonnage;
-                case ShipType.RoRoCargoShipVehicleCarrier:
+                    return deadweightTonnage >= 279000 ? 279000 : deadweightTonnage;
+                case ShipType.GasCarrier:
+                    return deadweightTonnage;
+                case ShipType.Tanker:
+                    return deadweightTonnage;
+                case ShipType.ContainerShip:
+                    return deadweightTonnage;
+                case ShipType.GeneralCargoShip:
+                    return deadweightTonnage;
+                case ShipType.RefrigeratedCargoCarrier:
+                    return deadweightTonnage;
+                case ShipType.CombinationCarrier:
+                    return deadweightTonnage;
+                case ShipType.LngCarrier:
+                    return deadweightTonnage < 65000 ? 65000 : deadweightTonnage;
+                case ShipType.RoRoCargoShipVehicleCarrier: 
+                    return deadweightTonnage >= 57700 ? 57700 : grossTonnage;
+                case ShipType.RoRoCargoShip:
+                    return grossTonnage;
                 case ShipType.RoRoPassengerShip:
+                    return grossTonnage;
+                case ShipType.RoRoPassengerShip_HighSpeedSOLAS:
+                    return grossTonnage;
                 case ShipType.RoRoCruisePassengerShip:
                     return grossTonnage;
                 default:
-                    return deadweightTonnage;
+                    throw new ArgumentException($"Unsupported {nameof(shipType)}: {shipType}");
             }
         }
 
@@ -126,11 +146,15 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                     ? grossTonnage
                     : throw new InvalidOperationException(),
 
-                ShipType.RoRoCargoShip => ValidateTonnage(deadweightTonnage, nameof(deadweightTonnage), shipType)
-                    ? deadweightTonnage
+                ShipType.RoRoCargoShip => ValidateTonnage(grossTonnage, nameof(grossTonnage), shipType)
+                    ? grossTonnage
                     : throw new InvalidOperationException(),
 
                 ShipType.RoRoPassengerShip => ValidateTonnage(grossTonnage, nameof(grossTonnage), shipType)
+                    ? grossTonnage
+                    : throw new InvalidOperationException(),
+
+                ShipType.RoRoPassengerShip_HighSpeedSOLAS => ValidateTonnage(grossTonnage, nameof(grossTonnage), shipType)
                     ? grossTonnage
                     : throw new InvalidOperationException(),
 

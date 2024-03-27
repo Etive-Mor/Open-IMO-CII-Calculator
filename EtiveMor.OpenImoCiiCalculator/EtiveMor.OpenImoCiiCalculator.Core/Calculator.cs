@@ -18,16 +18,27 @@ namespace EtiveMor.OpenImoCiiCalculator.Core
             _carbonIntensityIndicatorService = new CarbonIntensityIndicatorCalculatorService();
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="shipType"></param>
+        /// <param name="grossTonnage">in long-tons</param>
+        /// <param name="deadweightTonnage">in long-tons</param>
+        /// <param name="distanceTravelled">distance travelled in nautical miles</param>
+        /// <param name="fuelType"></param>
+        /// <param name="fuelConsumption">quantity of fuel consumed in grams</param>
+        /// <returns></returns>
         public ImoCiiRating CalculateAttainedCiiRating(ShipType shipType, double grossTonnage, double deadweightTonnage, double distanceTravelled, TypeOfFuel fuelType, double fuelConsumption)
         {
             var shipCo2Emissions = _shipMassOfCo2EmissionsService.GetMassOfCo2Emissions(fuelType, fuelConsumption);
-            var shipCapacity = _shipCapacityService.GetShipCapacity(shipType, grossTonnage, deadweightTonnage);
+            var shipCapacity = _shipCapacityService.GetShipCapacity(shipType, deadweightTonnage, grossTonnage);
             var transportWork = _shipTransportWorkService.GetShipTransportWork(shipCapacity, distanceTravelled);
             var attainedCii = _carbonIntensityIndicatorService.GetAttainedCarbonIntensity(shipCo2Emissions, transportWork);
+            var requiredCii = _carbonIntensityIndicatorService.GetRequiredCarbonIntensity(shipType, shipCapacity, 2019);
 
+            var attainedRequiredRatio = attainedCii / requiredCii;
 
-
+            
 
             return ImoCiiRating.ERR;
         }

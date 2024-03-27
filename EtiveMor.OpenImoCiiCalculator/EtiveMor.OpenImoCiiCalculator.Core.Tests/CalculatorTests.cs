@@ -16,12 +16,13 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
             var _calc = new Calculator();
 
             var result = _calc.CalculateAttainedCiiRating(
-                ShipType.BulkCarrier, 
-                1000, 
-                1000, 
-                1000, 
-                TypeOfFuel.HEAVYFUELOIL, 
-                1000);
+                ShipType.RoRoPassengerShip, 
+                grossTonnage: 25000, 
+                deadweightTonnage: 0, 
+                distanceTravelled: 150000, 
+                TypeOfFuel.DIESEL_OR_GASOIL,
+                fuelConsumption: 1.9e+10
+                );
 
             Assert.AreNotEqual(ImoCiiRating.ERR, result);
         }
