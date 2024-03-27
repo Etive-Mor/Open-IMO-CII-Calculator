@@ -6,7 +6,7 @@ An unofficial open source implementation of the International Maritime Organisat
 
 The CII indicator aims to make the carbon intensity of any given ship easy to understand, transparent, and standardised. It does so by ranking all ships globally on an A to E rating (A being the best, E being the worst). Ship emission intensity calculations consider a mixture of weight, distance travelled in the calendar year, and the fuel used in their main engines (for a comprehensive explanation, see the [methodology section](#methodology)). Grades are re-calculated annually, as are the boundaries of what is considered "good". This moving target is intended to encourage shipping firms to constantly improve the carbon intensity of their ships. 
 
-The specification for this software can be found in [IMO's resolution MEPC.337(76)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.337(76).pdf), adopted in June 2021. Additional references, summaries, & resolutions can be found in the [References \& datasets](#references--datasets) section.
+The specification for this software can be found in [IMO's resolution MEPC.353(78)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.353(78).pdf), adopted in June 2021. Additional references, summaries, & resolutions can be found in the [References \& datasets](#references--datasets) section.
 
 
 
@@ -181,7 +181,7 @@ Where:
 
 A ship's capacity is measured by either its Deadweight Tonnage (DWT) or Gross Tonnage (GT). The only exception is `Bulk Carriers`, which have a capacity capped at 279,000. 
 
-To calculate a ship's Capacity in accordance with the IMO's MEPC337(76) guidelines:
+To calculate a ship's Capacity in accordance with the IMO's MEPC353(78) guidelines:
 
 **Method accepts**:
 - `shipType`, an enum, derrived from *Table 1*'s *Ship Type* column
@@ -220,28 +220,28 @@ The following table describes how to determine a given ship type's *Capacity*.
 
 *Table Source*: [IMO: MEPC.353(78)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.353(78).pdf)
 
-Ship Type               | Conditional Specification        | Capacity     | $a$          | $c$
+Ship Type               | Conditional Specification                     | Capacity     | $a$          | $c$
 ------------------------|-----------------------------|--------------|--------------|--------------
-Bulk carrier            | 279,000 DWT and above       | 279,000      | 4,745         | 0.622
-Bulk carrier            | Less than 279,000 DWT        | DWT          | 4,745        | 0.622
-Gas carrier             | 65,000 and above            | DWT          | 14405E7      | 2.071
-Gas carrier             | Less than 65,000 DWT         | DWT          | 8,104        | 0.639
-Tanker                  |                             | DWT          | 5,247        | 0.610
-Container Ship          |                             | DWT          | 1,984        | 0.489
-General cargo ship      | 20,000 DWT and above        | DWT          | 31,948       | 0.792
-General cargo ship      | Less than 20,000 DWT         | DWT          | 588          | 0.3885
-Refrigerated cargo carrier|                             | DWT          | 4,600        | 0.557
-Combination carrier     |                             | DWT          | 5,119       | 0.622
-LNG Carrier             | 100,000 DWT and above        | DWT          | 9.827        | 0.000
-LNG Carrier             | 65,000 and above, less than 100,000 | DWT   | 14479E10     | 2.673
-LNG Carrier             | less than 65,000 DWT         | DWT          | 14779E10     | 2.673
-Ro-ro cargo ship (vehicle carrier) | 57,700 and above   | 57,000      | 3,627        | 0.590
-Ro-ro cargo ship (vehicle carrier) | 30,000 and above, less than 57,700 | 3627   | 5,739   | 0.590
-Ro-ro cargo ship (vehicle carrier) | less than 30,000     | GT          | 330        | 0.329
-Ro-ro cargo ship         |                             | GT          | 1,967       | 0.485
-Ro-ro passenger ship     | Ro-ro passenger ship        | GT          | 2,023       | 0.460
-Ro-ro passenger ship     | High-speed craft designed to SOLAS chapter X | 4,196          | 7,540        | 0.460
-Cruise passenger ship    |                             | GT          | 930          | 0.383
+Bulk carrier            | 279,000 DWT and above                         | 279,000      | 4,745        | 0.622
+Bulk carrier            | Less than 279,000 DWT                         | DWT          | 4,745        | 0.622
+Gas carrier             | 65,000 and above                              | DWT          | 14405E7      | 2.071
+Gas carrier             | Less than 65,000 DWT                          | DWT          | 8,104        | 0.639
+Tanker                  |                                               | DWT          | 5,247        | 0.610
+Container Ship          |                                               | DWT          | 1,984        | 0.489
+General cargo ship      | 20,000 DWT and above                          | DWT          | 31,948       | 0.792
+General cargo ship      | Less than 20,000 DWT                          | DWT          | 588          | 0.3885
+Refrigerated cargo carrier|                                             | DWT          | 4,600        | 0.557
+Combination carrier     |                                               | DWT          | 5,119        | 0.622
+LNG Carrier             | 100,000 DWT and above                         | DWT          | 9.827        | 0.000
+LNG Carrier             | 65,000 and above, less than 100,000           | DWT          | 14479E10     | 2.673
+LNG Carrier             | less than 65,000 DWT                          | DWT          | 14779E10     | 2.673
+Ro-ro cargo ship (vehicle carrier) | 57,700 and above                   | 57,000       | 3,627        | 0.590
+Ro-ro cargo ship (vehicle carrier) | 30,000 and above, less than 57,700 | 3627         | 5,739        | 0.590
+Ro-ro cargo ship (vehicle carrier) | less than 30,000                   | GT           | 330          | 0.329
+Ro-ro cargo ship         |                                              | GT           | 1,967        | 0.485
+Ro-ro passenger ship     | Ro-ro passenger ship                         | GT           | 2,023        | 0.460
+Ro-ro passenger ship     | High-speed craft designed to SOLAS chapter X | 4,196        | 7,540        | 0.460
+Cruise passenger ship    |                                              | GT           | 930          | 0.383
 
 
 ---
@@ -257,12 +257,12 @@ The following table describes how to convert from the fuel used by a ship's main
 | 1  | Diesel / Gas Oil     | ISO 8217 Grade DMX to DMB |           0.8744 |                          3.206 |                         42,700 |
 | 2  | Light Fuel Oil (LFO) | ISO 8217 Grade RMA to RMD |           0.8594 |                          3.151 |                         41,200 |
 | 3  | Heavy Fuel Oil (HFO) | ISO 8217 Grade RME to RMK |           0.8493 |                          3.114 |                         40,200 |
-| 4a | Liquified Petroleum (Propane) | Propane                  |           0.8182 |                          3.000 |                         46,300 |
-| 4b | Liquified Petroleum (Butane)  | Butane                   |           0.8264 |                          3.030 |                         45,700 |
+| 4a | Liquified Petroleum (Propane) | Propane          |           0.8182 |                          3.000 |                         46,300 |
+| 4b | Liquified Petroleum (Butane)  | Butane           |           0.8264 |                          3.030 |                         45,700 |
 | 5  | Ethane               | -                         |           0.7989 |                          2.927 |                         46,400 |
-| 6  | Liquified Natural Gas (LNG)   | n/a                      |           0.7500 |                          2.750 |                         48,000 |
-| 7  | Methanol             | n/a                      |           0.3750 |                          1.375 |                         19,900 |
-| 8  | Ethanol              | n/a                      |           0.5217 |                          1.913 |                         26,800 |
+| 6  | Liquified Natural Gas (LNG)   | n/a              |           0.7500 |                          2.750 |                         48,000 |
+| 7  | Methanol             | n/a                       |           0.3750 |                          1.375 |                         19,900 |
+| 8  | Ethanol              | n/a                       |           0.5217 |                          1.913 |                         26,800 |
 
 
 
@@ -325,7 +325,7 @@ Often in shipping, non-metric measurements are used. Conversions are detailed be
 | International Organization for Standardization (ISO) | Independent, non-governmental, international standard development organization |  |
 | Liquefied natural gas (LNG) | Gas, compressed into liquid form for easier transport |  |
 | Nautical Miles (NM, nmile) | Distance travelled over water, different to land measured miles (statute miles) | Expressed in minutes of latitude at the equator |
-| Resolution MEPC.337(76) | Internationally standardised reference guide to shipping carbon intensity |  |
+| Resolution MEPC.353(78) | Internationally standardised reference guide to shipping carbon intensity |  |
 | Roll-on-roll-off (Ro-ro, Roro, Ro ro) | A ship designed to take cargo which can be wheeled (or rolled) in and out of a cargo hold |  |
 
 
