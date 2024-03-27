@@ -1,8 +1,8 @@
 ﻿using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
 
-namespace EtiveMor.OpenImoCiiCalculator.Core
+namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
 {
-    public class ShipMassOfCo2EmissionsCalculator
+    public class ShipMassOfCo2EmissionsCalculatorService : IShipMassOfCo2EmissionsCalculatorService
     {
         /// <summary>
         /// Gets the mass of CO2 emissions in grams (g) for a given fuel type and fuel consumption mass.
@@ -26,7 +26,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core
         {
             if (fuelConsumptionMassInGrams <= 0)
             {
-                throw new ArgumentOutOfRangeException("Fuel consumption mass must be a positive value", 
+                throw new ArgumentOutOfRangeException("Fuel consumption mass must be a positive value",
                     nameof(fuelConsumptionMassInGrams));
             }
             double fuelMassConversionFactor = GetFuelMassConversionFactor(fuelType);

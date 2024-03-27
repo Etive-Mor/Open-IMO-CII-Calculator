@@ -1,9 +1,38 @@
 ﻿using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
+using EtiveMor.OpenImoCiiCalculator.Core.Services;
+using EtiveMor.OpenImoCiiCalculator.Core.Services.Impl;
 
 namespace EtiveMor.OpenImoCiiCalculator.Core
 {
     public class Calculator
     {
+        IShipMassOfCo2EmissionsCalculatorService _shipMassOfCo2EmissionsService;
+        IShipCapacityCalculatorService _shipCapacityService;
+        IShipTransportWorkCalculatorService _shipTransportWorkService;
+        ICarbonIntensityIndicatorCalculatorService _carbonIntensityIndicatorService;
+        public Calculator()
+        {
+            _shipMassOfCo2EmissionsService = new ShipMassOfCo2EmissionsCalculatorService();
+            _shipCapacityService = new ShipCapacityCalculatorService();
+            _shipTransportWorkService = new ShipTransportWorkCalculatorService();
+            _carbonIntensityIndicatorService = new CarbonIntensityIndicatorCalculatorService();
+        }
+
+
+        public ImoCiiRating CalculateAttainedCiiRating(ShipType shipType, double grossTonnage, double deadweightTonnage, double distanceTravelled, TypeOfFuel fuelType, double fuelConsumption)
+        {
+            var shipCo2Emissions = _shipMassOfCo2EmissionsService.GetMassOfCo2Emissions(fuelType, fuelConsumption);
+            var shipCapacity = _shipCapacityService.GetShipCapacity(shipType, grossTonnage, deadweightTonnage);
+            var transportWork = _shipTransportWorkService.GetShipTransportWork(shipCapacity, distanceTravelled);
+            var attainedCii = _carbonIntensityIndicatorService.GetAttainedCarbonIntensity(shipCo2Emissions, transportWork);
+
+
+
+
+            return ImoCiiRating.ERR;
+        }
+
+
         /// <summary>
         /// CII = (annualFuelConsumption * co2eqEmissionsFactor) / (distanceSailed * capacity)
         /// </summary>

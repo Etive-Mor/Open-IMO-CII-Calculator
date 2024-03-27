@@ -78,8 +78,6 @@ The worked example below considers a *Bulk Carrier*, with a Deadweight Tonnage b
 > [!IMPORTANT]
 For some ship types, $GT \times NM$ should be used instead of $DWT \times NM$, see [Table 1](#table-1-mepc33776---shipping-capacity-tables) and [transport work done methodology](#ship-transport-work-methodology) for a comprehensive guide. 
 
-
-
 Then the boundaries are calculated with:
  
 - $10 \times exp(d1)$
@@ -87,9 +85,7 @@ Then the boundaries are calculated with:
 - $10 \times exp(d3)$
 - $10 \times exp(d4)$. 
 
-The $exp(d_i)$ rating boundaries for each ship type can be found in [Table 3](#table-3-mepc33976---ship-grading-boundaries). 
-
-The resultant boundaries for the *Bulk Carrier* in question are:
+The $exp(d_i)$ rating boundaries for each ship type can be found in [Table 3](#table-3-mepc33976---ship-grading-boundaries). The resultant boundaries for the *Bulk Carrier* in question are:
 
 | Boundary Type | Required CII | Boundary's Lower Threshold |
 | ------------- | --------------- | --------------- |

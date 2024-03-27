@@ -1,11 +1,11 @@
 ﻿using EtiveMor.OpenImoCiiCalculator.Core.Models;
 using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
 
-namespace EtiveMor.OpenImoCiiCalculator.Core
+namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
 {
 
 
-    public class ShipCapacityCalculator
+    public class ShipCapacityCalculatorService : IShipCapacityCalculatorService
     {
         /// <summary>
         /// Calculates the ship's capacity according to the MEPC 337(76) guidelines
@@ -18,7 +18,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core
         /// </returns>
         public double GetShipCapacity(Ship ship)
         {
-            return GetShipCapacity(ship.ShipType, ship.DeadweightTonnage, ship.GrossTonnage); 
+            return GetShipCapacity(ship.ShipType, ship.DeadweightTonnage, ship.GrossTonnage);
         }
 
         /// <summary>

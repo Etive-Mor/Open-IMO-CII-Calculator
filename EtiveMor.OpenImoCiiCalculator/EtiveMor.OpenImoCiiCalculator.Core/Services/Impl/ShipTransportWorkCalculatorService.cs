@@ -1,6 +1,6 @@
-﻿namespace EtiveMor.OpenImoCiiCalculator.Core
+﻿namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
 {
-    public class ShipTransportWorkCalculator
+    public class ShipTransportWorkCalculatorService : IShipTransportWorkCalculatorService
     {
 
         /// <summary>
@@ -16,7 +16,7 @@
         /// A double representing the ship's transport work in a calendar year
         /// </returns>
         /// <remarks>
-        /// A ship's capacity can be calculated with <seealso cref="ShipCapacityCalculator.GetShipCapacity(Models.Enums.ShipType, double, double)"/>
+        /// A ship's capacity can be calculated with <seealso cref="ShipCapacityCalculatorService.GetShipCapacity(Models.Enums.ShipType, double, double)"/>
         /// </remarks>
         public double GetShipTransportWork(double capacity, double distanceSailed)
         {

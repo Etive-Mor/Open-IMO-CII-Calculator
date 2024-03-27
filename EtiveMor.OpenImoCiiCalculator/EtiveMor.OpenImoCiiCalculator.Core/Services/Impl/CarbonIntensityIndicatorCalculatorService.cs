@@ -1,6 +1,6 @@
-﻿namespace EtiveMor.OpenImoCiiCalculator.Core
+﻿namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
 {
-    public class CarbonIntensityIndicatorCalculator
+    public class CarbonIntensityIndicatorCalculatorService : ICarbonIntensityIndicatorCalculatorService
     {
         /// <summary>
         /// Gets a ship's attained carbon intensity, which is the ratio of the cumulative mass
@@ -8,11 +8,11 @@
         /// </summary>
         /// <param name="massOfCo2Emissions">
         /// The cumulative mass of CO2 emissions in a calendar year in grams (g)
-        /// <seealso cref="ShipMassOfCo2EmissionsCalculator.GetMassOfCo2Emissions(Models.Enums.TypeOfFuel, double)"/>
+        /// <seealso cref="ShipMassOfCo2EmissionsCalculatorService.GetMassOfCo2Emissions(Models.Enums.TypeOfFuel, double)"/>
         /// </param>
         /// <param name="transportWork">
         /// The ship's transport work in a calendar year
-        /// <seealso cref="ShipTransportWorkCalculator.GetShipTransportWork(double, double)"/>"/>
+        /// <seealso cref="ShipTransportWorkCalculatorService.GetShipTransportWork(double, double)"/>"/>
         /// </param>
         /// <returns>
         /// A ship's attained Carbon Intensity (CII)
