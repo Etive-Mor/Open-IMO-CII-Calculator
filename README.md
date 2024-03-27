@@ -339,6 +339,7 @@ Often in shipping, non-metric measurements are used. Conversions are detailed be
 
 ## Further Reading
 
+- IMO's press briefing, including links to the comprehensive guidelines: https://www.imo.org/en/MediaCentre/PressBriefings/pages/CII-and-EEXI-entry-into-force.aspx
 - Society of Naval Architecture Students summary of CII Calculations: https://github.com/snascusat/CII-Calculator
 - DNV's summary of EEXI and CII requirements: https://www.dnv.com/news/eexi-and-cii-requirements-taking-effect-from-1-january-2023-237817/
 
