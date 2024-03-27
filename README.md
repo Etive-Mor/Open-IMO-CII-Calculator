@@ -22,7 +22,7 @@ The specification for this software can be found in [IMO's resolution MEPC.353(7
   - [Ship CO2 Emissions Methodology](#ship-co2-emissions-methodology)
   - [Ship Capacity Methodology](#ship-capacity-methodology)
 - [Reference Tables](#reference-tables)
-  - [Table 1: MEPC.337(76) - Shipping Capacity Tables](#table-1-mepc33776---shipping-capacity-tables)
+  - [Table 1: MEPC.353(78) - Shipping Capacity Tables](#table-1-mepc35378---shipping-capacity-tables)
   - [Table 2: MEPC.364(79) Mass Conversion between fuel consumption and CO2 emissions](#table-2-mepc36479-mass-conversion-between-fuel-consumption-and-co2-emissions)
   - [Table 3: MEPC.339(76) - Ship Grading Boundaries](#table-3-mepc33976---ship-grading-boundaries)
   - [Table 4: Common shipping measurement conversions](#table-4-common-shipping-measurement-conversions)
@@ -214,7 +214,7 @@ The full implementation detail can be found in **[Table 1](#table-1-mepc33776-sh
 
 # Reference Tables
 
-## Table 1: MEPC.337(76) - Shipping Capacity Tables
+## Table 1: MEPC.353(78) - Shipping Capacity Tables
 
 The following table describes how to determine a given ship type's *Capacity*.
 
@@ -240,7 +240,7 @@ Ro-ro cargo ship (vehicle carrier) | 30,000 and above, less than 57,700 | 3627  
 Ro-ro cargo ship (vehicle carrier) | less than 30,000                   | GT           | 330          | 0.329
 Ro-ro cargo ship         |                                              | GT           | 1,967        | 0.485
 Ro-ro passenger ship     | Ro-ro passenger ship                         | GT           | 2,023        | 0.460
-Ro-ro passenger ship     | High-speed craft designed to SOLAS chapter X | 4,196        | 7,540        | 0.460
+Ro-ro passenger ship     | High-speed craft designed to SOLAS chapter X | GT           | 4,196        | 0.460
 Cruise passenger ship    |                                              | GT           | 930          | 0.383
 
 
