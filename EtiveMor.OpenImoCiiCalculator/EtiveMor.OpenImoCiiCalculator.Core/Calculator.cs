@@ -1,4 +1,6 @@
-﻿using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
+﻿using EtiveMor.OpenImoCiiCalculator.Core.Extensions;
+using EtiveMor.OpenImoCiiCalculator.Core.Models;
+using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
 using EtiveMor.OpenImoCiiCalculator.Core.Services;
 using EtiveMor.OpenImoCiiCalculator.Core.Services.Impl;
 
@@ -10,12 +12,14 @@ namespace EtiveMor.OpenImoCiiCalculator.Core
         IShipCapacityCalculatorService _shipCapacityService;
         IShipTransportWorkCalculatorService _shipTransportWorkService;
         ICarbonIntensityIndicatorCalculatorService _carbonIntensityIndicatorService;
+        IRatingBoundariesService _ratingBoundariesService;
         public Calculator()
         {
             _shipMassOfCo2EmissionsService = new ShipMassOfCo2EmissionsCalculatorService();
             _shipCapacityService = new ShipCapacityCalculatorService();
             _shipTransportWorkService = new ShipTransportWorkCalculatorService();
             _carbonIntensityIndicatorService = new CarbonIntensityIndicatorCalculatorService();
+            _ratingBoundariesService = new RatingBoundariesService();
         }
 
         /// <summary>
@@ -28,100 +32,80 @@ namespace EtiveMor.OpenImoCiiCalculator.Core
         /// <param name="fuelType"></param>
         /// <param name="fuelConsumption">quantity of fuel consumed in grams</param>
         /// <returns></returns>
-        public ImoCiiRating CalculateAttainedCiiRating(ShipType shipType, double grossTonnage, double deadweightTonnage, double distanceTravelled, TypeOfFuel fuelType, double fuelConsumption)
+        public CalculationResult CalculateAttainedCiiRating(
+            ShipType shipType, 
+            double grossTonnage, 
+            double deadweightTonnage, 
+            double distanceTravelled, 
+            TypeOfFuel fuelType, 
+            double fuelConsumption, 
+            int targetYear)
         {
             var shipCo2Emissions = _shipMassOfCo2EmissionsService.GetMassOfCo2Emissions(fuelType, fuelConsumption);
             var shipCapacity = _shipCapacityService.GetShipCapacity(shipType, deadweightTonnage, grossTonnage);
             var transportWork = _shipTransportWorkService.GetShipTransportWork(shipCapacity, distanceTravelled);
-            var attainedCii = _carbonIntensityIndicatorService.GetAttainedCarbonIntensity(shipCo2Emissions, transportWork);
-            var requiredCii = _carbonIntensityIndicatorService.GetRequiredCarbonIntensity(shipType, shipCapacity, 2019);
 
-            var attainedRequiredRatio = attainedCii / requiredCii;
-
-            
-
-            return ImoCiiRating.ERR;
-        }
-
-
-        /// <summary>
-        /// CII = (annualFuelConsumption * co2eqEmissionsFactor) / (distanceSailed * capacity)
-        /// </summary>
-        /// <param name="annualFuelConsumption"></param>
-        /// <param name="co2eqEmissionsFactor"></param>
-        /// <param name="distanceSailed"></param>
-        /// <param name="capacity"></param>
-        /// <param name="deadweightTonnage"></param>
-        /// <param name="shipType"></param>
-        /// <returns></returns>
-        public ImoCiiRating CalculateImoCiiRating(double annualFuelConsumption, double co2eqEmissionsFactor, double distanceSailed, double capacity, double deadweightTonnage, double grossTonnage, ShipType shipType)
-        {
-            double massOfCo2Emissions = annualFuelConsumption * co2eqEmissionsFactor;
-            double transportWork = annualFuelConsumption * co2eqEmissionsFactor;
-            var cii = massOfCo2Emissions / transportWork;
-
-            return ImoCiiRating.ERR;
-        }
-
-
-
-        /// <summary>
-        /// Calculates the mass of CO2 emissions from a ship, given the mass of CO2eq emissions, and the transport work undertaken by the ship in a full calendar year.
-        /// 
-        /// 
-        /// </summary>
-        /// <param name="massOfCo2Emissions"></param>
-        /// <param name="transportWork"></param>
-        /// <returns></returns>
-        public ImoCiiRating CalculateImoCiiRating(decimal massOfCo2Emissions, decimal transportWork)
-        {
-            double cii = (double)(massOfCo2Emissions / transportWork);
-
-            if (cii < 0.0001)
+            List<ResultYear> results = new List<ResultYear>();
+            for (int year = 2019; year <= 2030; year++)
             {
+                var attainedCiiInYear = _carbonIntensityIndicatorService.GetAttainedCarbonIntensity(shipCo2Emissions, transportWork);
+                var requiredCiiInYear = _carbonIntensityIndicatorService.GetRequiredCarbonIntensity(shipType, shipCapacity, year);
+
+
+                results.Add(new ResultYear
+                {
+                    IsMeasuredYear = targetYear == year,
+                    Year = year,
+                    AttainedCii = attainedCiiInYear,
+                    RequiredCii = requiredCiiInYear,
+                    Rating = GetImoCiiRatingInYear(attainedCiiInYear, requiredCiiInYear, year),
+                    Boundaries = GetBoundaries(shipType, requiredCiiInYear)
+                });
+            }
+
+            return new CalculationResult(results);
+        }
+
+        private ImoCiiRating GetImoCiiRatingInYear(double attainedCiiInYear, double requiredCiiInYear, int year) 
+        {
+            var gradeLowerBoundaries = GetBoundaries(ShipType.RoRoCruisePassengerShip, requiredCiiInYear);
+
+            if (attainedCiiInYear < gradeLowerBoundaries[ImoCiiBoundary.Superior])
+            {
+                // lower than the "superior" boundary
                 return ImoCiiRating.A;
             }
-            else if (cii >= 0.0001 && cii < 0.0002)
+            else if (attainedCiiInYear < gradeLowerBoundaries[ImoCiiBoundary.Lower])
             {
+                // lower than the "lower" boundary
                 return ImoCiiRating.B;
             }
-            else if (cii >= 0.0002 && cii < 0.0003)
+            else if (attainedCiiInYear < gradeLowerBoundaries[ImoCiiBoundary.Upper])
             {
+                // lower than the "upper" boundary
                 return ImoCiiRating.C;
             }
-            else if (cii >= 0.0003 && cii < 0.0004)
+            else if (attainedCiiInYear < gradeLowerBoundaries[ImoCiiBoundary.Inferior])
             {
+                // lower than the "inferior" boundary
                 return ImoCiiRating.D;
-            }
-            else if (cii >= 0.0004)
-            {
-                return ImoCiiRating.E;
             }
             else
             {
-                return ImoCiiRating.ERR;
+                // higher than the inferior boundary
+                return ImoCiiRating.E;
             }
         }
 
-        /// <summary>
-        /// Calculates the transport work undertaken by a ship, given its deadweight tonnage and distance sailed in a calendar year.
-        /// </summary>
-        /// <param name="deadweightTonnage">
-        /// The Capacity of the ship in metric Tons
-        ///     
-        ///     For cargo ships submit the Deadweight Tonnage
-        ///     For cruise ships submit the Gross Tonnage
-        /// </param>
-        /// <param name="distanceSailedCalendarYear">
-        /// The distance travelled by the ship across one full calendar year
-        /// </param>
-        /// <returns></returns>
-        public decimal CalculateTransportWork(decimal deadweightTonnage, decimal distanceSailedCalendarYear, ShipType shipType)
+        private Dictionary<ImoCiiBoundary, double> GetBoundaries(ShipType shipType, double requiredCiiInYear)
         {
-            return deadweightTonnage * distanceSailedCalendarYear;
+            return new Dictionary<ImoCiiBoundary, double> {
+                { ImoCiiBoundary.Superior,      0.72 *  requiredCiiInYear },
+                { ImoCiiBoundary.Lower,         0.90 *  requiredCiiInYear},
+                { ImoCiiBoundary.Upper,         1.12 *  requiredCiiInYear},
+                { ImoCiiBoundary.Inferior,      1.41 *  requiredCiiInYear}
+            };
         }
-
-
-        
     }
+   
 }

@@ -1,5 +1,5 @@
-﻿using EtiveMor.OpenImoCiiCalculator.Core.Models;
-using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
+﻿using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
+using EtiveMor.OpenImoCiiCalculator.Core.Models.ShipModels;
 
 namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
 {
