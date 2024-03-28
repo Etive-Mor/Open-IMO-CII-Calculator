@@ -63,7 +63,7 @@ The ship's *Attained CII* is then compared to its *Required CII* to produce an e
 
 ![Graphical representation of IMO's ship boundaries, indicating the CII requirements to attain an A, B, C, D, E grade](./README_assets/imo_boundaries_diagram.png "IMO Shipping Grades Diagram")
 
-*Fig1.* IMO Boundaries, after [IMO MEPC.339(76)](https://wwwcdn.imo.org/localresources/en/OurWork/Environment/Documents/Air%20pollution/MEPC.339(76).pdf)
+*Fig1.* IMO Boundaries, after [IMO MEPC.354(78)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.354(78).pdf)
 
 
 ## Ship Grade Ratio Methodology
@@ -273,12 +273,11 @@ The following table describes how to convert from the fuel used by a ship's main
 
 ## Table 3: MEPC.339(76) - Ship Grading Boundaries
 
-The following table describes the $dd$ vectors used to determine the rating boundaries for ship types. The columns $dd$ $exp(d_i)$ values represent
-the boundaries the IMO's rating system in the baseline year (2019). 
+The following table describes the $dd$ vectors used to determine the rating boundaries for ship types. The columns $dd$ $exp(d_i)$ values represent the boundaries the IMO's rating system in the baseline year (2019). 
 
 
-
-*Table source*: [IMO: MEPC.339(76)](https://wwwcdn.imo.org/localresources/en/OurWork/Environment/Documents/Air%20pollution/MEPC.339(76).pdf)
+*Table source (2022)*: [IMO: MEPC.354(78)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.354(78).pdf)
+*Previous source (2021)*: [IMO: MEPC.339(76)](https://wwwcdn.imo.org/localresources/en/OurWork/Environment/Documents/Air%20pollution/MEPC.339(76).pdf)
 
 
 | Id | Ship Type | Weight Classification | Capacity in CII Calculation | *dd* vector exp(d1) | *dd* vector exp(d2) | *dd* vector exp(d3) | *dd* vector exp(d4) | 
@@ -294,8 +293,8 @@ the boundaries the IMO's rating system in the baseline year (2019).
 | 8.a | LNG Carrier                         | 100,000 DWT and above     | DWT | 0.89 | 0.98 | 1.06 | 1.13 |
 | 8.b | LNG Carrier                         | Less than 100,000 DWT     | DWT | 0.78 | 0.92 | 1.10 | 1.37 |
 | 9 | Ro-ro Cargo Ship (Vehicle Carrier)    |                           | GT  | 0.86 | 0.94 | 1.06 | 1.16 |
-| 10 | Ro-ro Cargo Ship                     |                           | DWT | 0.66 | 0.90 | 1.11 | 1.37 |
-| 11 | Ro-ro Passenger Ship                 |                           | GT  | 0.72 | 0.90 | 1.12 | 1.41 |
+| 10 | Ro-ro Cargo Ship                     |                           | GT  | 0.76 | 0.89 | 1.08 | 1.27 |
+| 11 | Ro-ro Passenger Ship                 |                           | GT  | 0.76 | 0.92 | 1.14 | 1.30 |
 | 12 | Cruise Passenger Ship                |                           | GT  | 0.87 | 0.95 | 1.06 | 1.16 |
 
 
@@ -362,6 +361,7 @@ Often in shipping, non-metric measurements are used. Conversions are detailed be
 - IMO: MEPC.337(76) - Carbon Intensity Index (CII) spec: https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.337(76).pdf
 - IMO: MEPC.364(79) - Energy Efficiency Design Index (EEDI) spec: https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.364(79).pdf
 - IMO: MEPC.339(76) - 2021 Guidelines on the operational carbon intensity rating of ships (CII Rating Guidelines, G4): https://wwwcdn.imo.org/localresources/en/OurWork/Environment/Documents/Air%20pollution/MEPC.339(76).pdf
+- IMO: MEPC.339(76) - 2022 Guidelines on the operational carbon intensity rating of ships (CII Rating Guidelines, G4): https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.354(78).pdf
 - ISO 8217:2017 (Current standard) - Petroleum products, Fuels (class F), Specifications of marine fuels: https://www.iso.org/standard/64247.html
 - ISO/FDIS 8217 (Standard under development) - Products from petroleum, synthetic and renewable sources, Fuels (class F), Specifications of marine fuel: https://www.iso.org/standard/80579.html
 
