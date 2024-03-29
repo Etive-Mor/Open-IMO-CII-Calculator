@@ -8,8 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EtiveMor.OpenImoCiiCalculator.Core" Version="1.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EtiveMor.OpenImoCiiCalculator.Core\EtiveMor.OpenImoCiiCalculator.Core.csproj" />
   </ItemGroup>
 
 </Project>

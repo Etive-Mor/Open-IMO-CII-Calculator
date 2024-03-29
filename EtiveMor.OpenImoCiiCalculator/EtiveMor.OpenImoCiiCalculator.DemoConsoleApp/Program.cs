@@ -12,7 +12,6 @@ namespace EtiveMor.OpenImoCiiCalculator.DemoConsoleApp
             Console.WriteLine("Generating a ship result now...");
 
             var calculator = new Calculator();
-            var boundaries = new RatingBoundariesService();
 
             var result = calculator.CalculateAttainedCiiRating(
                ShipType.RoRoPassengerShip,
