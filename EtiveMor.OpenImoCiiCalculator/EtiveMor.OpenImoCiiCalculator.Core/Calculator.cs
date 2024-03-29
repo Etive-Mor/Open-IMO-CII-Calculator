@@ -58,7 +58,8 @@ namespace EtiveMor.OpenImoCiiCalculator.Core
                     AttainedCii = attainedCiiInYear,
                     RequiredCii = requiredCiiInYear,
                     Rating = GetImoCiiRatingInYear(attainedCiiInYear, requiredCiiInYear, year),
-                    Boundaries = GetBoundaries(shipType, requiredCiiInYear)
+                    VectorBoundariesForYear = _ratingBoundariesService.GetBoundaries(new Models.ShipModels.Ship(shipType, deadweightTonnage, grossTonnage), requiredCiiInYear)
+                    // Boundaries = _ratingBoundariesService.GetBoundaries(new Models.ShipModels.Ship(shipType, deadweightTonnage, grossTonnage), requiredCiiInYear).
                 });
             }
 

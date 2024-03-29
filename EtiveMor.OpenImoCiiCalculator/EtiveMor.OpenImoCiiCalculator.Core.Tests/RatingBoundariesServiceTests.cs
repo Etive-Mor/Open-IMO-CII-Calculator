@@ -30,24 +30,24 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
             var smallBoundaries = service.GetBoundaries(smallShip, 0.5);
             var largeBoundaries = service.GetBoundaries(largeShip, 0.5);
 
-            Assert.AreNotEqual(smallBoundaries.BoundaryDdVectors2019, largeBoundaries.BoundaryDdVectors2019);
+            Assert.AreNotEqual(smallBoundaries.BoundaryDdVectors, largeBoundaries.BoundaryDdVectors);
 
             Assert.AreNotEqual(
-                smallBoundaries.BoundaryDdVectors2019[ImoCiiBoundary.Inferior],
-                largeBoundaries.BoundaryDdVectors2019[ImoCiiBoundary.Inferior]);
+                smallBoundaries.BoundaryDdVectors[ImoCiiBoundary.Inferior],
+                largeBoundaries.BoundaryDdVectors[ImoCiiBoundary.Inferior]);
 
 
             Assert.AreNotEqual(
-                smallBoundaries.BoundaryDdVectors2019[ImoCiiBoundary.Upper],
-                largeBoundaries.BoundaryDdVectors2019[ImoCiiBoundary.Upper]);
+                smallBoundaries.BoundaryDdVectors[ImoCiiBoundary.Upper],
+                largeBoundaries.BoundaryDdVectors[ImoCiiBoundary.Upper]);
 
             Assert.AreNotEqual(
-                   smallBoundaries.BoundaryDdVectors2019[ImoCiiBoundary.Lower],
-                   largeBoundaries.BoundaryDdVectors2019[ImoCiiBoundary.Lower]);
+                   smallBoundaries.BoundaryDdVectors[ImoCiiBoundary.Lower],
+                   largeBoundaries.BoundaryDdVectors[ImoCiiBoundary.Lower]);
             
             Assert.AreNotEqual(
-              smallBoundaries.BoundaryDdVectors2019[ImoCiiBoundary.Superior],
-              largeBoundaries.BoundaryDdVectors2019[ImoCiiBoundary.Superior]);
+              smallBoundaries.BoundaryDdVectors[ImoCiiBoundary.Superior],
+              largeBoundaries.BoundaryDdVectors[ImoCiiBoundary.Superior]);
         }
 
 

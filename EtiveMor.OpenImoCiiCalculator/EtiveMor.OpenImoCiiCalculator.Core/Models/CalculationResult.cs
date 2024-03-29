@@ -1,4 +1,5 @@
 ﻿using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
+using EtiveMor.OpenImoCiiCalculator.Core.Models.MeasurementModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,6 +59,9 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Models
             }
         }
 
-        public required Dictionary<ImoCiiBoundary, double> Boundaries { get; set; }
+        /// <summary>
+        /// The VectorBoundaries for this ship/year
+        /// </summary>
+        public required ShipDdVectorBoundaries VectorBoundariesForYear { get; set; }
     }
 }
