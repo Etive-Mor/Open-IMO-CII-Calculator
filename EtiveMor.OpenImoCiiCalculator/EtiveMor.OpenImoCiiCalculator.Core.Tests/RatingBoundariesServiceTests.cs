@@ -27,8 +27,8 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
 
             var service = new RatingBoundariesService();
 
-            var smallBoundaries = service.GetBoundaries(smallShip, 0.5);
-            var largeBoundaries = service.GetBoundaries(largeShip, 0.5);
+            var smallBoundaries = service.GetBoundaries(smallShip, 0.5, 2023);
+            var largeBoundaries = service.GetBoundaries(largeShip, 0.5, 2023);
 
             Assert.AreNotEqual(smallBoundaries.BoundaryDdVectors, largeBoundaries.BoundaryDdVectors);
 
@@ -51,14 +51,25 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         }
 
 
-
+        [DataRow(2019)]
+        [DataRow(2020)]
+        [DataRow(2021)]
+        [DataRow(2022)]
+        [DataRow(2023)]
+        [DataRow(2024)]
+        [DataRow(2025)]
+        [DataRow(2026)]
+        [DataRow(2027)]
+        [DataRow(2028)]
+        [DataRow(2029)]
+        [DataRow(2030)]
         /// <summary>
         /// This method tests that ShipType enum values are considered by the
         /// GetBoundaries method. If a new value is added to the Enum, this method
         /// will fail until the RatingsBoundariesService is updated to handle the new value.
         /// </summary>
         [TestMethod]
-        public void TestGetBoundariesProcessesAllEnumValues()
+        public void TestGetBoundariesProcessesAllEnumValues(int year)
         {
             ShipType[] possibleShipTypeEnums = (ShipType[])Enum.GetValues(typeof(ShipType));
 
@@ -71,24 +82,35 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
                 }
                 var ship = new Ship(possibleShipTypeEnums[i], 250000, 250000);
                 var service = new RatingBoundariesService();
-                var boundaries = service.GetBoundaries(ship, 0.5);
+                var boundaries = service.GetBoundaries(ship, 0.5, year);
 
                 Assert.IsNotNull(boundaries);
             }
         }
 
-
+        [DataRow(2019)]
+        [DataRow(2020)]
+        [DataRow(2021)]
+        [DataRow(2022)]
+        [DataRow(2023)]
+        [DataRow(2024)]
+        [DataRow(2025)]
+        [DataRow(2026)]
+        [DataRow(2027)]
+        [DataRow(2028)]
+        [DataRow(2029)]
+        [DataRow(2030)]
         /// <summary>
         /// Method checks that an exception is thrown when an unknown ShipType 
         /// is passed to the GetBoundaries method.
         /// </summary>
         [TestMethod]
-        public void TestGetBoundariesFailsOnUnknownShipType()
+        public void TestGetBoundariesFailsOnUnknownShipType(int year)
         {
             var ship = new Ship(ShipType.UNKNOWN, 250000, 0);
             var service = new RatingBoundariesService();
 
-            Assert.ThrowsException<NotSupportedException>(() => service.GetBoundaries(ship, 0.5));
+            Assert.ThrowsException<NotSupportedException>(() => service.GetBoundaries(ship, 0.5, year));
         }
 
 
@@ -116,7 +138,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
                 expectedCapacityUnit == CapacityUnit.DWT ? 250000 : 0,
                 expectedCapacityUnit == CapacityUnit.GT ?  250000 : 0);
             var service = new RatingBoundariesService();
-            var boundaries = service.GetBoundaries(ship, 0.5);
+            var boundaries = service.GetBoundaries(ship, 0.5, 2019);
 
             Assert.AreEqual(expectedCapacityUnit, boundaries.CapacityUnit);
         }
@@ -151,7 +173,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         {
             var ship = new Ship(shipType, deadweightTonnage, grossTonnage);
             var service = new RatingBoundariesService();
-            var boundaries = service.GetBoundaries(ship, 0.5);
+            var boundaries = service.GetBoundaries(ship, 0.5, 2030);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
         /// <param name="requiredCiiInYear"></param>
         /// <returns></returns>
         /// <exception cref="NotSupportedException"></exception>
-        public ShipDdVectorBoundaries GetBoundaries(Ship ship, double requiredCiiInYear)
+        public ShipDdVectorBoundaries GetBoundaries(Ship ship, double requiredCiiInYear, int year)
         {
             ValidateShipTonnageValid(ship);
 
@@ -34,7 +34,8 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                                 { ImoCiiBoundary.Lower, 0.94 * requiredCiiInYear },
                                 { ImoCiiBoundary.Upper, 1.06 * requiredCiiInYear },
                                 { ImoCiiBoundary.Inferior, 1.18 * requiredCiiInYear }
-                            });
+                            },
+                            year);
                     }
                 case ShipType.GasCarrier:
                     {
@@ -50,7 +51,8 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                                     { ImoCiiBoundary.Lower, 0.91 * requiredCiiInYear },
                                     { ImoCiiBoundary.Upper, 1.12 * requiredCiiInYear },
                                     { ImoCiiBoundary.Inferior, 1.44 * requiredCiiInYear }
-                               });
+                               },
+                            year);
                         }
                         else
                         {
@@ -64,7 +66,8 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                                     { ImoCiiBoundary.Lower, 0.95 * requiredCiiInYear },
                                     { ImoCiiBoundary.Upper, 1.06 * requiredCiiInYear },
                                     { ImoCiiBoundary.Inferior, 1.25 * requiredCiiInYear }
-                                });
+                                },
+                            year);
                         }
                     }
                 case ShipType.Tanker:
@@ -79,7 +82,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                                 { ImoCiiBoundary.Lower, 0.93 * requiredCiiInYear },
                                 { ImoCiiBoundary.Upper, 1.08 * requiredCiiInYear },
                                 { ImoCiiBoundary.Inferior, 1.28 * requiredCiiInYear }
-                            });
+                            }, year);
                     }
                 case ShipType.ContainerShip:
                     {
@@ -93,7 +96,8 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                                 { ImoCiiBoundary.Lower, 0.94 * requiredCiiInYear },
                                 { ImoCiiBoundary.Upper, 1.07 * requiredCiiInYear },
                                 { ImoCiiBoundary.Inferior, 1.19 * requiredCiiInYear }
-                            });
+                            },
+                            year);
                     }
                 case ShipType.GeneralCargoShip:
                     {
@@ -107,7 +111,8 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                                 { ImoCiiBoundary.Lower, 0.94 * requiredCiiInYear },
                                 { ImoCiiBoundary.Upper, 1.06 * requiredCiiInYear },
                                 { ImoCiiBoundary.Inferior, 1.19 * requiredCiiInYear }
-                            });
+                            },
+                            year);
                     }
                 case ShipType.RefrigeratedCargoCarrier:
                     {
@@ -121,7 +126,8 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                                 { ImoCiiBoundary.Lower, 0.91 * requiredCiiInYear },
                                 { ImoCiiBoundary.Upper, 1.07 * requiredCiiInYear },
                                 { ImoCiiBoundary.Inferior, 1.20 * requiredCiiInYear }
-                            });
+                            },
+                            year);
                     }
                 case ShipType.CombinationCarrier:
                     {
@@ -135,7 +141,8 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                                 { ImoCiiBoundary.Lower, 0.96 * requiredCiiInYear },
                                 { ImoCiiBoundary.Upper, 1.06 * requiredCiiInYear },
                                 { ImoCiiBoundary.Inferior, 1.14 * requiredCiiInYear }
-                            });
+                            },
+                            year);
                     }
                 case ShipType.LngCarrier:
                     {
@@ -151,7 +158,8 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                                 { ImoCiiBoundary.Lower, 0.98 * requiredCiiInYear },
                                 { ImoCiiBoundary.Upper, 1.06 * requiredCiiInYear },
                                 { ImoCiiBoundary.Inferior, 1.13 * requiredCiiInYear }
-                            });
+                            },
+                            year);
                         }
                         else
                         {
@@ -165,7 +173,8 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                                 { ImoCiiBoundary.Lower, 0.92 * requiredCiiInYear },
                                 { ImoCiiBoundary.Upper, 1.10 * requiredCiiInYear },
                                 { ImoCiiBoundary.Inferior, 1.37 * requiredCiiInYear }
-                            });
+                            },
+                            year);
                         }
                     }
                 case ShipType.RoRoCargoShipVehicleCarrier:
@@ -180,7 +189,8 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                                 { ImoCiiBoundary.Lower, 0.94 * requiredCiiInYear },
                                 { ImoCiiBoundary.Upper, 1.06 * requiredCiiInYear },
                                 { ImoCiiBoundary.Inferior, 1.16 * requiredCiiInYear }
-                            });
+                            },
+                            year);
                     }
                 case ShipType.RoRoCargoShip:
                     {
@@ -194,7 +204,8 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                                 { ImoCiiBoundary.Lower, 0.89 * requiredCiiInYear },
                                 { ImoCiiBoundary.Upper, 1.08 * requiredCiiInYear },
                                 { ImoCiiBoundary.Inferior, 1.27 * requiredCiiInYear }
-                            });
+                            },
+                            year);
                     }
                 case ShipType.RoRoPassengerShip:
                     {
@@ -208,7 +219,8 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                                 { ImoCiiBoundary.Lower, 0.92 * requiredCiiInYear },
                                 { ImoCiiBoundary.Upper, 1.14 * requiredCiiInYear },
                                 { ImoCiiBoundary.Inferior, 1.30 * requiredCiiInYear }
-                            });
+                            },
+                            year);
                     }
                 case ShipType.RoRoPassengerShip_HighSpeedSOLAS:
                     {
@@ -222,7 +234,8 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                                 { ImoCiiBoundary.Lower, 0.92 * requiredCiiInYear },
                                 { ImoCiiBoundary.Upper, 1.14 * requiredCiiInYear },
                                 { ImoCiiBoundary.Inferior, 1.30 * requiredCiiInYear }
-                            });
+                            },
+                            year);
                     }
                 case ShipType.CruisePassengerShip:
                     {
@@ -236,7 +249,8 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                                 { ImoCiiBoundary.Lower, 0.95 * requiredCiiInYear },
                                 { ImoCiiBoundary.Upper, 1.06 * requiredCiiInYear },
                                 { ImoCiiBoundary.Inferior, 1.16 * requiredCiiInYear }
-                            });
+                            },
+                            year);
                     }
 
                 case ShipType.UNKNOWN:
