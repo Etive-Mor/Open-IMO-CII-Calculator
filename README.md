@@ -8,11 +8,10 @@ The CII indicator aims to make the carbon intensity of any given ship easy to un
 
 Grades are re-calculated annually. The boundaries of what is considered "good" is a moving target, described in [table 4](#table-4-annual-carbon-reduction-factors-z). This moving target is intended to encourage shipping firms to constantly improve the carbon intensity of their ships to 2030.
 
-> [!NOTE]  
-> The specification for this software can be found in [IMO's resolution MEPC.353(78)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.353(78).pdf), adopted in June 2021. Additional references, summaries, & resolutions can be found in the [References \& datasets](#references--datasets) section.
+The specification for this software can be found in [IMO's resolution MEPC.353(78)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.353(78).pdf), adopted in June 2021. Additional references, summaries, & resolutions can be found in the [References \& datasets](#references--datasets) section.
 
-
-The software is provided as-is. While best-efforts are made to ensure its results are acurate inline with the IMO's CII specifications, the results it produces are _**estimates**_ and _**guidance**_. Results should not be considered proof of regulatory compliance.
+> [!NOTE]
+> The repository code & software is provided as-is. While best-efforts are made to ensure its results are acurate inline with the IMO's CII specifications, the results it produces are _**estimates**_ and _**guidance**_. Results should not be considered proof of regulatory compliance.
 
 
 # Table of Contents
