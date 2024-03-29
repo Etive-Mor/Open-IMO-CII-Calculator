@@ -42,7 +42,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core
             int targetYear)
         {
             var shipCo2Emissions = _shipMassOfCo2EmissionsService.GetMassOfCo2Emissions(fuelType, fuelConsumption);
-            var shipCapacity = 0; // _shipCapacityService.GetShipCapacity(shipType, deadweightTonnage, grossTonnage);
+            var shipCapacity =  _shipCapacityService.GetShipCapacity(shipType, deadweightTonnage, grossTonnage);
             var transportWork = _shipTransportWorkService.GetShipTransportWork(shipCapacity, distanceTravelled);
 
             List<ResultYear> results = new List<ResultYear>();
