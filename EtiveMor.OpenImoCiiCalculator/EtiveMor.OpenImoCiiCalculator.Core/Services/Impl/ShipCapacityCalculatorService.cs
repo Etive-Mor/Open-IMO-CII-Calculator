@@ -5,7 +5,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
 {
 
 
-    public class ShipCapacityCalculatorService : IShipCapacityCalculatorService
+    internal class ShipCapacityCalculatorService : IShipCapacityCalculatorService
     {
         /// <summary>
         /// Calculates the ship's capacity according to the MEPC.353(78)guidelines

@@ -2,7 +2,7 @@
 
 namespace EtiveMor.OpenImoCiiCalculator.Core.Services
 {
-    public interface ICarbonIntensityIndicatorCalculatorService
+    internal interface ICarbonIntensityIndicatorCalculatorService
     {
         double GetAttainedCarbonIntensity(double massOfCo2Emissions, double transportWork);
         double GetRequiredCarbonIntensity(ShipType shipType, double capacity, int year);

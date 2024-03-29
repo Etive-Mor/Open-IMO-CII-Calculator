@@ -3,7 +3,7 @@ using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
 
 namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
 {
-    public class CarbonIntensityIndicatorCalculatorService : ICarbonIntensityIndicatorCalculatorService
+    internal class CarbonIntensityIndicatorCalculatorService : ICarbonIntensityIndicatorCalculatorService
     {
         /// <summary>
         /// Gets a ship's attained carbon intensity, which is the ratio of the cumulative mass

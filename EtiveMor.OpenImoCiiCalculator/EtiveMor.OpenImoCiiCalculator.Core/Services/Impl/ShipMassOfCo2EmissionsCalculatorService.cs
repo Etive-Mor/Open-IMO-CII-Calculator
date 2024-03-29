@@ -2,7 +2,7 @@
 
 namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
 {
-    public class ShipMassOfCo2EmissionsCalculatorService : IShipMassOfCo2EmissionsCalculatorService
+    internal class ShipMassOfCo2EmissionsCalculatorService : IShipMassOfCo2EmissionsCalculatorService
     {
         /// <summary>
         /// Gets the mass of CO2 emissions in grams (g) for a given fuel type and fuel consumption mass.

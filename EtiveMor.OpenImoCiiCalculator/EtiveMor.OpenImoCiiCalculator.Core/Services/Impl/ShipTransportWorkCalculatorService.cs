@@ -1,6 +1,6 @@
 ﻿namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
 {
-    public class ShipTransportWorkCalculatorService : IShipTransportWorkCalculatorService
+    internal class ShipTransportWorkCalculatorService : IShipTransportWorkCalculatorService
     {
 
         /// <summary>
