@@ -1,5 +1,6 @@
 ﻿using EtiveMor.OpenImoCiiCalculator.Core.Models;
 using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
+using EtiveMor.OpenImoCiiCalculator.Core.Models.ShipModels;
 using EtiveMor.OpenImoCiiCalculator.Core.Services.Impl;
 
 namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
@@ -21,12 +22,9 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         [TestMethod]
         public void TestCalculateCapacity_BulkCarrier()
         {
-            var ship = new Ship
-            {
-                ShipType = ShipType.BulkCarrier,
-                DeadweightTonnage = 250000,
-                GrossTonnage = 0
-            };
+            var ship = new Ship(
+                ShipType.BulkCarrier,
+                deadweightTonnage: 250000, grossTonnage: 0);
 
             var capacity = new ShipCapacityCalculatorService().GetShipCapacity(ship);
 
@@ -55,15 +53,13 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         [DataRow(ShipType.LngCarrier, 0, 100000)]
         [DataRow(ShipType.RoRoCargoShipVehicleCarrier, 250000, 0)]
         [DataRow(ShipType.RoRoPassengerShip, 250000, 0)]
-        [DataRow(ShipType.RoRoCruisePassengerShip, 250000, 0)]
+        [DataRow(ShipType.CruisePassengerShip, 250000, 0)]
         public void TestValidateTonnageParamsSet_ArgumentOutOfRangeException(ShipType shipType, double deadweightTonnage, double grossTonnage)
         {
-            var ship = new Ship
-            {
-                ShipType = shipType,
-                DeadweightTonnage = deadweightTonnage,
-                GrossTonnage = grossTonnage
-            };
+            var ship = new Ship(
+                shipType,
+                deadweightTonnage, 
+                grossTonnage);
 
             new ShipCapacityCalculatorService().GetShipCapacity(ship);
         }
@@ -90,15 +86,15 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         [DataRow(ShipType.RoRoPassengerShip_HighSpeedSOLAS, 0, 250000, 250000)]
         [DataRow(ShipType.RoRoCargoShipVehicleCarrier, 0, 100000, 100000)]
         [DataRow(ShipType.RoRoPassengerShip, 0, 100000, 100000)]
-        [DataRow(ShipType.RoRoCruisePassengerShip, 0, 100000, 100000)]
+        [DataRow(ShipType.CruisePassengerShip, 0, 100000, 100000)]
         public void TestCalculateCapacity(ShipType shipType, double deadweightTonnage, double grossTonnage, double expectedCapacity)
         {
-            var ship = new Ship
-            {
-                ShipType = shipType,
-                DeadweightTonnage = deadweightTonnage,
-                GrossTonnage = grossTonnage
-            };
+            var ship = new Ship(
+                shipType,
+                deadweightTonnage,
+                grossTonnage);
+
+
 
             var capacity = new ShipCapacityCalculatorService().GetShipCapacity(ship);
 

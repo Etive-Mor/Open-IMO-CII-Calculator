@@ -1,4 +1,5 @@
-﻿using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
+﻿using EtiveMor.OpenImoCiiCalculator.Core.Extensions;
+using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
 
 namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
 {
@@ -81,48 +82,9 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
 
             double ciiReference = a * Math.Pow(capacity, -c);
 
-            return ciiReference * (1 - GetAnnualReductionFactor(year));
+            return ciiReference.ApplyAnnualReductionFactor(year);
         }
 
-        /// <summary>
-        /// Gets an annual reduction factor for a given year, according to MEPC.338(76)
-        /// </summary>
-        /// <param name="year">the calendar year being analysed</param>
-        /// <returns>the reduction factor</returns>
-        /// <exception cref="NotSupportedException">
-        /// Thrown if a year outside of the range 2019-2030 (inclusive) is provided
-        /// </exception>
-        private double GetAnnualReductionFactor(int year)
-        {
-            switch (year) { 
-                case 2019:
-                    return 0.00;
-                case 2020:
-                    return 0.01;
-                case 2021:
-                    return 0.02;
-                case 2022:
-                    return 0.03;
-                case 2023:
-                    return 0.05;
-                case 2024:
-                    return 0.07;
-                case 2025:
-                    return 0.09;
-                case 2026:
-                    return 0.11;
-                case 2027:
-                    return 0.13;
-                case 2028:
-                    return 0.15;
-                case 2029:
-                    return 0.17;
-                case 2030:
-                    return 0.19;
-                default:
-                    throw new NotSupportedException($"Year {year} is not supported");
-            }
-        }
 
         /// <summary>
         /// Gets either the `a` or `c` value for a given ship type and capacity
@@ -159,7 +121,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                 ShipType.RoRoCargoShip => GetRoRoCargoShipValue(valType, capacity), 
                 ShipType.RoRoPassengerShip => GetRoRoPassengerShipValue(valType, capacity),
                 ShipType.RoRoPassengerShip_HighSpeedSOLAS => GetRoRoPassengerShip_HighSpeedSOLASValue(valType, capacity), 
-                ShipType.RoRoCruisePassengerShip => GetRoRoCruisePassengerShipValue(valType, capacity),
+                ShipType.CruisePassengerShip => GetRoRoCruisePassengerShipValue(valType, capacity),
                 ShipType.UNKNOWN => throw new NotSupportedException($"Unsupported {nameof(shipType)} '{shipType}'"),
                 _ => throw new NotSupportedException($"Unsupported {nameof(shipType)} '{shipType}'")
             };
@@ -345,7 +307,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
         /// </returns>
         private double GetRoRoPassengerShipValue(ValType valType, double capacity)
         {
-            return valType == ValType.a ? 1012 : 0.460;
+            return valType == ValType.a ? 2023 : 0.460;
         }
 
         /// <summary>
