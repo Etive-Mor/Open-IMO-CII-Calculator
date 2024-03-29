@@ -1,5 +1,6 @@
 ﻿using EtiveMor.OpenImoCiiCalculator.Core.Models;
 using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
+using EtiveMor.OpenImoCiiCalculator.Core.Models.ShipModels;
 using EtiveMor.OpenImoCiiCalculator.Core.Services.Impl;
 
 namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
@@ -21,12 +22,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         [TestMethod]
         public void TestCalculateCapacity_BulkCarrier()
         {
-            var ship = new Ship
-            {
-                ShipType = ShipType.BulkCarrier,
-                DeadweightTonnage = 250000,
-                GrossTonnage = 0
-            };
+            var ship = new BulkCarrier(deadweightTonnage: 250000, grossTonnage: 0);
 
             var capacity = new ShipCapacityCalculatorService().GetShipCapacity(ship);
 
@@ -58,12 +54,15 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         [DataRow(ShipType.RoRoCruisePassengerShip, 250000, 0)]
         public void TestValidateTonnageParamsSet_ArgumentOutOfRangeException(ShipType shipType, double deadweightTonnage, double grossTonnage)
         {
-            var ship = new Ship
-            {
-                ShipType = shipType,
-                DeadweightTonnage = deadweightTonnage,
-                GrossTonnage = grossTonnage
-            };
+            var ship = new BulkCarrier(deadweightTonnage: deadweightTonnage, grossTonnage: grossTonnage);
+
+            //var ship = new Ship
+            //{
+            //    ShipType = shipType,
+            //    DeadweightTonnage = deadweightTonnage,
+            //    GrossTonnage = grossTonnage
+            //};
+
 
             new ShipCapacityCalculatorService().GetShipCapacity(ship);
         }
@@ -93,16 +92,20 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         [DataRow(ShipType.RoRoCruisePassengerShip, 0, 100000, 100000)]
         public void TestCalculateCapacity(ShipType shipType, double deadweightTonnage, double grossTonnage, double expectedCapacity)
         {
-            var ship = new Ship
-            {
-                ShipType = shipType,
-                DeadweightTonnage = deadweightTonnage,
-                GrossTonnage = grossTonnage
-            };
+            var ship = new BulkCarrier(deadweightTonnage: deadweightTonnage, grossTonnage: grossTonnage);
+
+            //var ship = new Ship
+            //{
+            //    ShipType = shipType,
+            //    DeadweightTonnage = deadweightTonnage,
+            //    GrossTonnage = grossTonnage
+            //};
+
 
             var capacity = new ShipCapacityCalculatorService().GetShipCapacity(ship);
 
-            Assert.AreEqual(expectedCapacity, capacity);
+            Assert.AreEqual(capacity, ship.Capacity);
+            Assert.AreEqual(expectedCapacity, ship.Capacity);
         }
     }
 }
