@@ -12,12 +12,17 @@
     <PackageProjectUrl>https://github.com/Etive-Mor/Open-IMO-CII-Calculator</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>shipping; sustainability; ship carbon emissions; marine; cii; international trade; imo; carbon intensity; imo cii; shipping cii; carbon intensity indicator; shipping carbon intensity indicator; international maritime organization;</PackageTags>
-    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Version>$(VersionPrefix)</Version>
+    <RepositoryUrl>https://github.com/Etive-Mor/Open-IMO-CII-Calculator</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>EtiveMor.OpenImoCiiCalculator.Core.Tests</_Parameter1>
+    </AssemblyAttribute>
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>

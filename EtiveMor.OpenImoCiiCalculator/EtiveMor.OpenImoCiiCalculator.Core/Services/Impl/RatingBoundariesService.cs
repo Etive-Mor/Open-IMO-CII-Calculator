@@ -4,7 +4,7 @@ using EtiveMor.OpenImoCiiCalculator.Core.Models.ShipModels;
 
 namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
 {
-    public class RatingBoundariesService : IRatingBoundariesService
+    internal class RatingBoundariesService : IRatingBoundariesService
     {
         /// <summary>
         /// Returns the ship grading boundaries ouelines in MEPC354(78) for a given 

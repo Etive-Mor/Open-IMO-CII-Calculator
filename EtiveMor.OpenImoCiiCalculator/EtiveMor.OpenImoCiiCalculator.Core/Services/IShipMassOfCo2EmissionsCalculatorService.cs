@@ -2,7 +2,7 @@
 
 namespace EtiveMor.OpenImoCiiCalculator.Core.Services
 {
-    public interface IShipMassOfCo2EmissionsCalculatorService
+    internal interface IShipMassOfCo2EmissionsCalculatorService
     {
         double GetFuelCarbonContent(TypeOfFuel fuelType);
         double GetFuelLowerCalorificValue(TypeOfFuel fuelType);

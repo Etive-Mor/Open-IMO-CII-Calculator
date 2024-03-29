@@ -4,7 +4,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Models.ShipModels
 {
 
 
-    public class Ship
+    internal class Ship
     {
         public Ship(
                 ShipType shipType,

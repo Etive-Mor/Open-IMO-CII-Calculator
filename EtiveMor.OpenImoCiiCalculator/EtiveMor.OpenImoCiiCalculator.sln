@@ -5,7 +5,9 @@ VisualStudioVersion = 17.7.34302.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtiveMor.OpenImoCiiCalculator.Core", "EtiveMor.OpenImoCiiCalculator.Core\EtiveMor.OpenImoCiiCalculator.Core.csproj", "{72A10AB0-F070-44EF-ABA0-EABF72D18169}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtiveMor.OpenImoCiiCalculator.Core.Tests", "EtiveMor.OpenImoCiiCalculator.Core.Tests\EtiveMor.OpenImoCiiCalculator.Core.Tests.csproj", "{1FFA056E-2C89-443E-84BA-2613E7E9B08E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtiveMor.OpenImoCiiCalculator.Core.Tests", "EtiveMor.OpenImoCiiCalculator.Core.Tests\EtiveMor.OpenImoCiiCalculator.Core.Tests.csproj", "{1FFA056E-2C89-443E-84BA-2613E7E9B08E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtiveMor.OpenImoCiiCalculator.DemoConsoleApp", "EtiveMor.OpenImoCiiCalculator.DemoConsoleApp\EtiveMor.OpenImoCiiCalculator.DemoConsoleApp.csproj", "{0BA83418-F2F8-4FCB-BAB7-CBA195EBDDA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{1FFA056E-2C89-443E-84BA-2613E7E9B08E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FFA056E-2C89-443E-84BA-2613E7E9B08E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FFA056E-2C89-443E-84BA-2613E7E9B08E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BA83418-F2F8-4FCB-BAB7-CBA195EBDDA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BA83418-F2F8-4FCB-BAB7-CBA195EBDDA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BA83418-F2F8-4FCB-BAB7-CBA195EBDDA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BA83418-F2F8-4FCB-BAB7-CBA195EBDDA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
