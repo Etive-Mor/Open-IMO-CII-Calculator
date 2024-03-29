@@ -5,7 +5,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services
 {
     public interface IRatingBoundariesService
     {
-        DdVectorDataTableRow GetBoundaries(Ship ship, double requiredCiiInYear);
+        ShipDdVectorBoundaries GetBoundaries(Ship ship, double requiredCiiInYear);
 
     }
 }

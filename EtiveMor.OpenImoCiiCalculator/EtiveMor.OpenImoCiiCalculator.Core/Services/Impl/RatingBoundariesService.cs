@@ -12,13 +12,13 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
         /// <param name="requiredCiiInYear"></param>
         /// <returns></returns>
         /// <exception cref="NotSupportedException"></exception>
-        public DdVectorDataTableRow GetBoundaries(Ship ship, double requiredCiiInYear)
+        public ShipDdVectorBoundaries GetBoundaries(Ship ship, double requiredCiiInYear)
         {
             switch (ship.ShipType)
             {
                 case ShipType.BulkCarrier:
                     {
-                        return new DdVectorDataTableRow(
+                        return new ShipDdVectorBoundaries(
                             ship.ShipType,
                             new WeightClassification(0, int.MaxValue),
                             CapacityUnit.DWT,
@@ -34,7 +34,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                     {
                         if (ship.DeadweightTonnage >= 65000)
                         {
-                            return new DdVectorDataTableRow(
+                            return new ShipDdVectorBoundaries(
                                ship.ShipType,
                                new WeightClassification(65000, int.MaxValue),
                                CapacityUnit.DWT,
@@ -48,7 +48,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                         }
                         else
                         {
-                            return new DdVectorDataTableRow(
+                            return new ShipDdVectorBoundaries(
                                 ship.ShipType,
                                 new WeightClassification(0, 65000 - 1),
                                 CapacityUnit.DWT,
@@ -63,7 +63,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                     }
                 case ShipType.Tanker:
                     {
-                        return new DdVectorDataTableRow(
+                        return new ShipDdVectorBoundaries(
                             ship.ShipType,
                             new WeightClassification(0, int.MaxValue),
                             CapacityUnit.DWT,
@@ -77,7 +77,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                     }
                 case ShipType.ContainerShip:
                     {
-                        return new DdVectorDataTableRow(
+                        return new ShipDdVectorBoundaries(
                             ship.ShipType,
                             new WeightClassification(0, int.MaxValue),
                             CapacityUnit.DWT,
@@ -91,7 +91,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                     }
                 case ShipType.GeneralCargoShip:
                     {
-                        return new DdVectorDataTableRow(
+                        return new ShipDdVectorBoundaries(
                             ship.ShipType,
                             new WeightClassification(0, int.MaxValue),
                             CapacityUnit.DWT,
@@ -105,7 +105,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                     }
                 case ShipType.RefrigeratedCargoCarrier:
                     {
-                        return new DdVectorDataTableRow(
+                        return new ShipDdVectorBoundaries(
                             ship.ShipType,
                             new WeightClassification(0, int.MaxValue),
                             CapacityUnit.DWT,
@@ -119,7 +119,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                     }
                 case ShipType.CombinationCarrier:
                     {
-                        return new DdVectorDataTableRow(
+                        return new ShipDdVectorBoundaries(
                             ship.ShipType,
                             new WeightClassification(0, int.MaxValue),
                             CapacityUnit.DWT,
@@ -135,7 +135,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                     {
                         if (ship.DeadweightTonnage >= 100000)
                         {
-                            return new DdVectorDataTableRow(
+                            return new ShipDdVectorBoundaries(
                                 ship.ShipType,
                                 new WeightClassification(100000, int.MaxValue),
                                 CapacityUnit.DWT,
@@ -149,7 +149,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                         }
                         else
                         {
-                            return new DdVectorDataTableRow(
+                            return new ShipDdVectorBoundaries(
                                 ship.ShipType,
                                 new WeightClassification(0, 100000 - 1),
                                 CapacityUnit.DWT,
@@ -164,7 +164,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                     }
                 case ShipType.RoRoCargoShipVehicleCarrier:
                     {
-                        return new DdVectorDataTableRow(
+                        return new ShipDdVectorBoundaries(
                             ship.ShipType,
                             new WeightClassification(0, int.MaxValue),
                             CapacityUnit.GT,
@@ -178,7 +178,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                     }
                 case ShipType.RoRoCargoShip:
                     {
-                        return new DdVectorDataTableRow(
+                        return new ShipDdVectorBoundaries(
                             ship.ShipType,
                             new WeightClassification(0, int.MaxValue),
                             CapacityUnit.GT,
@@ -192,7 +192,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                     }
                 case ShipType.RoRoPassengerShip:
                     {
-                        return new DdVectorDataTableRow(
+                        return new ShipDdVectorBoundaries(
                             ship.ShipType,
                             new WeightClassification(0, int.MaxValue),
                             CapacityUnit.GT,
@@ -206,7 +206,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                     }
                 case ShipType.RoRoPassengerShip_HighSpeedSOLAS:
                     {
-                        return new DdVectorDataTableRow(
+                        return new ShipDdVectorBoundaries(
                             ship.ShipType,
                             new WeightClassification(0, int.MaxValue),
                             CapacityUnit.GT,
@@ -220,7 +220,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                     }
                 case ShipType.CruisePassengerShip:
                     {
-                        return new DdVectorDataTableRow(
+                        return new ShipDdVectorBoundaries(
                             ship.ShipType,
                             new WeightClassification(0, int.MaxValue),
                             CapacityUnit.GT,
@@ -244,9 +244,9 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
 
 
 
-    public class DdVectorDataTableRow
+    public class ShipDdVectorBoundaries
     {
-        public DdVectorDataTableRow(
+        public ShipDdVectorBoundaries(
             ShipType shipType,
             WeightClassification weightClassification,
             CapacityUnit capacityUnit,
