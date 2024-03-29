@@ -1,4 +1,5 @@
 ﻿using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
+using EtiveMor.OpenImoCiiCalculator.Core.Models.MeasurementModels;
 using EtiveMor.OpenImoCiiCalculator.Core.Models.ShipModels;
 
 namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
@@ -6,7 +7,8 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
     public class RatingBoundariesService : IRatingBoundariesService
     {
         /// <summary>
-        /// Returns the boundaries for the given ship and required CII in the given year.
+        /// Returns the ship grading boundaries ouelines in MEPC354(78) for a given 
+        /// ship and required CII in a year.
         /// </summary>
         /// <param name="ship"></param>
         /// <param name="requiredCiiInYear"></param>
@@ -14,10 +16,14 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
         /// <exception cref="NotSupportedException"></exception>
         public ShipDdVectorBoundaries GetBoundaries(Ship ship, double requiredCiiInYear)
         {
+            ValidateShipTonnageValid(ship);
+
             switch (ship.ShipType)
             {
                 case ShipType.BulkCarrier:
                     {
+                        if (ship.DeadweightTonnage <= 0) throw new NotSupportedException($"Deadweight tonnage must be greater than 0 for ship type {ship.ShipType}");
+
                         return new ShipDdVectorBoundaries(
                             ship.ShipType,
                             new WeightClassification(0, int.MaxValue),
@@ -238,51 +244,55 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                 default:
                     throw new NotSupportedException($"Ship type '{ship.ShipType}' not supported");
             }
+
+
+            /// <summary>
+            /// Checks that the ship tonnage is valid for the ship type.
+            /// </summary>
+            static void ValidateShipTonnageValid(Ship ship)
+            {
+                switch (ship.ShipType)
+                {
+                    case ShipType.BulkCarrier
+                        or ShipType.GasCarrier
+                        or ShipType.Tanker
+                        or ShipType.ContainerShip
+                        or ShipType.GeneralCargoShip
+                        or ShipType.RefrigeratedCargoCarrier
+                        or ShipType.CombinationCarrier
+                        or ShipType.LngCarrier:
+                        {
+                            if (ship.DeadweightTonnage <= 0)
+                            {
+                                throw new NotSupportedException($"Deadweight tonnage must be greater than 0 for ship type {ship.ShipType}. Was provided {ship.DeadweightTonnage}");
+                            }
+                            break;
+                        }
+                    case ShipType.RoRoCargoShipVehicleCarrier
+                        or ShipType.RoRoCargoShip
+                        or ShipType.RoRoPassengerShip
+                        or ShipType.RoRoPassengerShip_HighSpeedSOLAS
+                        or ShipType.CruisePassengerShip:
+                        {
+                            if (ship.GrossTonnage <= 0)
+                            {
+                                throw new NotSupportedException($"Gross tonnage must be greater than 0 for ship type {ship.ShipType} Was provided {ship.GrossTonnage}");
+                            }
+                            break;
+                        }
+                    case ShipType.UNKNOWN:
+                        throw new NotSupportedException($"Ship type '{ship.ShipType}' not supported");
+                    default:
+                        throw new NotSupportedException($"Ship type '{ship.ShipType}' not supported");
+                }
+            }
         }
     }
 
 
 
 
-    public class ShipDdVectorBoundaries
-    {
-        public ShipDdVectorBoundaries(
-            ShipType shipType,
-            WeightClassification weightClassification,
-            CapacityUnit capacityUnit,
-            Dictionary<ImoCiiBoundary, double> boundaryDdVectors2019)
-        {
-            ShipType = shipType;
-            WeightClassification = weightClassification;
-            CapacityUnit = capacityUnit;
-            BoundaryDdVectors2019 = boundaryDdVectors2019;
-        }
+    
 
-        public ShipType ShipType { get; set; }
-        public WeightClassification WeightClassification { get; set; }
-        public CapacityUnit CapacityUnit { get; set; }
-
-        public Dictionary<ImoCiiBoundary, double> BoundaryDdVectors2019 { get; set; }
-    }
-
-    public class WeightClassification
-    {
-        public WeightClassification(int upperLimit, int lowerLimit)
-        {
-            UpperLimit = upperLimit;
-            LowerLimit = lowerLimit;
-        }
-
-        public int UpperLimit { get; private set; }
-        public int LowerLimit { get; private set; }
-    }
-
-    public enum CapacityUnit
-    {
-        ERR,
-        DWT,
-        DWT_CAP_HIGH,
-        GT,
-        GT_CAP_LOW
-    }
+   
 }

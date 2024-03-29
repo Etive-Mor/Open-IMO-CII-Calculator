@@ -1,5 +1,4 @@
-﻿using EtiveMor.OpenImoCiiCalculator.Core.Extensions;
-using EtiveMor.OpenImoCiiCalculator.Core.Models;
+﻿using EtiveMor.OpenImoCiiCalculator.Core.Models;
 using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
 using EtiveMor.OpenImoCiiCalculator.Core.Services;
 using EtiveMor.OpenImoCiiCalculator.Core.Services.Impl;
