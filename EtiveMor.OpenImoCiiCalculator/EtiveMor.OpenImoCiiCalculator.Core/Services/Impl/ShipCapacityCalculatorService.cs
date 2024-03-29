@@ -71,7 +71,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                     return grossTonnage;
                 case ShipType.RoRoPassengerShip_HighSpeedSOLAS:
                     return grossTonnage;
-                case ShipType.RoRoCruisePassengerShip:
+                case ShipType.CruisePassengerShip:
                     return grossTonnage;
                 default:
                     throw new ArgumentException($"Unsupported {nameof(shipType)}: {shipType}");
@@ -102,7 +102,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
         /// Required to be above 0 for ship types: 
         ///     - <see cref="ShipType.RoRoCargoShipVehicleCarrier"/>
         ///     - <see cref="ShipType.RoRoPassengerShip"/>
-        ///     - <see cref="ShipType.RoRoCruisePassengerShip"/>
+        ///     - <see cref="ShipType.CruisePassengerShip"/>
         /// </param>
         /// <exception cref="InvalidOperationException"></exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if the weight value is equal or lower than 0 if it is required to be above 0</exception>
@@ -158,7 +158,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                     ? grossTonnage
                     : throw new InvalidOperationException(),
 
-                ShipType.RoRoCruisePassengerShip => ValidateTonnage(grossTonnage, nameof(grossTonnage), shipType)
+                ShipType.CruisePassengerShip => ValidateTonnage(grossTonnage, nameof(grossTonnage), shipType)
                     ? grossTonnage
                     : throw new InvalidOperationException(),
 

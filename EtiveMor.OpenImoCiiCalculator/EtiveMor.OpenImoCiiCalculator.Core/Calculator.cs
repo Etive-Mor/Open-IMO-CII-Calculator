@@ -68,7 +68,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core
 
         private ImoCiiRating GetImoCiiRatingInYear(double attainedCiiInYear, double requiredCiiInYear, int year) 
         {
-            var gradeLowerBoundaries = GetBoundaries(ShipType.RoRoCruisePassengerShip, requiredCiiInYear);
+            var gradeLowerBoundaries = GetBoundaries(ShipType.CruisePassengerShip, requiredCiiInYear);
 
             if (attainedCiiInYear < gradeLowerBoundaries[ImoCiiBoundary.Superior])
             {

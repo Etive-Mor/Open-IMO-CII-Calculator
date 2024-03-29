@@ -121,7 +121,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
                 ShipType.RoRoCargoShip => GetRoRoCargoShipValue(valType, capacity), 
                 ShipType.RoRoPassengerShip => GetRoRoPassengerShipValue(valType, capacity),
                 ShipType.RoRoPassengerShip_HighSpeedSOLAS => GetRoRoPassengerShip_HighSpeedSOLASValue(valType, capacity), 
-                ShipType.RoRoCruisePassengerShip => GetRoRoCruisePassengerShipValue(valType, capacity),
+                ShipType.CruisePassengerShip => GetRoRoCruisePassengerShipValue(valType, capacity),
                 ShipType.UNKNOWN => throw new NotSupportedException($"Unsupported {nameof(shipType)} '{shipType}'"),
                 _ => throw new NotSupportedException($"Unsupported {nameof(shipType)} '{shipType}'")
             };

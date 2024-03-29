@@ -75,13 +75,13 @@
         /// A type of ship designed to carry both wheeled cargo and passengers, with 
         /// built-in ramps for loading and unloading vehicles.
         /// </summary>
-        /// <seealso cref="RoRoCruisePassengerShip"/>
+        /// <seealso cref="CruisePassengerShip"/>
         RoRoPassengerShip = 110,
         
         /// <summary>
         /// A type of high-speed ship designed to conform to SOLAS Chapter X standards 
         /// </summary>
-        /// <seealso cref="RoRoCruisePassengerShip"/>
+        /// <seealso cref="CruisePassengerShip"/>
         RoRoPassengerShip_HighSpeedSOLAS = 111,
 
         /// <summary>
@@ -90,7 +90,7 @@
         /// venues, and recreational facilities.
         /// </summary>
         /// <seealso cref="RoRoPassengerShip"/>
-        RoRoCruisePassengerShip = 120
+        CruisePassengerShip = 120
     }
 
 }

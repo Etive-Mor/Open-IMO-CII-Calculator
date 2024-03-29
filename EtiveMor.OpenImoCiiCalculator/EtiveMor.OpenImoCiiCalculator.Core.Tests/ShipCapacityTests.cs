@@ -53,7 +53,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         [DataRow(ShipType.LngCarrier, 0, 100000)]
         [DataRow(ShipType.RoRoCargoShipVehicleCarrier, 250000, 0)]
         [DataRow(ShipType.RoRoPassengerShip, 250000, 0)]
-        [DataRow(ShipType.RoRoCruisePassengerShip, 250000, 0)]
+        [DataRow(ShipType.CruisePassengerShip, 250000, 0)]
         public void TestValidateTonnageParamsSet_ArgumentOutOfRangeException(ShipType shipType, double deadweightTonnage, double grossTonnage)
         {
             var ship = new Ship(
@@ -86,7 +86,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         [DataRow(ShipType.RoRoPassengerShip_HighSpeedSOLAS, 0, 250000, 250000)]
         [DataRow(ShipType.RoRoCargoShipVehicleCarrier, 0, 100000, 100000)]
         [DataRow(ShipType.RoRoPassengerShip, 0, 100000, 100000)]
-        [DataRow(ShipType.RoRoCruisePassengerShip, 0, 100000, 100000)]
+        [DataRow(ShipType.CruisePassengerShip, 0, 100000, 100000)]
         public void TestCalculateCapacity(ShipType shipType, double deadweightTonnage, double grossTonnage, double expectedCapacity)
         {
             var ship = new Ship(

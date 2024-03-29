@@ -15,11 +15,6 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Models.ShipModels
             ShipType = shipType;
             DeadweightTonnage = deadweightTonnage;
             GrossTonnage = grossTonnage;
-
-            if (shipType == ShipType.UNKNOWN)
-            {
-                throw new System.InvalidOperationException("ShipType must be set");
-            }
         }
 
 
@@ -60,14 +55,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Models.ShipModels
     }
 
 
-    public enum CapacityUnit
-    {
-        ERR,
-        DWT,
-        DWT_CAP_HIGH,
-        GT,
-        GT_CAP_LOW
-    }
+
 
 
     
