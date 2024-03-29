@@ -1,5 +1,7 @@
 ﻿using EtiveMor.OpenImoCiiCalculator.Core.Models;
+using EtiveMor.OpenImoCiiCalculator.Core.Models.ShipModels;
 using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
+using EtiveMor.OpenImoCiiCalculator.Core.Models.MeasurementModels;
 using EtiveMor.OpenImoCiiCalculator.Core.Services;
 using EtiveMor.OpenImoCiiCalculator.Core.Services.Impl;
 
@@ -12,6 +14,8 @@ namespace EtiveMor.OpenImoCiiCalculator.Core
         IShipTransportWorkCalculatorService _shipTransportWorkService;
         ICarbonIntensityIndicatorCalculatorService _carbonIntensityIndicatorService;
         IRatingBoundariesService _ratingBoundariesService;
+
+
         public Calculator()
         {
             _shipMassOfCo2EmissionsService = new ShipMassOfCo2EmissionsCalculatorService();
@@ -32,16 +36,16 @@ namespace EtiveMor.OpenImoCiiCalculator.Core
         /// <param name="fuelConsumption">quantity of fuel consumed in grams</param>
         /// <returns></returns>
         public CalculationResult CalculateAttainedCiiRating(
-            ShipType shipType, 
-            double grossTonnage, 
-            double deadweightTonnage, 
-            double distanceTravelled, 
-            TypeOfFuel fuelType, 
-            double fuelConsumption, 
+            ShipType shipType,
+            double grossTonnage,
+            double deadweightTonnage,
+            double distanceTravelled,
+            TypeOfFuel fuelType,
+            double fuelConsumption,
             int targetYear)
         {
             var shipCo2Emissions = _shipMassOfCo2EmissionsService.GetMassOfCo2Emissions(fuelType, fuelConsumption);
-            var shipCapacity =  _shipCapacityService.GetShipCapacity(shipType, deadweightTonnage, grossTonnage);
+            var shipCapacity = _shipCapacityService.GetShipCapacity(shipType, deadweightTonnage, grossTonnage);
             var transportWork = _shipTransportWorkService.GetShipTransportWork(shipCapacity, distanceTravelled);
 
             List<ResultYear> results = new List<ResultYear>();
@@ -50,6 +54,8 @@ namespace EtiveMor.OpenImoCiiCalculator.Core
                 var attainedCiiInYear = _carbonIntensityIndicatorService.GetAttainedCarbonIntensity(shipCo2Emissions, transportWork);
                 var requiredCiiInYear = _carbonIntensityIndicatorService.GetRequiredCarbonIntensity(shipType, shipCapacity, year);
 
+                var vectors = _ratingBoundariesService.GetBoundaries(new Ship(shipType, deadweightTonnage, grossTonnage), requiredCiiInYear, year);
+                var rating = GetImoCiiRatingFromVectors(vectors, attainedCiiInYear, year);
 
                 results.Add(new ResultYear
                 {
@@ -57,35 +63,33 @@ namespace EtiveMor.OpenImoCiiCalculator.Core
                     Year = year,
                     AttainedCii = attainedCiiInYear,
                     RequiredCii = requiredCiiInYear,
-                    Rating = GetImoCiiRatingInYear(attainedCiiInYear, requiredCiiInYear, year),
-                    VectorBoundariesForYear = _ratingBoundariesService.GetBoundaries(new Models.ShipModels.Ship(shipType, deadweightTonnage, grossTonnage), requiredCiiInYear, year)
-                    // Boundaries = _ratingBoundariesService.GetBoundaries(new Models.ShipModels.Ship(shipType, deadweightTonnage, grossTonnage), requiredCiiInYear).
+                    Rating = rating,
+                    VectorBoundariesForYear = vectors
                 });
             }
 
             return new CalculationResult(results);
         }
 
-        private ImoCiiRating GetImoCiiRatingInYear(double attainedCiiInYear, double requiredCiiInYear, int year) 
-        {
-            var gradeLowerBoundaries = GetBoundaries(ShipType.CruisePassengerShip, requiredCiiInYear);
 
-            if (attainedCiiInYear < gradeLowerBoundaries[ImoCiiBoundary.Superior])
+        private ImoCiiRating GetImoCiiRatingFromVectors(ShipDdVectorBoundaries boundaries, double attainedCiiInYear, int year)
+        {
+            if (attainedCiiInYear < boundaries.BoundaryDdVectors[ImoCiiBoundary.Superior])
             {
                 // lower than the "superior" boundary
                 return ImoCiiRating.A;
             }
-            else if (attainedCiiInYear < gradeLowerBoundaries[ImoCiiBoundary.Lower])
+            else if (attainedCiiInYear < boundaries.BoundaryDdVectors[ImoCiiBoundary.Lower])
             {
                 // lower than the "lower" boundary
                 return ImoCiiRating.B;
             }
-            else if (attainedCiiInYear < gradeLowerBoundaries[ImoCiiBoundary.Upper])
+            else if (attainedCiiInYear < boundaries.BoundaryDdVectors[ImoCiiBoundary.Upper])
             {
                 // lower than the "upper" boundary
                 return ImoCiiRating.C;
             }
-            else if (attainedCiiInYear < gradeLowerBoundaries[ImoCiiBoundary.Inferior])
+            else if (attainedCiiInYear < boundaries.BoundaryDdVectors[ImoCiiBoundary.Inferior])
             {
                 // lower than the "inferior" boundary
                 return ImoCiiRating.D;
@@ -97,15 +101,6 @@ namespace EtiveMor.OpenImoCiiCalculator.Core
             }
         }
 
-        private Dictionary<ImoCiiBoundary, double> GetBoundaries(ShipType shipType, double requiredCiiInYear)
-        {
-            return new Dictionary<ImoCiiBoundary, double> {
-                { ImoCiiBoundary.Superior,      0.72 *  requiredCiiInYear },
-                { ImoCiiBoundary.Lower,         0.90 *  requiredCiiInYear},
-                { ImoCiiBoundary.Upper,         1.12 *  requiredCiiInYear},
-                { ImoCiiBoundary.Inferior,      1.41 *  requiredCiiInYear}
-            };
-        }
     }
    
 }
