@@ -18,8 +18,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
         /// </returns>
         public double GetShipCapacity(Ship ship)
         {
-            return ship.Capacity;
-            // return GetShipCapacity(ship.ShipType, ship.DeadweightTonnage, ship.GrossTonnage);
+            return GetShipCapacity(ship.ShipType, ship.DeadweightTonnage, ship.GrossTonnage);
         }
 
         /// <summary>
@@ -41,43 +40,43 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
         /// <returns>
         /// The ship's type capacity according to MEPC.353(78)
         /// </returns>
-        //public double GetShipCapacity(ShipType shipType, double deadweightTonnage, double grossTonnage)
-        //{
-        //    ValidateTonnageParamsSet(shipType, deadweightTonnage, grossTonnage);
+        public double GetShipCapacity(ShipType shipType, double deadweightTonnage, double grossTonnage)
+        {
+            ValidateTonnageParamsSet(shipType, deadweightTonnage, grossTonnage);
 
 
-        //    switch (shipType)
-        //    {
-        //        case ShipType.BulkCarrier:
-        //            return deadweightTonnage >= 279000 ? 279000 : deadweightTonnage;
-        //        case ShipType.GasCarrier:
-        //            return deadweightTonnage;
-        //        case ShipType.Tanker:
-        //            return deadweightTonnage;
-        //        case ShipType.ContainerShip:
-        //            return deadweightTonnage;
-        //        case ShipType.GeneralCargoShip:
-        //            return deadweightTonnage;
-        //        case ShipType.RefrigeratedCargoCarrier:
-        //            return deadweightTonnage;
-        //        case ShipType.CombinationCarrier:
-        //            return deadweightTonnage;
-        //        case ShipType.LngCarrier:
-        //            return deadweightTonnage < 65000 ? 65000 : deadweightTonnage;
-        //        case ShipType.RoRoCargoShipVehicleCarrier: 
-        //            return deadweightTonnage >= 57700 ? 57700 : grossTonnage;
-        //        case ShipType.RoRoCargoShip:
-        //            return grossTonnage;
-        //        case ShipType.RoRoPassengerShip:
-        //            return grossTonnage;
-        //        case ShipType.RoRoPassengerShip_HighSpeedSOLAS:
-        //            return grossTonnage;
-        //        case ShipType.RoRoCruisePassengerShip:
-        //            return grossTonnage;
-        //        default:
-        //            throw new ArgumentException($"Unsupported {nameof(shipType)}: {shipType}");
-        //    }
-        //}
+            switch (shipType)
+            {
+                case ShipType.BulkCarrier:
+                    return deadweightTonnage >= 279000 ? 279000 : deadweightTonnage;
+                case ShipType.GasCarrier:
+                    return deadweightTonnage;
+                case ShipType.Tanker:
+                    return deadweightTonnage;
+                case ShipType.ContainerShip:
+                    return deadweightTonnage;
+                case ShipType.GeneralCargoShip:
+                    return deadweightTonnage;
+                case ShipType.RefrigeratedCargoCarrier:
+                    return deadweightTonnage;
+                case ShipType.CombinationCarrier:
+                    return deadweightTonnage;
+                case ShipType.LngCarrier:
+                    return deadweightTonnage < 65000 ? 65000 : deadweightTonnage;
+                case ShipType.RoRoCargoShipVehicleCarrier:
+                    return deadweightTonnage >= 57700 ? 57700 : grossTonnage;
+                case ShipType.RoRoCargoShip:
+                    return grossTonnage;
+                case ShipType.RoRoPassengerShip:
+                    return grossTonnage;
+                case ShipType.RoRoPassengerShip_HighSpeedSOLAS:
+                    return grossTonnage;
+                case ShipType.RoRoCruisePassengerShip:
+                    return grossTonnage;
+                default:
+                    throw new ArgumentException($"Unsupported {nameof(shipType)}: {shipType}");
+            }
+        }
 
 
         /// <summary>
