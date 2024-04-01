@@ -18,7 +18,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         [TestMethod]
         public void TestCalculator()
         {
-            var _calc = new Calculator();
+            var _calc = new ShipCarbonIntensityCalculator();
 
             var result = _calc.CalculateAttainedCiiRating(
                 ShipType.RoRoPassengerShip, 
@@ -82,7 +82,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
             double expectedAttainedCii,
             double expectedArRatio)
         {
-            var _calc = new Calculator();
+            var _calc = new ShipCarbonIntensityCalculator();
 
             var result = _calc.CalculateAttainedCiiRating(
                 shipType,
@@ -154,7 +154,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         {
             double expectedArRatio = expectedAttainedCii / expectedRequiredCii;
 
-            var _calc = new Calculator();
+            var _calc = new ShipCarbonIntensityCalculator();
 
             var result = _calc.CalculateAttainedCiiRating(
                 shipType,

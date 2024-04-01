@@ -7,7 +7,7 @@ using EtiveMor.OpenImoCiiCalculator.Core.Services.Impl;
 
 namespace EtiveMor.OpenImoCiiCalculator.Core
 {
-    public class Calculator
+    public class ShipCarbonIntensityCalculator
     {
         IShipMassOfCo2EmissionsCalculatorService _shipMassOfCo2EmissionsService;
         IShipCapacityCalculatorService _shipCapacityService;
@@ -16,7 +16,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core
         IRatingBoundariesService _ratingBoundariesService;
 
 
-        public Calculator()
+        public ShipCarbonIntensityCalculator()
         {
             _shipMassOfCo2EmissionsService = new ShipMassOfCo2EmissionsCalculatorService();
             _shipCapacityService = new ShipCapacityCalculatorService();
