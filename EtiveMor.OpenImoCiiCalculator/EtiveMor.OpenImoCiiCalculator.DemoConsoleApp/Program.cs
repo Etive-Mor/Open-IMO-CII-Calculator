@@ -11,7 +11,7 @@ namespace EtiveMor.OpenImoCiiCalculator.DemoConsoleApp
         {
             Console.WriteLine("Generating a ship result now...");
 
-            var calculator = new Calculator();
+            var calculator = new ShipCarbonIntensityCalculator();
 
             var result = calculator.CalculateAttainedCiiRating(
                ShipType.RoRoPassengerShip,
