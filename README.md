@@ -6,7 +6,13 @@ An unofficial open source implementation of the International Maritime Organisat
 
 The CII indicator aims to make the carbon intensity of any given ship easy to understand, transparent, and standardised. It does so by ranking all ships globally on an A to E rating (A being the best, E being the worst). Ship emission intensity calculations consider a mixture of weight, distance travelled in the calendar year, and the fuel used in their main engines (for a comprehensive explanation, see the [methodology section](#methodology)). 
 
-Grades are re-calculated annually. The boundaries of what is considered "good" is a moving target, described in [table 4](#table-4-annual-carbon-reduction-factors-z). This moving target is intended to encourage shipping firms to constantly improve the carbon intensity of their ships to 2030.
+<img src="./README_assets/a-e-ratings.png" alt="Each grade from A to E, coloured gradually from green to red" width="450"/>
+
+
+Grades are re-calculated annually. The boundaries of what is considered "good" is a moving target, described in [table 4](#table-4-annual-carbon-reduction-factors-z). This moving target is intended to encourage shipping firms to constantly improve the carbon intensity of their ships to 2030. The graph below demonstrates the gradual tightening of the IMO's Carbon Intensity requirements over time. The nearer to 2030, the lower a ship's Attained CII must be to achieve an A grade. 
+
+<img src="./README_assets/cii-rating-progression-over-time.png" alt="A graph showing the gradual " width="450"/>
+
 
 The specification for this software can be found in [IMO's resolution MEPC.353(78)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.353(78).pdf), adopted in June 2021. Additional references, summaries, & resolutions can be found in the [References \& datasets](#references--datasets) section.
 
