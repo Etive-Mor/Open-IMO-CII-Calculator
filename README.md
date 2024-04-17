@@ -378,4 +378,5 @@ Often in shipping, non-metric measurements are used. Conversions are detailed be
 
 - UNStats (public, non-commercial dataset): https://unstats.un.org/bigdata/task-teams/ttt-dashboards/
 - Dataliastic (private commercial dataset): https://datalastic.com/pricing/
-- Marine Traffic (private commercial dataset): https://servicedocs.marinetraffic.com/ 
+- Marine Traffic (private commercial dataset): https://servicedocs.marinetraffic.com/
+- Windward.AI (private commercial datasets): https://windward.ai/
