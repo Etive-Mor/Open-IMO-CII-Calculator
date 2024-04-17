@@ -16,6 +16,10 @@ The specification for this software can be found in [IMO's resolution MEPC.353(7
 - [Open IMO Carbon Intensity Indicator (CII) Calculator 🚢](#open-imo-carbon-intensity-indicator-cii-calculator-)
   - [What is this?](#what-is-this)
 - [Table of Contents](#table-of-contents)
+- [Software](#software)
+  - [Software Roadmap](#software-roadmap)
+  - [Getting Started](#getting-started)
+    - [Calculator Result Format](#calculator-result-format)
 - [Methodology](#methodology)
   - [Ship Grade Ratio Methodology](#ship-grade-ratio-methodology)
     - [Ship Grade Worked example](#ship-grade-worked-example)
@@ -33,6 +37,92 @@ The specification for this software can be found in [IMO's resolution MEPC.353(7
 - [References \& datasets](#references--datasets)
   - [Further Reading](#further-reading)
   - [Useful datasets (mixed public and private)](#useful-datasets-mixed-public-and-private)
+
+# Software
+
+## Software Roadmap
+
+The following features are on the roadmap for the application: 
+
+- Support for multiple engines & fuel types for ships. Currently the application only considers fuel consumption by a ship's main engine. 
+- Support for Dependency Injection (DI). Currently the application does not
+- Support for IMO Resolution MEPC.355(78). Currently the application considers fuel consumption only. Support for MEPC355(78) will bring additional CII properties, for example the lighting in crew quarters. 
+
+## Getting Started
+
+The library can be installed via Nuget. There is a C# dotnet console app at `EtiveMor.OpenImoCiiCalculator.DemoConsoleApp`, which demonstrates how to create a new instance of the calculator, submit data, and receive results in the format `EtiveMor.OpenImoCiiCalculator.Core.ModelsCalculationResult`.
+
+When submitting data to the `CalculateAttainedCiiRating` method, the following parameters are required:
+
+```csharp
+ShipType shipType,          
+double grossTonnage,       
+double deadweightTonnage, 
+double distanceTravelled,   
+TypeOfFuel fuelType,       
+double fuelConsumption,  
+int targetYear           
+```
+
+- The ship's type must be one of `EtiveMor.OpenImoCiiCalculator.Core.Models.Enums.ShipType`. 
+- Gross Tonnage is measured in [long-tons](https://en.wikipedia.org/wiki/Long_ton) (1.016047 metric tonnes, or 1,016.047 kilograms)
+- Deadweight Tonnage is measured in [long-tons](https://en.wikipedia.org/wiki/Long_ton) (1.016047 metric tonnes, or 1,016.047 kilograms)
+- Distance travelled is measured in [nautical miles](https://en.wikipedia.org/wiki/Nautical_mile) (1,852 metres)
+- Fuel type must be one of `EtiveMor.OpenImoCiiCalculator.Core.Models.Enums.TypeOfFuel`
+- Fuel consumption is measured in grams, and accepts scientific notation like `1.9e+10`
+- Year must refer to the measured year. For example, if a ship's fuel consumption is known in 2022, all other results will be based from that point
+
+### Calculator Result Format
+
+```json
+{
+    "results": [
+        {
+            "isMeasuredYear": true,                        
+            "isEstimatedYear": false,                     
+            "year": 2019,                                 
+            "rating": 2,                                   
+            "requiredCii": 19.184190519387734,    
+            "attainedCii": 16.243733333333335,
+            "attainedRequiredRatio": 0.8467249799733408,
+            "vectorBoundariesForYear": {
+                "year": 2019,
+                "shipType": 110,
+                "weightClassification": {
+                    "upperLimit": 0,
+                    "lowerLimit": 2147483647
+                },
+                "capacityUnit": 3,
+                "boundaryDdVectors": {
+                    "Superior": 14.579984794734678,
+                    "Lower": 17.649455277836715,
+                    "Upper": 21.869977192102013,
+                    "Inferior": 24.939447675204054
+                }
+            }
+        },
+        ...
+    ]
+}
+```
+
+| Property  |  Description |
+| ----- | ---- |
+| `isMeasuredYear` | describes if the result array was generated based on this year  |
+| `isEstimatedYear` |  describes if the result array was NOT generated based on this year (is always equal to !isMeasuredYear)  |
+| `year` |  describes the year in question   |
+| `rating` |  describes the rating for the ship in the given year. A=1, B=2, C=3, D=4, E=5. 0 indicates an error. See `EtiveMor.OpenImoCiiCalculator.Core.Models.Enums.ImoCiiRating`  |
+| `requiredCii` | The actual intensity required for the ship to be considered in-range of the IMO's regulations (note that from 2027 onwards, this is a projection) |
+| `attainedCii` | The estimated or actual intensity attained for the ship in the given year |
+| `attainedRequiredRatio` | The ratio between `requiredCii` and `attainedCii` |
+| `vectorBoundariesForYear.year` | the year in question (repeats `.year`) |
+| `vectorBoundariesForYear.shipType` | the type of ship `EtiveMor.OpenImoCiiCalculator.Core.Models.Enums.ShipType` |
+| `vectorBoundariesForYear.weightClassification` | the weight classification the ship has been considered for (see MEPC.354(78)) |
+| `vectorBoundariesForYear.capacityUnit` | describes if this ship was measured against its Deadweight or Gross Tonnage `EtiveMor.OpenImoCiiCalculator.Core.Models.Enums.CapacityUnit` |
+| `vectorBoundariesForYear.boundaryDdVectors.Superior` | Describes the highest value a ship't `attainedCii` can acheive, while still being considered `Superior` |
+| `vectorBoundariesForYear.boundaryDdVectors.Lower` | Describes the highest value a ship't `attainedCii` can acheive, while still being considered `Lower` |
+| `vectorBoundariesForYear.boundaryDdVectors.Upper` | Describes the highest value a ship't `attainedCii` can acheive, while still being considered `Upper` |
+| `vectorBoundariesForYear.boundaryDdVectors.Inferior` | Describes the highest value a ship't `attainedCii` can acheive, while still being considered `Inferior` |
 
 
 # Methodology
