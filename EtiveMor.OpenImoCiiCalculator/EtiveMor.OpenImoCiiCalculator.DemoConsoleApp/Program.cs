@@ -32,23 +32,27 @@ namespace EtiveMor.OpenImoCiiCalculator.DemoConsoleApp
             Console.WriteLine("---------------------");
         }
 
+
+
         /// <summary>
         /// Runs the single fuel calculation with sample data
         /// </summary>
         /// <param name="args"></param>
-        static void MainOneFuelCalculation(string[] args)
+        static void Old_MainOneFuelCalculation(string[] args)
         {
             Console.WriteLine("Generating a ship result now...");
 
             var calculator = new ShipCarbonIntensityCalculator();
 
+            double fuelConsumptionInMegaTons = 19_000;
+
             var result = calculator.CalculateAttainedCiiRating(
                ShipType.RoRoPassengerShip,
-                grossTonnage: 25000,
+                grossTonnage: 25_000,
                 deadweightTonnage: 0,
-                distanceTravelled: 150000,
+                distanceTravelled: 150_000,
                 TypeOfFuel.DIESEL_OR_GASOIL,
-                fuelConsumption: 1.9e+10,
+                fuelConsumption: fuelConsumptionInMegaTons * 1_000_000,
                 2019);
 
 
@@ -59,6 +63,37 @@ namespace EtiveMor.OpenImoCiiCalculator.DemoConsoleApp
         }
 
 
+
+        /// <summary>
+        /// Runs the single fuel calculation with sample data
+        /// </summary>
+        /// <param name="args"></param>
+        static void MainOneFuelCalculation(string[] args)
+        {
+            Console.WriteLine("Generating a ship result now...");
+
+            var calculator = new ShipCarbonIntensityCalculator();
+
+            double fuelConsumptionInMegaTons = 19_000;
+
+            var result = calculator.CalculateAttainedCiiRating(
+               ShipType.RoRoPassengerShip,
+                grossTonnage: 25_000,
+                deadweightTonnage: 0,
+                distanceTravelled: 150_000,
+                TypeOfFuel.DIESEL_OR_GASOIL,
+                fuelConsumption: fuelConsumptionInMegaTons * 1_000_000,
+                2019);
+
+
+            string json = JsonConvert.SerializeObject(result, Formatting.Indented);
+            Console.WriteLine(json);
+            Console.WriteLine("Press any key to finish");
+            Console.ReadKey();
+        }
+
+
+
         /// <summary>
         /// Runs the multi-fuel calculation with sample data
         /// </summary>
@@ -67,16 +102,25 @@ namespace EtiveMor.OpenImoCiiCalculator.DemoConsoleApp
         {
             var calculator = new ShipCarbonIntensityCalculator();
 
+            double fuelConsumptionDieselInMegaTons = 12_500;
+            double fuelConsumptionLightFuelInMegaTons = 10_000; // 35_000;
+
+
             var result = calculator.CalculateAttainedCiiRating(
                 ShipType.RoRoPassengerShip,
-                grossTonnage: 25000,
+                grossTonnage: 25_000,
                 deadweightTonnage: 0,
-                distanceTravelled: 150000,
+                distanceTravelled: 150_000,
                 new List<FuelTypeConsumption> { 
                     new FuelTypeConsumption
                     {
-                        FuelConsumption = 1.9e+10,
+                        FuelConsumption = fuelConsumptionDieselInMegaTons * 1_000_000,
                         FuelType = TypeOfFuel.DIESEL_OR_GASOIL
+                    },
+                    new FuelTypeConsumption
+                    {
+                        FuelConsumption = fuelConsumptionLightFuelInMegaTons * 1_000_000,
+                        FuelType = TypeOfFuel.LIGHTFUELOIL
                     }
                 },
                 2019);
