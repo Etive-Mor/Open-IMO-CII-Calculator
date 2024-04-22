@@ -16,15 +16,15 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         /// Tests a known and pre-calculated set of inputs for a RoRoPassengerShip
         /// </summary>
         [TestMethod]
-        public void TestCalculator()
+        public void TestCalculatorSingleFuel()
         {
             var _calc = new ShipCarbonIntensityCalculator();
 
             var result = _calc.CalculateAttainedCiiRating(
-                ShipType.RoRoPassengerShip, 
-                grossTonnage: 25000, 
-                deadweightTonnage: 0, 
-                distanceTravelled: 150000, 
+                ShipType.RoRoPassengerShip,
+                grossTonnage: 25000,
+                deadweightTonnage: 0,
+                distanceTravelled: 150000,
                 TypeOfFuel.DIESEL_OR_GASOIL,
                 fuelConsumption: 1.9e+10,
                 2019
@@ -40,6 +40,78 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
 
             Assert.IsTrue(result.Results.Count(result => result.IsMeasuredYear) == 1);
             Assert.IsTrue(result.Results.Count(result => result.IsEstimatedYear) == 11);
+        }
+
+        /// <summary>
+        /// Tests a known and pre-calculated set of inputs for a RoRoPassengerShip in the multi-fuel scenario
+        /// </summary>
+        [TestMethod]
+        public void TestCalculatorMultiFuel()
+        {
+            var _calc = new ShipCarbonIntensityCalculator();
+
+            var result = _calc.CalculateAttainedCiiRating(
+                ShipType.RoRoPassengerShip,
+                grossTonnage: 25000,
+                deadweightTonnage: 0,
+                distanceTravelled: 150000,
+                new List<FuelTypeConsumption> {
+                    new FuelTypeConsumption
+                    {
+                        FuelConsumption = 1.9e+10,
+                        FuelType = TypeOfFuel.DIESEL_OR_GASOIL
+                    }
+                },
+                2019
+                );
+
+            System.Diagnostics.Debug.WriteLine("Basic result is:");
+
+            string json = JsonConvert.SerializeObject(result, Formatting.Indented);
+            System.Diagnostics.Debug.WriteLine(json);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result.Results.Count(), 12);
+
+            Assert.IsTrue(result.Results.Count(result => result.IsMeasuredYear) == 1);
+            Assert.IsTrue(result.Results.Count(result => result.IsEstimatedYear) == 11);
+        }
+
+
+        [TestMethod]
+        public void TestCalculatorMultiFuelSameResultAsSingleFuel()
+        {
+            var _calc = new ShipCarbonIntensityCalculator();
+
+            var resultMultiFuel = _calc.CalculateAttainedCiiRating(
+                ShipType.RoRoPassengerShip,
+                grossTonnage: 25000,
+                deadweightTonnage: 0,
+                distanceTravelled: 150000,
+                new List<FuelTypeConsumption> {
+                    new FuelTypeConsumption
+                    {
+                        FuelConsumption = 1.9e+10,
+                        FuelType = TypeOfFuel.DIESEL_OR_GASOIL
+                    }
+                },
+                2019
+                );
+
+            var resultSingleFuel = _calc.CalculateAttainedCiiRating(
+                   ShipType.RoRoPassengerShip,
+                   grossTonnage: 25000,
+                   deadweightTonnage: 0,
+                   distanceTravelled: 150000,
+                   TypeOfFuel.DIESEL_OR_GASOIL,
+                   fuelConsumption: 1.9e+10,
+                   2019
+                   );
+
+            var singleFuelAsJsonObj = JsonConvert.SerializeObject(resultSingleFuel);
+            var multiFuelAsJsonObj = JsonConvert.SerializeObject(resultMultiFuel);
+
+            Assert.AreEqual(singleFuelAsJsonObj, multiFuelAsJsonObj);
         }
 
 
@@ -141,7 +213,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
         [DataRow(ShipType.BulkCarrier, 25000, 0, TypeOfFuel.DIESEL_OR_GASOIL, 1e+10, 2029, ImoCiiRating.E, 7.240951252672751, 8.549333333333333)]
         [DataRow(ShipType.BulkCarrier, 25000, 0, TypeOfFuel.DIESEL_OR_GASOIL, 1e+10, 2030, ImoCiiRating.E, 7.0664704995963, 8.549333333333333)]
         [TestMethod]
-        public void TestBulkCarrierReturnsExpectedValues(
+        public void TestMultiFuelBulkCarrierReturnsExpectedValues(
             ShipType shipType,
             double deadweightTonnage,
             double grossTonnage,
@@ -163,6 +235,86 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
                 distanceTravelled: 150000,
                 fuelType: typeOfFuel,
                 fuelConsumption: fuelConsumptionInGrams,
+                year
+                );
+
+
+            string json = JsonConvert.SerializeObject(result, Formatting.Indented);
+            System.Diagnostics.Debug.WriteLine(json);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result.Results.Count(), 12);
+
+            Assert.IsTrue(result.Results.Count(result => result.IsMeasuredYear) == 1);
+            Assert.IsTrue(result.Results.Count(result => result.IsEstimatedYear) == 11);
+
+            Assert.AreEqual(result.Results.First(c => c.Year == year).Year, year, $"{nameof(year)} value was incorrect");
+            Assert.AreEqual(result.Results.First(c => c.Year == year).VectorBoundariesForYear.ShipType, shipType, $"{nameof(shipType)} value was incorrect");
+            Assert.AreEqual(result.Results.First(c => c.Year == year).RequiredCii, expectedRequiredCii, $"{nameof(expectedRequiredCii)} value was incorrect");
+            Assert.AreEqual(result.Results.First(c => c.Year == year).AttainedRequiredRatio, expectedArRatio, $"{nameof(expectedArRatio)} value was incorrect");
+            Assert.AreEqual(result.Results.First(c => c.Year == year).AttainedCii, expectedAttainedCii, $"{nameof(expectedAttainedCii)} value was incorrect");
+            Assert.AreEqual(result.Results.First(c => c.Year == year).Rating, expectedRating, $"{nameof(expectedRating)} value was incorrect");
+            Assert.AreNotEqual(result.Results.First(c => c.Year == year).IsMeasuredYear, result.Results.First(c => c.Year == year).IsEstimatedYear);
+        }
+
+
+
+
+
+
+        /// <summary>
+        /// Tests a known and pre-calculated set of inputs for a RoRoPassengerShip in the multi-fuel scenario
+        /// </summary>
+        /// <param name="shipType"></param>
+        /// <param name="deadweightTonnage"></param>
+        /// <param name="grossTonnage"></param>
+        /// <param name="typeOfFuel"></param>
+        /// <param name="fuelConsumptionInGrams"></param>
+        /// <param name="year"></param>
+        /// <param name="expectedRating"></param>
+        /// <param name="expectedRequiredCii"></param>
+        /// <param name="expectedAttainedCii"></param>
+        /// <param name="expectedArRatio"></param>
+        [DataRow(ShipType.BulkCarrier, 25000, 0, TypeOfFuel.DIESEL_OR_GASOIL, 1e+10, 2019, ImoCiiRating.C, 8.724037653822592, 8.549333333333333)]
+        [DataRow(ShipType.BulkCarrier, 25000, 0, TypeOfFuel.DIESEL_OR_GASOIL, 1e+10, 2020, ImoCiiRating.C, 8.636797277284366, 8.549333333333333)]
+        [DataRow(ShipType.BulkCarrier, 25000, 0, TypeOfFuel.DIESEL_OR_GASOIL, 1e+10, 2021, ImoCiiRating.C, 8.54955690074614, 8.549333333333333)]
+        [DataRow(ShipType.BulkCarrier, 25000, 0, TypeOfFuel.DIESEL_OR_GASOIL, 1e+10, 2022, ImoCiiRating.C, 8.462316524207914, 8.549333333333333)]
+        [DataRow(ShipType.BulkCarrier, 25000, 0, TypeOfFuel.DIESEL_OR_GASOIL, 1e+10, 2023, ImoCiiRating.C, 8.287835771131462, 8.549333333333333)]
+        [DataRow(ShipType.BulkCarrier, 25000, 0, TypeOfFuel.DIESEL_OR_GASOIL, 1e+10, 2024, ImoCiiRating.C, 8.11335501805501, 8.549333333333333)]
+        [DataRow(ShipType.BulkCarrier, 25000, 0, TypeOfFuel.DIESEL_OR_GASOIL, 1e+10, 2025, ImoCiiRating.D, 7.938874264978558, 8.549333333333333)]
+        [DataRow(ShipType.BulkCarrier, 25000, 0, TypeOfFuel.DIESEL_OR_GASOIL, 1e+10, 2026, ImoCiiRating.D, 7.764393511902107, 8.549333333333333)]
+        [DataRow(ShipType.BulkCarrier, 25000, 0, TypeOfFuel.DIESEL_OR_GASOIL, 1e+10, 2027, ImoCiiRating.D, 7.589912758825655, 8.549333333333333)]
+        [DataRow(ShipType.BulkCarrier, 25000, 0, TypeOfFuel.DIESEL_OR_GASOIL, 1e+10, 2028, ImoCiiRating.D, 7.415432005749203, 8.549333333333333)]
+        [DataRow(ShipType.BulkCarrier, 25000, 0, TypeOfFuel.DIESEL_OR_GASOIL, 1e+10, 2029, ImoCiiRating.E, 7.240951252672751, 8.549333333333333)]
+        [DataRow(ShipType.BulkCarrier, 25000, 0, TypeOfFuel.DIESEL_OR_GASOIL, 1e+10, 2030, ImoCiiRating.E, 7.0664704995963, 8.549333333333333)]
+        [TestMethod]
+        public void TestBulkCarrierReturnsExpectedValues(
+            ShipType shipType,
+            double deadweightTonnage,
+            double grossTonnage,
+            TypeOfFuel typeOfFuel,
+            double fuelConsumptionInGrams,
+            int year,
+            ImoCiiRating expectedRating,
+            double expectedRequiredCii,
+            double expectedAttainedCii)
+        {
+            double expectedArRatio = expectedAttainedCii / expectedRequiredCii;
+
+            var _calc = new ShipCarbonIntensityCalculator();
+
+            var result = _calc.CalculateAttainedCiiRating(
+                shipType,
+                grossTonnage: grossTonnage,
+                deadweightTonnage: deadweightTonnage,
+                distanceTravelled: 150000,
+                new List<FuelTypeConsumption> {
+                    new FuelTypeConsumption
+                    {
+                        FuelConsumption = fuelConsumptionInGrams,
+                        FuelType = typeOfFuel
+                    }
+                },
                 year
                 );
 
