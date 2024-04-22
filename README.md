@@ -52,7 +52,6 @@ The specification for this software can be found in [IMO's resolution MEPC.353(7
 
 The following features are on the roadmap for the application: 
 
-- Support for multiple engines & fuel types for ships. Currently the application only considers fuel consumption by a ship's main engine. 
 - Support for Dependency Injection (DI). Currently the application does not
 - Support for IMO Resolution MEPC.355(78). Currently the application considers fuel consumption only. Support for MEPC355(78) will bring additional CII properties, for example the lighting in crew quarters. 
 
@@ -80,6 +79,10 @@ int targetYear
 - Fuel consumption is measured in grams, and accepts scientific notation like `1.9e+10`
 - Year must refer to the measured year. For example, if a ship's fuel consumption is known in 2022, all other results will be based from that point
 
+**_Multiple Fuel Type calculations_**
+
+That there are two CalculateAttainedCiiRating methods. One for a ship which consumes a single fuel type, and another which consumes multiple fuel types. Both methods are available at `CalculateAttainedCiiRating`.
+
 ### Calculator Result Format
 
 ```json
@@ -93,6 +96,9 @@ int targetYear
             "requiredCii": 19.184190519387734,    
             "attainedCii": 16.243733333333335,
             "attainedRequiredRatio": 0.8467249799733408,
+            "calculatedCo2eEmissions": 60914000000.0,
+            "calculatedShipCapacity": 25000.0,
+            "calculatedTransportWork": 3750000000.0,
             "vectorBoundariesForYear": {
                 "year": 2019,
                 "shipType": 110,
@@ -123,6 +129,9 @@ int targetYear
 | `requiredCii` | The actual intensity required for the ship to be considered in-range of the IMO's regulations (note that from 2027 onwards, this is a projection) |
 | `attainedCii` | The estimated or actual intensity attained for the ship in the given year |
 | `attainedRequiredRatio` | The ratio between `requiredCii` and `attainedCii` |
+| `calculatedCo2eEmissions` | The calculated CO2e emissions this result was based on |
+| `calculatedShipCapacity` | The calculated ship capacity this result was based on |
+| `calculatedTransportWork` | The calculated transport work this result was based on |
 | `vectorBoundariesForYear.year` | the year in question (repeats `.year`) |
 | `vectorBoundariesForYear.shipType` | the type of ship `EtiveMor.OpenImoCiiCalculator.Core.Models.Enums.ShipType` |
 | `vectorBoundariesForYear.weightClassification` | the weight classification the ship has been considered for (see MEPC.354(78)) |
@@ -254,7 +263,7 @@ Returns the product of a ship's capacity and its distance sailed
 
 ## Ship CO<sub>2</sub> Emissions Methodology
 
-The sum of a ship's $CO_2$ emissions over a given year are calculated by multiplying the mass of consumed fuel by the fuel's emissions factor. 
+The sum of a ship's $CO_2$ emissions over a given year are calculated by multiplying the mass of consumed fuel by the fuel's emissions factor. If the ship consumes multiple fuel types, the calculation is repeated for each fuel type & consumption mass, then those results are summed together. 
 
 **Method Accepts**:
 - `fuelType`, an enum derrived from [Table 2](#table-2-mepc36479-mass-conversion-between-fuel-consumption-and-co_2-emissions)'s *Fuel Type* column

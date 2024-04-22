@@ -24,7 +24,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Services.Impl
         /// </exception>
         public double GetMassOfCo2Emissions(TypeOfFuel fuelType, double fuelConsumptionMassInGrams)
         {
-            if (fuelConsumptionMassInGrams <= 0)
+            if (fuelConsumptionMassInGrams < 0)
             {
                 throw new ArgumentOutOfRangeException("Fuel consumption mass must be a positive value",
                     nameof(fuelConsumptionMassInGrams));

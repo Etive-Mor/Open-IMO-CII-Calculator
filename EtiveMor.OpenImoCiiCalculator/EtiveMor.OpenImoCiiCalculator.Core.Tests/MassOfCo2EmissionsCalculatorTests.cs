@@ -62,31 +62,6 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Tests
             Assert.ThrowsException<ArgumentException>(() => fuelCalculation.GetMassOfCo2Emissions(fuelType, fuelConsumption));
         }
 
-        /// <summary>
-        /// Tests that, when passed a zero value for fuel consumption, an ArgumentOutOfRangeException is thrown.
-        /// </summary>
-        [TestMethod]
-        [DataRow(TypeOfFuel.DIESEL_OR_GASOIL)]
-        [DataRow(TypeOfFuel.LIGHTFUELOIL)]
-        [DataRow(TypeOfFuel.HEAVYFUELOIL)]
-        [DataRow(TypeOfFuel.LIQUIFIEDPETROLEUM_PROPANE)]
-        [DataRow(TypeOfFuel.LIQUIFIEDPETROLEUM_BUTANE)]
-        [DataRow(TypeOfFuel.ETHANE)]
-        [DataRow(TypeOfFuel.LIQUIFIEDNATURALGAS)]
-        [DataRow(TypeOfFuel.METHANOL)]
-        [DataRow(TypeOfFuel.ETHANOL)]
-        [DataRow(TypeOfFuel.UNKNOWN)]
-        [DataRow(TypeOfFuel.OTHER)]
-        public void TestGetMassOfCo2EmissionsThrowsExceptionOnZeroConsumptionValue(TypeOfFuel fuelType)
-        {
-            // Arrange, set the  fuel consumption value to 0 grams (an invalid number)
-            var fuelConsumption = 0;
-
-            var fuelCalculation = new ShipMassOfCo2EmissionsCalculatorService();
-
-            // Act & Assert
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => fuelCalculation.GetMassOfCo2Emissions(fuelType, fuelConsumption));
-        }
 
         /// <summary>
         /// Tests that, when passed a negative value for fuel consumption, an ArgumentOutOfRangeException is thrown.
