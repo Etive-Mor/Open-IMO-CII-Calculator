@@ -14,7 +14,7 @@ Grades are re-calculated annually. The boundaries of what is considered "good" i
 <img src="./README_assets/cii-rating-progression-over-time.png" alt="A graph showing the gradual " width="450"/>
 
 
-The specification for this software can be found in [IMO's resolution MEPC.353(78)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.353(78).pdf), adopted in June 2021. Additional references, summaries, & resolutions can be found in the [References \& datasets](#references--datasets) section.
+The specification for this software can be found in [IMO's resolution MEPC.354(78)](https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MEPCDocuments/MEPC.354(78).pdf), adopted in June 2022. Additional references, summaries, & resolutions can be found in the [References \& datasets](#references--datasets) section.
 
 > [!NOTE]
 > The repository code & software is provided as-is. While best-efforts are made to ensure its results are acurate inline with the IMO's CII specifications, the results it produces are _**estimates**_ and _**guidance**_. Results should not be considered proof of regulatory compliance.
