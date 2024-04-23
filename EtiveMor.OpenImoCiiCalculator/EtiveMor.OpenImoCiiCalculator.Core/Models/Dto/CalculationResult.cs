@@ -1,12 +1,7 @@
 ﻿using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
 using EtiveMor.OpenImoCiiCalculator.Core.Models.MeasurementModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace EtiveMor.OpenImoCiiCalculator.Core.Models
+namespace EtiveMor.OpenImoCiiCalculator.Core.Models.Dto
 {
     public class CalculationResult
     {
@@ -14,7 +9,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Models
         public CalculationResult(IEnumerable<ResultYear> results)
         {
             Results = results;
-            
+
         }
 
         /// <summary>
@@ -22,8 +17,6 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Models
         /// between 2019 and 2030
         /// </summary>
         public IEnumerable<ResultYear> Results { get; set; }
-
-
     }
 
 
@@ -49,7 +42,7 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Models
         /// if false, the CII rating, and all other values are measured
         /// </summary>
         public bool IsEstimatedYear { get { return !IsMeasuredYear; } }
-        
+
         /// <summary>
         /// The year this result references
         /// </summary>
@@ -86,7 +79,9 @@ namespace EtiveMor.OpenImoCiiCalculator.Core.Models
         /// <summary>
         /// This is the ratio of Attained:Required CII
         /// </summary>
-        public double AttainedRequiredRatio { get 
+        public double AttainedRequiredRatio
+        {
+            get
             {
                 return AttainedCii / RequiredCii;
             }

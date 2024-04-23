@@ -1,11 +1,9 @@
-﻿using EtiveMor.OpenImoCiiCalculator.Core.Models;
-using EtiveMor.OpenImoCiiCalculator.Core.Models.ShipModels;
+﻿using EtiveMor.OpenImoCiiCalculator.Core.Models.Dto;
 using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
 using EtiveMor.OpenImoCiiCalculator.Core.Models.MeasurementModels;
+using EtiveMor.OpenImoCiiCalculator.Core.Models.ShipModels;
 using EtiveMor.OpenImoCiiCalculator.Core.Services;
 using EtiveMor.OpenImoCiiCalculator.Core.Services.Impl;
-using System.Security.Cryptography.X509Certificates;
-using Microsoft.VisualBasic.FileIO;
 
 namespace EtiveMor.OpenImoCiiCalculator.Core
 {
@@ -171,18 +169,6 @@ namespace EtiveMor.OpenImoCiiCalculator.Core
             }
         }
 
-    }
-
-    public class AnnaulConsumption
-    {
-        public int TargetYear { get; set; }
-        public IEnumerable<FuelTypeConsumption> FuelConsumption { get; set; }
-    }
-
-    public class FuelTypeConsumption
-    {
-        public TypeOfFuel FuelType { get; set; }
-        public double FuelConsumption { get; set; }
     }
    
 }

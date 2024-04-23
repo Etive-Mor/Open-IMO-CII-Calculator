@@ -1,4 +1,5 @@
-﻿using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
+﻿using EtiveMor.OpenImoCiiCalculator.Core.Models.Dto;
+using EtiveMor.OpenImoCiiCalculator.Core.Models.Enums;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
