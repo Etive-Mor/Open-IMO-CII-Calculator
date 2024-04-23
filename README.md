@@ -81,7 +81,7 @@ int targetYear
 
 **_Multiple Fuel Type calculations_**
 
-That there are two CalculateAttainedCiiRating methods. One for a ship which consumes a single fuel type, and another which consumes multiple fuel types. Both methods are available at `CalculateAttainedCiiRating`.
+There are two `CalculateAttainedCiiRating` methods. One for a ship which consumes a single fuel type, and another which consumes multiple fuel types. Both methods are available at `CalculateAttainedCiiRating`.
 
 ### Calculator Result Format
 
