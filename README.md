@@ -1,4 +1,4 @@
-# Open IMO Carbon Intensity Indicator (CII) Calculator 🚢
+# Open _IMO Carbon Intensity Indicator (CII)_ Calculator 🚢
 
 ## What is this?
 
