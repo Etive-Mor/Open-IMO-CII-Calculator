@@ -1,4 +1,9 @@
-# Open _IMO Carbon Intensity Indicator (CII)_ Calculator 🚢
+# Open _IMO Carbon Intensity Indicator (CII)_ Calculator (C#) 🚢
+
+### Other versions
+
+[A C# version is available here](./python-impl/README.md)
+
 
 ## What is this?
 
