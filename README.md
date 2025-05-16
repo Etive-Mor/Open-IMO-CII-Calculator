@@ -2,7 +2,7 @@
 
 ### Other versions
 
-[A C# version is available here](./python-impl/README.md)
+[A Python version is available here](./python-impl/README.md)
 
 
 ## What is this?
