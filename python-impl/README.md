@@ -49,6 +49,16 @@ The specification for this software can be found in [IMO's resolution MEPC.354(7
 
 # Software
 
+## Running tests
+
+To run the unit tests for this Python implementation, use the following command from the `python-impl` directory:
+
+```bash
+pytest
+```
+
+This will automatically discover and run all tests in the `tests/` directory.
+
 ## Software Roadmap
 
 The following features are on the roadmap for the application:
