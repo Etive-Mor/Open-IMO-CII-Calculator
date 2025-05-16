@@ -1,3 +1,6 @@
+"""
+This module initializes the services package.
+"""
 # Import services to make them available at the package level
 from open_imo_cii_calculator.services.carbon_intensity_indicator_calculator_service import CarbonIntensityIndicatorCalculatorService
 from open_imo_cii_calculator.services.ship_capacity_calculator_service import ShipCapacityCalculatorService

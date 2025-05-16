@@ -1,6 +1,7 @@
 """
 Service for calculating ship capacity according to MEPC.353(78) guidelines
 """
+from typing import Union, Optional
 from open_imo_cii_calculator.models.ship_type import ShipType
 from open_imo_cii_calculator.models.ship_models.ship import Ship
 
@@ -10,24 +11,17 @@ class ShipCapacityCalculatorService:
     Service for calculating ship capacity according to MEPC.353(78) guidelines
     """
     
-    def get_ship_capacity(self, ship_or_type, deadweight_tonnage=None, gross_tonnage=None):
+    def get_ship_capacity(self, ship_or_type: Union[Ship, ShipType], deadweight_tonnage: Optional[float] = None, gross_tonnage: Optional[float] = None) -> float:
         """
         Calculates the ship's capacity according to the MEPC.353(78) guidelines
-        
-        This method can be called in two ways:
-        1. with a Ship object: get_ship_capacity(ship)
-        2. with ship type and tonnage values: get_ship_capacity(ship_type, deadweight_tonnage, gross_tonnage)
-        
+
         Args:
-            ship_or_type: Either a Ship object or a ShipType enum
-            deadweight_tonnage: The ship's deadweight tonnage (DWT) - only required if ship_or_type is a ShipType
-            gross_tonnage: The ship's gross tonnage (GT) - only required if ship_or_type is a ShipType
-            
+            - ship_or_type (Union[Ship, ShipType]): The ship object or type of the ship
+            - deadweight_tonnage (Optional[float]): The deadweight tonnage of the ship
+            - gross_tonnage (Optional[float]): The gross tonnage of the ship
+
         Returns:
-            float: The ship's capacity according to MEPC.353(78)
-            
-        Raises:
-            ValueError: If parameters are invalid or ship type is not supported
+            - float: The calculated ship capacity
         """
         if isinstance(ship_or_type, Ship):
             ship = ship_or_type
@@ -66,17 +60,17 @@ class ShipCapacityCalculatorService:
         else:
             raise ValueError(f"Unsupported ship type: {ship_type}")
             
-    def _validate_tonnage_params_set(self, ship_type, deadweight_tonnage, gross_tonnage):
+    def _validate_tonnage_params_set(self, ship_type: ShipType, deadweight_tonnage: Optional[float], gross_tonnage: Optional[float]):
         """
         Validates that the required tonnage parameters are set for the given ship type
         
         Args:
-            ship_type: The type of ship
-            deadweight_tonnage: The ship's deadweight tonnage
-            gross_tonnage: The ship's gross tonnage
+            - ship_type (ShipType): The type of ship
+            - deadweight_tonnage (Optional[float]): The ship's deadweight tonnage
+            - gross_tonnage (Optional[float]): The ship's gross tonnage
             
         Raises:
-            ValueError: If the required tonnage parameters are not set or invalid
+            - ValueError: If the required tonnage parameters are not set or invalid
         """
         # Ship types that require deadweight tonnage
         deadweight_ship_types = [
@@ -105,17 +99,17 @@ class ShipCapacityCalculatorService:
         if ship_type in gross_tonnage_ship_types:
             self._validate_tonnage(gross_tonnage, "gross_tonnage", ship_type)
             
-    def _validate_tonnage(self, tonnage, tonnage_name, ship_type):
+    def _validate_tonnage(self, tonnage: Optional[float], tonnage_name: str, ship_type: ShipType):
         """
         Validates that the tonnage value is greater than 0
         
         Args:
-            tonnage: The tonnage value to validate
-            tonnage_name: The name of the tonnage parameter
-            ship_type: The type of ship
+            - tonnage (Optional[float]): The tonnage value to validate
+            - tonnage_name (str): The name of the tonnage parameter
+            - ship_type (ShipType): The type of ship
             
         Raises:
-            ValueError: If the tonnage value is less than or equal to 0
+            - ValueError: If the tonnage value is less than or equal to 0
         """
         if tonnage is None or tonnage <= 0:
             raise ValueError(f"{tonnage_name} must be greater than 0 if ship_type is set to {ship_type}")

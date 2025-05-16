@@ -22,15 +22,15 @@ class RatingBoundariesService:
         ship and required CII in a year.
         
         Args:
-            ship: The ship object containing ship type and tonnage information
-            required_cii_in_year: The required CII value for the specified year
-            year: The year for which to calculate the boundaries
-            
+            - ship (Ship): The ship object containing ship type and tonnage information
+            - required_cii_in_year (float): The required CII value for the specified year
+            - year (int): The year for which to calculate the boundaries
+        
         Returns:
-            ShipDdVectorBoundaries: The rating boundaries for the ship
-            
+            - ShipDdVectorBoundaries: The rating boundaries for the ship
+        
         Raises:
-            ValueError: If the ship tonnage is invalid or ship type is not supported
+            - ValueError: If the ship tonnage is invalid or ship type is not supported
         """
         self._validate_ship_tonnage_valid(ship)
 
@@ -244,10 +244,10 @@ class RatingBoundariesService:
         Checks that the ship tonnage is valid for the ship type.
         
         Args:
-            ship: The ship object to validate
+            - ship: The ship object to validate
             
         Raises:
-            ValueError: If the ship's tonnage is invalid for its type
+            - ValueError: If the ship's tonnage is invalid for its type
         """
         dwt_ships = [
             ShipType.BULK_CARRIER,

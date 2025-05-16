@@ -11,6 +11,6 @@ class CalculationResult:
         Initialize a calculation result instance
         
         Args:
-            results: Contains a collection of CII Ratings for each year between 2019 and 2030
+            - results: Contains a collection of CII Ratings for each year between 2019 and 2030
         """
         self.results = results

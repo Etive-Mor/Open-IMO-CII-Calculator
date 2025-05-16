@@ -3,9 +3,7 @@ from enum import IntEnum
 class ImoCiiRating(IntEnum):
     """
     An enum describing the possible IMO Carbon Intensity Indicator (CII) ratings
-    
     0 indicates an error
-    
     A indicates the best rating
     B indicates the second best rating
     C indicates the third best rating

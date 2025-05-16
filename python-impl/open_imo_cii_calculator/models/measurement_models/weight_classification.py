@@ -8,8 +8,8 @@ class WeightClassification:
         Initialize a weight classification with upper and lower limits
         
         Args:
-            upper_limit: The upper weight limit for this classification
-            lower_limit: The lower weight limit for this classification
+            - upper_limit (int): The upper weight limit for this classification
+            - lower_limit (int): The lower weight limit for this classification
         """
         self.upper_limit = upper_limit
         self.lower_limit = lower_limit

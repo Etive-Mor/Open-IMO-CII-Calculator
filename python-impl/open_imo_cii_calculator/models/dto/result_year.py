@@ -21,15 +21,15 @@ class ResultYear:
         Initialize a result year instance
         
         Args:
-            is_measured_year: Indicates if this year is a measured year. If true, all values are measured; if false, all values are estimates
-            year: The year this result references
-            required_cii: The ship's required carbon intensity for this year
-            attained_cii: The ship's attained Carbon Intensity Indicator for this year
-            rating: The ship's IMO CII Rating, from A to E
-            vector_boundaries_for_year: The VectorBoundaries for this ship/year
-            calculated_co2e_emissions: The Co2e Emissions calculated for this year
-            calculated_ship_capacity: The Ship Capacity calculated for this year
-            calculated_transport_work: The Transport Work calculated for this year
+            - is_measured_year: Indicates if this year is a measured year. If true, all values are measured; if false, all values are estimates
+            - year: The year this result references
+            - required_cii: The ship's required carbon intensity for this year
+            - attained_cii: The ship's attained Carbon Intensity Indicator for this year
+            - rating: The ship's IMO CII Rating, from A to E
+            - vector_boundaries_for_year: The VectorBoundaries for this ship/year
+            - calculated_co2e_emissions: The Co2e Emissions calculated for this year
+            - calculated_ship_capacity: The Ship Capacity calculated for this year
+            - calculated_transport_work: The Transport Work calculated for this year
         """
         self.is_measured_year = is_measured_year
         self.year = year
@@ -47,7 +47,7 @@ class ResultYear:
         Indicates if this year is an estimated year
         
         Returns:
-            True if the year is estimated, False otherwise
+            - True if the year is estimated, False otherwise
         """
         return not self.is_measured_year
     
@@ -57,7 +57,7 @@ class ResultYear:
         The ratio of Attained:Required CII
         
         Returns:
-            The ratio of Attained to Required CII
+            - The ratio of Attained to Required CII
         """
         if self.required_cii > 0:
             return self.attained_cii / self.required_cii

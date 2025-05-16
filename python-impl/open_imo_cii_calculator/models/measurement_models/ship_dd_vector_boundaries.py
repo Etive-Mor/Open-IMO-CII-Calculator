@@ -19,12 +19,12 @@ class ShipDdVectorBoundaries:
         Initialize ship ddvector boundaries
         
         Args:
-            ship_type: The type of ship to generate ddvector boundaries for
-            weight_classification: The weight classification of the ship. If these ddvectors have a min/max 
+            - ship_type (ShipType): The type of ship to generate ddvector boundaries for
+            - weight_classification (WeightClassification): The weight classification of the ship. If these ddvectors have a min/max 
                 weight boundary in MEPC.354(78), this describes the lower and upper bound of that classification.
-            capacity_unit: Indicates the capacity unit these ddvectors are calculated against
-            boundary_dd_vectors: The ddvectors for the specified ship type, weight classification and capacity unit
-            year: The year these ddvectors apply to
+            - capacity_unit (CapacityUnit): Indicates the capacity unit these ddvectors are calculated against
+            - boundary_dd_vectors (Dict[ImoCiiBoundary, float]): The ddvectors for the specified ship type, weight classification and capacity unit
+            - year (int): The year these ddvectors apply to
         """
         self.year = year
         self.ship_type = ship_type

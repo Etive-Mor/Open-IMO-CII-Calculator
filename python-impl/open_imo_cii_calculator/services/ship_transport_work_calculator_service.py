@@ -12,16 +12,13 @@ class ShipTransportWorkCalculatorService:
         """
         Gets a ship's transport work, which is the product of the ship's capacity and the distance travelled
         in a calendar year expressed in nautical miles.
-        
+
         Args:
-            capacity: The ship's capacity (pre-calculated)
-            distance_travelled_in_nautical_miles: The distance travelled by the ship in a calendar year in nautical miles
-            
+            - capacity (float): The ship's capacity (pre-calculated)
+            - distance_travelled_in_nautical_miles (float): The distance travelled by the ship in a calendar year in nautical miles
+
         Returns:
-            float: The ship's transport work
-            
-        Raises:
-            ValueError: If capacity or distance_travelled_in_nautical_miles is less than or equal to zero
+            - float: The ship's transport work
         """
         if capacity <= 0:
             raise ValueError("Capacity must be a positive value")

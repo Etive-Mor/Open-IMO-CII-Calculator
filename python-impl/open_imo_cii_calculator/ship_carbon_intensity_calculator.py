@@ -49,18 +49,18 @@ class ShipCarbonIntensityCalculator:
         This method accepts multiple fuel types.
         
         Args:
-            ship_type: The type of ship
-            gross_tonnage: in long-tons
-            deadweight_tonnage: in long-tons
-            distance_travelled: distance travelled in nautical miles
-            fuel_type_consumptions: List of fuel types and consumption amounts
-            target_year: The calendar year being analyzed
-            
+            - ship_type (ShipType): The type of the ship
+            - gross_tonnage (float): The gross tonnage of the ship in long-tons
+            - deadweight_tonnage (float): The deadweight tonnage of the ship in long-tons
+            - distance_travelled (float): The distance travelled by the ship in a calendar year (nautical miles)
+            - fuel_type_consumptions (Iterable[FuelTypeConsumption]): List of fuel type consumption objects
+            - target_year (int): The year for which to calculate the attained CII
+        
         Returns:
-            A CalculationResult containing details of the ship's carbon intensity rating
-            
+            - CalculationResult: The result of the CII calculation for the ship
+        
         Raises:
-            ValueError: If fuel_type_consumptions is empty
+            - ValueError: If any input is invalid or missing
         """
         if not fuel_type_consumptions:
             raise ValueError("fuel_type_consumptions must be provided")
@@ -118,16 +118,16 @@ class ShipCarbonIntensityCalculator:
         calculate_attained_cii_rating method.
         
         Args:
-            ship_type: The type of ship
-            gross_tonnage: in long-tons
-            deadweight_tonnage: in long-tons
-            distance_travelled: distance travelled in nautical miles
-            fuel_type: The type of fuel
-            fuel_consumption: quantity of fuel consumed in grams
-            target_year: The calendar year being analyzed
+            - ship_type (ShipType): The type of ship
+            - gross_tonnage (float): in long-tons
+            - deadweight_tonnage (float): in long-tons
+            - distance_travelled (float): distance travelled in nautical miles
+            - fuel_type (TypeOfFuel): The type of fuel
+            - fuel_consumption (float): quantity of fuel consumed in grams
+            - target_year (int): The calendar year being analyzed
             
         Returns:
-            A CalculationResult containing details of the ship's carbon intensity rating
+            - (CalculationResult): A CalculationResult containing details of the ship's carbon intensity rating
         """
         ship_co2_emissions = self._ship_mass_of_co2_emissions_service.get_mass_of_co2_emissions(
             fuel_type, fuel_consumption)
@@ -173,12 +173,12 @@ class ShipCarbonIntensityCalculator:
         Determines the IMO CII rating from vector boundaries and attained CII
         
         Args:
-            boundaries: The ship's boundary vectors for the given year
-            attained_cii_in_year: The ship's attained CII in the given year
-            year: The calendar year being analyzed
+            - boundaries (ShipDdVectorBoundaries): The ship's boundary vectors for the given year
+            - attained_cii_in_year (float): The ship's attained CII in the given year
+            - year (int): The calendar year being analyzed
             
         Returns:
-            The ship's IMO CII rating (A through E)
+            - (ImoCiiRating): The ship's IMO CII rating (A through E)
         """
         if attained_cii_in_year < boundaries.boundary_dd_vectors[ImoCiiBoundary.SUPERIOR]:
             # lower than the "superior" boundary

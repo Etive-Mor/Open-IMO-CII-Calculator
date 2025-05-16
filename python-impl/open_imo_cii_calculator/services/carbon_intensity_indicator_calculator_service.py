@@ -26,14 +26,14 @@ class CarbonIntensityIndicatorCalculatorService:
         of CO2 emissions in a calendar year to the ship's transport work in a calendar year
         
         Args:
-            mass_of_co2_emissions: The cumulative mass of CO2 emissions in a calendar year in grams (g)
-            transport_work: The ship's transport work in a calendar year
-            
+            - mass_of_co2_emissions (float): The cumulative mass of CO2 emissions in a calendar year in grams (g)
+            - transport_work (float): The ship's transport work in a calendar year
+        
         Returns:
-            float: A ship's attained Carbon Intensity (CII)
-            
+            - float: A ship's attained Carbon Intensity (CII)
+        
         Raises:
-            ValueError: If mass_of_co2_emissions or transport_work is less than or equal to zero
+            - ValueError: If mass_of_co2_emissions or transport_work is less than or equal to zero
         """
         if mass_of_co2_emissions <= 0:
             raise ValueError("Mass of CO2 emissions must be a positive value")
@@ -48,12 +48,12 @@ class CarbonIntensityIndicatorCalculatorService:
         Gets a ship's required CII in accordance with MEPC.323(74)
         
         Args:
-            ship_type: The type of ship
-            capacity: The ship's capacity according to MEPC 337(76) (pre-calculated)
-            year: The calendar year being analyzed
+            - ship_type (ShipType): The type of ship
+            - capacity (float): The ship's capacity according to MEPC 337(76) (pre-calculated)
+            - year (int): The calendar year being analyzed
             
         Returns:
-            float: The required CII for a ship of the given type and capacity
+            - (float): The required CII for a ship of the given type and capacity
             
         Raises:
             ValueError: If capacity is equal or lower than 0
@@ -73,11 +73,11 @@ class CarbonIntensityIndicatorCalculatorService:
         Gets a ship's required CII for years 2019-2030
         
         Args:
-            ship_type: The type of ship
-            capacity: The ship's capacity
+            - ship_type (ShipType): The type of ship
+            - capacity (float): The ship's capacity
             
         Returns:
-            Dict[int, float]: Dictionary mapping years to their required CII values
+            - (Dict[int, float]): Dictionary mapping years to their required CII values
         """
         cii_dict = {}
         
@@ -91,12 +91,12 @@ class CarbonIntensityIndicatorCalculatorService:
         Gets either the `a` or `c` value for a given ship type and capacity
         
         Args:
-            val_type: The coefficient type to return (a or c)
-            ship_type: The type of ship being queried
-            capacity: The capacity of the ship being queried
+            - val_type (ValType): The coefficient type to return (a or c)
+            - ship_type (ShipType): The type of ship being queried
+            - capacity (float): The capacity of the ship being queried
             
         Returns:
-            float: The `a` or `c` value for the given ship type and capacity
+            - (float): The `a` or `c` value for the given ship type and capacity
             
         Raises:
             ValueError: If val_type is not a or c
@@ -131,11 +131,11 @@ class CarbonIntensityIndicatorCalculatorService:
         Gets the appropriate `a` or `c` value for a LNG Carrier, according to Table 1: MEPC.353(78)
         
         Args:
-            val_type: The coefficient type to return (a or c)
-            capacity: The capacity of the ship being queried
+            - val_type (ValType): The coefficient type to return (a or c)
+            - capacity (float): The capacity of the ship being queried
             
         Returns:
-            float: The `a` or `c` value for a LNG Carrier
+            - (float): The `a` or `c` value for a LNG Carrier
         """
         if capacity >= 100000:
             return 9.827 if val_type == ValType.A else 0.000
@@ -148,11 +148,11 @@ class CarbonIntensityIndicatorCalculatorService:
         Gets the appropriate `a` or `c` value for a General Cargo ship, according to Table 1: MEPC.353(78)
         
         Args:
-            val_type: The coefficient type to return (a or c)
-            capacity: The capacity of the ship being queried
+            - val_type (ValType): The coefficient type to return (a or c)
+            - capacity (float): The capacity of the ship being queried
             
         Returns:
-            float: The `a` or `c` value for a General Cargo ship
+            - (float): The `a` or `c` value for a General Cargo ship
         """
         if capacity >= 20000:
             return 31948 if val_type == ValType.A else 0.792
@@ -163,11 +163,11 @@ class CarbonIntensityIndicatorCalculatorService:
         Gets the appropriate `a` or `c` value for a Bulk Carrier ship, according to Table 1: MEPC.353(78)
         
         Args:
-            val_type: The coefficient type to return (a or c)
-            capacity: The capacity of the ship being queried
+            - val_type (ValType): The coefficient type to return (a or c)
+            - capacity (float): The capacity of the ship being queried
             
         Returns:
-            float: The `a` or `c` value for a Bulk Carrier ship
+            - (float): The `a` or `c` value for a Bulk Carrier ship
         """
         if capacity >= 279000:
             return 4745 if val_type == ValType.A else 0.622
@@ -178,11 +178,11 @@ class CarbonIntensityIndicatorCalculatorService:
         Gets the appropriate `a` or `c` value for a Gas Carrier ship, according to Table 1: MEPC.353(78)
         
         Args:
-            val_type: The coefficient type to return (a or c)
-            capacity: The capacity of the ship being queried
+            - val_type (ValType): The coefficient type to return (a or c)
+            - capacity (float): The capacity of the ship being queried
             
         Returns:
-            float: The `a` or `c` value for a Gas Carrier ship
+            - (float): The `a` or `c` value for a Gas Carrier ship
         """
         if capacity >= 65000:
             return 14405E7 if val_type == ValType.A else 2.071
@@ -193,11 +193,11 @@ class CarbonIntensityIndicatorCalculatorService:
         Gets the appropriate `a` or `c` value for a Tanker ship, according to Table 1: MEPC.353(78)
         
         Args:
-            val_type: The coefficient type to return (a or c)
-            capacity: The capacity of the ship being queried
+            - val_type (ValType): The coefficient type to return (a or c)
+            - capacity (float): The capacity of the ship being queried
             
         Returns:
-            float: The `a` or `c` value for a Tanker ship
+            - (float): The `a` or `c` value for a Tanker ship
         """
         return 5247 if val_type == ValType.A else 0.610
     
@@ -206,11 +206,11 @@ class CarbonIntensityIndicatorCalculatorService:
         Gets the appropriate `a` or `c` value for a Container ship, according to Table 1: MEPC.353(78)
         
         Args:
-            val_type: The coefficient type to return (a or c)
-            capacity: The capacity of the ship being queried
+            - val_type (ValType): The coefficient type to return (a or c)
+            - capacity (float): The capacity of the ship being queried
             
         Returns:
-            float: The `a` or `c` value for a Container ship
+            - (float): The `a` or `c` value for a Container ship
         """
         return 1984 if val_type == ValType.A else 0.489
     
@@ -219,11 +219,11 @@ class CarbonIntensityIndicatorCalculatorService:
         Gets the appropriate `a` or `c` value for a Refrigerated Cargo Carrier ship, according to Table 1: MEPC.353(78)
         
         Args:
-            val_type: The coefficient type to return (a or c)
-            capacity: The capacity of the ship being queried
+            - val_type (ValType): The coefficient type to return (a or c)
+            - capacity (float): The capacity of the ship being queried
             
         Returns:
-            float: The `a` or `c` value for a Refrigerated Cargo Carrier ship
+            - (float): The `a` or `c` value for a Refrigerated Cargo Carrier ship
         """
         return 4600 if val_type == ValType.A else 0.557
     
@@ -232,11 +232,11 @@ class CarbonIntensityIndicatorCalculatorService:
         Gets the appropriate `a` or `c` value for a Combination Carrier ship, according to Table 1: MEPC.353(78)
         
         Args:
-            val_type: The coefficient type to return (a or c)
-            capacity: The capacity of the ship being queried
+            - val_type (ValType): The coefficient type to return (a or c)
+            - capacity (float): The capacity of the ship being queried
             
         Returns:
-            float: The `a` or `c` value for a Combination Carrier ship
+            - (float): The `a` or `c` value for a Combination Carrier ship
         """
         return 5119 if val_type == ValType.A else 622
     
@@ -245,11 +245,11 @@ class CarbonIntensityIndicatorCalculatorService:
         Gets the appropriate `a` or `c` value for a RoRo Cargo Ship Vehicle Carrier, according to Table 1: MEPC.353(78)
         
         Args:
-            val_type: The coefficient type to return (a or c)
-            capacity: The capacity of the ship being queried
+            - val_type (ValType): The coefficient type to return (a or c)
+            - capacity (float): The capacity of the ship being queried
             
         Returns:
-            float: The `a` or `c` value for a RoRo Cargo Ship Vehicle Carrier
+            - (float): The `a` or `c` value for a RoRo Cargo Ship Vehicle Carrier
         """
         if capacity >= 57700:
             return 3627 if val_type == ValType.A else 0.590
@@ -262,11 +262,11 @@ class CarbonIntensityIndicatorCalculatorService:
         Gets the appropriate `a` or `c` value for a RoRo Cargo Ship, according to Table 1: MEPC.353(78)
         
         Args:
-            val_type: The coefficient type to return (a or c)
-            capacity: The capacity of the ship being queried
+            - val_type (ValType): The coefficient type to return (a or c)
+            - capacity (float): The capacity of the ship being queried
             
         Returns:
-            float: The `a` or `c` value for a RoRo Cargo Ship
+            - (float): The `a` or `c` value for a RoRo Cargo Ship
         """
         return 1967 if val_type == ValType.A else 0.485
     
@@ -275,11 +275,11 @@ class CarbonIntensityIndicatorCalculatorService:
         Gets the appropriate `a` or `c` value for a RoRo Passenger Ship, according to Table 1: MEPC.353(78)
         
         Args:
-            val_type: The coefficient type to return (a or c)
-            capacity: The capacity of the ship being queried
+            - val_type (ValType): The coefficient type to return (a or c)
+            - capacity (float): The capacity of the ship being queried
             
         Returns:
-            float: The `a` or `c` value for a RoRo Passenger Ship
+            - (float): The `a` or `c` value for a RoRo Passenger Ship
         """
         return 2023 if val_type == ValType.A else 0.460
     
@@ -288,11 +288,11 @@ class CarbonIntensityIndicatorCalculatorService:
         Gets the appropriate `a` or `c` value for a RoRo Passenger Ship (High Speed SOLAS), according to Table 1: MEPC.353(78)
         
         Args:
-            val_type: The coefficient type to return (a or c)
-            capacity: The capacity of the ship being queried
+            - val_type (ValType): The coefficient type to return (a or c)
+            - capacity (float): The capacity of the ship being queried
             
         Returns:
-            float: The `a` or `c` value for a RoRo Passenger Ship (High Speed SOLAS)
+            - (float): The `a` or `c` value for a RoRo Passenger Ship (High Speed SOLAS)
         """
         return 4196 if val_type == ValType.A else 0.460
     
@@ -301,10 +301,10 @@ class CarbonIntensityIndicatorCalculatorService:
         Gets the appropriate `a` or `c` value for a Cruise Passenger Ship, according to Table 1: MEPC.353(78)
         
         Args:
-            val_type: The coefficient type to return (a or c)
-            capacity: The capacity of the ship being queried
+            - val_type (ValType): The coefficient type to return (a or c)
+            - capacity (float): The capacity of the ship being queried
             
         Returns:
-            float: The `a` or `c` value for a Cruise Passenger Ship
+            - (float): The `a` or `c` value for a Cruise Passenger Ship
         """
         return 930 if val_type == ValType.A else 0.383

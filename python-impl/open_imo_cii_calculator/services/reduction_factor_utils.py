@@ -6,15 +6,15 @@ Utility functions for working with annual reduction factors according to MEPC.33
 def get_annual_reduction_factor(year: int) -> float:
     """
     Gets an annual reduction factor for a given year, according to MEPC.338(76)
-    
+
     Args:
-        year: The calendar year being analyzed
-        
+        - year (int): The calendar year being analyzed
+
     Returns:
-        float: The reduction factor
-        
+        - float: The reduction factor
+
     Raises:
-        ValueError: If a year outside of the range 2019-2030 (inclusive) is provided
+        - ValueError: If a year outside of the range 2019-2030 (inclusive) is provided
     """
     reduction_factors = {
         2019: 0.00,
@@ -42,10 +42,10 @@ def apply_annual_reduction_factor(value: float, year: int) -> float:
     Apply annual reduction factor to a value
     
     Args:
-        value: The value to apply the reduction factor to
-        year: The calendar year being analyzed
-        
+        - value (float): The value to apply the reduction factor to
+        - year (int): The calendar year being analyzed
+    
     Returns:
-        float: The value with the reduction factor applied
+        - float: The value with the reduction factor applied
     """
     return value * (1 - get_annual_reduction_factor(year))

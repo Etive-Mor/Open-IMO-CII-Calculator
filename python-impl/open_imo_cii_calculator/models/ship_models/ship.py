@@ -10,9 +10,9 @@ class Ship:
         Initialize a Ship instance with its core properties
         
         Args:
-            ship_type: The type of ship (e.g., BULK_CARRIER, TANKER, etc.)
-            deadweight_tonnage: The deadweight tonnage (DWT) in long-tons
-            gross_tonnage: The gross tonnage (GT) in long-tons
+            - ship_type (ShipType): The type of ship (e.g., BULK_CARRIER, TANKER, etc.)
+            - deadweight_tonnage (float): The deadweight tonnage (DWT) in long-tons
+            - gross_tonnage (float): The gross tonnage (GT) in long-tons
         """
         self.ship_type = ship_type
         self.deadweight_tonnage = deadweight_tonnage

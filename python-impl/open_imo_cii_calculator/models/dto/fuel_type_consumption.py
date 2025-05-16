@@ -10,8 +10,8 @@ class FuelTypeConsumption:
         Initialize a fuel type consumption instance
         
         Args:
-            fuel_type: The type of fuel consumed by the ship
-            fuel_consumption: The amount of fuel consumed by the ship (in grams)
+            - fuel_type: The type of fuel consumed by the ship
+            - fuel_consumption: The amount of fuel consumed by the ship (in grams)
         """
         self.fuel_type = fuel_type
         self.fuel_consumption = fuel_consumption

@@ -16,15 +16,15 @@ class ShipMassOfCo2EmissionsCalculatorService:
         Gets the mass of CO2 emissions in grams (g) for a given fuel type and fuel consumption mass.
         
         Args:
-            fuel_type: The fuel type in use by the ship's engine
-            fuel_consumption_mass_in_grams: The cumulative mass of consumed fuel across the calendar year in grams (g)
-            
+            - fuel_type (TypeOfFuel): The fuel type in use by the ship's engine
+            - fuel_consumption_mass_in_grams (float): The cumulative mass of consumed fuel across the calendar year in grams (g)
+        
         Returns:
-            float: The mass of CO2 emissions for a ship in a calendar year in grams (g)
-            
+            - float: The mass of CO2 emissions for a ship in a calendar year in grams (g)
+        
         Raises:
-            ValueError: If fuel_consumption_mass_in_grams is less than or equal to zero
-            ValueError: If an unsupported fuel type is provided
+            - ValueError: If fuel_consumption_mass_in_grams is less than or equal to zero
+            - ValueError: If an unsupported fuel type is provided
         """
         if fuel_consumption_mass_in_grams < 0:
             raise ValueError("Fuel consumption mass must be a positive value")
@@ -39,13 +39,13 @@ class ShipMassOfCo2EmissionsCalculatorService:
         Gets a fuel type's mass conversion factor in accordance with MEPC.364(79)
         
         Args:
-            fuel_type: The fuel type to get the conversion factor for
-            
+            - fuel_type (TypeOfFuel): The fuel type to get the conversion factor for
+        
         Returns:
-            float: The fuel mass conversion factor for the given fuel type
-            
+            - float: The fuel mass conversion factor for the given fuel type
+        
         Raises:
-            ValueError: If an unsupported fuel type is provided
+            - ValueError: If an unsupported fuel type is provided
             
         Note:
             Emissions mass conversion factors are outlined in IMO MEPC.364(79)
@@ -73,13 +73,13 @@ class ShipMassOfCo2EmissionsCalculatorService:
         Gets a fuel type's carbon content in accordance with MEPC.364(79)
         
         Args:
-            fuel_type: The fuel type to get the carbon content for
+            - fuel_type: The fuel type to get the carbon content for
             
         Returns:
-            float: The carbon content for the given fuel type
+            - float: The carbon content for the given fuel type
             
         Raises:
-            ValueError: If an unsupported fuel type is provided
+            - ValueError: If an unsupported fuel type is provided
             
         Note:
             Carbon content data are outlined in IMO MEPC.364(79)
@@ -107,13 +107,13 @@ class ShipMassOfCo2EmissionsCalculatorService:
         Gets the lower calorific value for a given fuel type in accordance with MEPC.364(79)
         
         Args:
-            fuel_type: The fuel type to get the lower calorific value for
+            - fuel_type: The fuel type to get the lower calorific value for
             
         Returns:
-            float: The lower calorific value for the given fuel type
+            - float: The lower calorific value for the given fuel type
             
         Raises:
-            ValueError: If an unsupported fuel type is provided
+            - ValueError: If an unsupported fuel type is provided
             
         Note:
             Fuel calorific values are outlined in IMO MEPC.364(79)
