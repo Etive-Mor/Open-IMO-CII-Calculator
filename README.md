@@ -1,5 +1,9 @@
 # Open _IMO Carbon Intensity Indicator (CII)_ Calculator 🚢
 
+## Other Versions
+
+[A python version of this repository is available here](https://github.com/Etive-Mor/py-open-IMO-CII-calculator)
+
 ## What is this?
 
 An unofficial open source implementation of the International Maritime Organisation (IMO)'s Carbon Intensity Indicator (CII). 
