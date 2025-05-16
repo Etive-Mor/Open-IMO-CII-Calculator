@@ -10,6 +10,7 @@ class ImoCiiRating(IntEnum):
     D indicates the fourth best rating
     E indicates the worst rating
     """
+    UNKNOWN = -1
     ERR = 0
     A = 1
     B = 2

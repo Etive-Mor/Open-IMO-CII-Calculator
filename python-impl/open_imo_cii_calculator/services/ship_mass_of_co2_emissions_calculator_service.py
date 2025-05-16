@@ -53,12 +53,12 @@ class ShipMassOfCo2EmissionsCalculatorService:
         """
         conversion_factors = {
             TypeOfFuel.DIESEL_OR_GASOIL: 3.206,
-            TypeOfFuel.LIGHTFUELOIL: 3.151,
-            TypeOfFuel.HEAVYFUELOIL: 3.114,
-            TypeOfFuel.LIQUIFIEDPETROLEUM_PROPANE: 3.000,
-            TypeOfFuel.LIQUIFIEDPETROLEUM_BUTANE: 3.030,
+            TypeOfFuel.LIGHT_FUEL_OIL: 3.151,
+            TypeOfFuel.HEAVY_FUEL_OIL: 3.114,
+            TypeOfFuel.LIQUIFIED_PETROLEUM_PROPANE: 3.000,
+            TypeOfFuel.LIQUIFIED_PETROLEUM_BUTANE: 3.030,
             TypeOfFuel.ETHANE: 2.927,
-            TypeOfFuel.LIQUIFIEDNATURALGAS: 2.750,
+            TypeOfFuel.LIQUIFIED_NATURAL_GAS: 2.750,
             TypeOfFuel.METHANOL: 1.375,
             TypeOfFuel.ETHANOL: 1.913
         }
@@ -87,12 +87,12 @@ class ShipMassOfCo2EmissionsCalculatorService:
         """
         carbon_contents = {
             TypeOfFuel.DIESEL_OR_GASOIL: 0.8744,
-            TypeOfFuel.LIGHTFUELOIL: 0.8594,
-            TypeOfFuel.HEAVYFUELOIL: 0.8493,
-            TypeOfFuel.LIQUIFIEDPETROLEUM_PROPANE: 0.8182,
-            TypeOfFuel.LIQUIFIEDPETROLEUM_BUTANE: 0.8264,
+            TypeOfFuel.LIGHT_FUEL_OIL: 0.8594,
+            TypeOfFuel.HEAVY_FUEL_OIL: 0.8493,
+            TypeOfFuel.LIQUIFIED_PETROLEUM_PROPANE: 0.8182,
+            TypeOfFuel.LIQUIFIED_PETROLEUM_BUTANE: 0.8264,
             TypeOfFuel.ETHANE: 0.7989,
-            TypeOfFuel.LIQUIFIEDNATURALGAS: 0.7500,
+            TypeOfFuel.LIQUIFIED_NATURAL_GAS: 0.7500,
             TypeOfFuel.METHANOL: 0.3750,
             TypeOfFuel.ETHANOL: 0.5217
         }
@@ -121,12 +121,12 @@ class ShipMassOfCo2EmissionsCalculatorService:
         """
         calorific_values = {
             TypeOfFuel.DIESEL_OR_GASOIL: 42700,
-            TypeOfFuel.LIGHTFUELOIL: 41200,
-            TypeOfFuel.HEAVYFUELOIL: 40200,
-            TypeOfFuel.LIQUIFIEDPETROLEUM_PROPANE: 46300,
-            TypeOfFuel.LIQUIFIEDPETROLEUM_BUTANE: 45700,
+            TypeOfFuel.LIGHT_FUEL_OIL: 41200,
+            TypeOfFuel.HEAVY_FUEL_OIL: 40200,
+            TypeOfFuel.LIQUIFIED_PETROLEUM_PROPANE: 46300,
+            TypeOfFuel.LIQUIFIED_PETROLEUM_BUTANE: 45700,
             TypeOfFuel.ETHANE: 46400,
-            TypeOfFuel.LIQUIFIEDNATURALGAS: 48000,
+            TypeOfFuel.LIQUIFIED_NATURAL_GAS: 48000,
             TypeOfFuel.METHANOL: 19900,
             TypeOfFuel.ETHANOL: 26800
         }
