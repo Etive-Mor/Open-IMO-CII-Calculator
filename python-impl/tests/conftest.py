@@ -24,5 +24,5 @@ def sample_multi_fuel_consumption():
     """Fixture providing sample multi-fuel consumption data"""
     return [
         FuelTypeConsumption(TypeOfFuel.DIESEL_OR_GASOIL, 1.0e+10),
-        FuelTypeConsumption(TypeOfFuel.LIQUIFIEDNATURALGAS, 9.0e+9)
+        FuelTypeConsumption(TypeOfFuel.LIQUIFIED_NATURAL_GAS, 9.0e+9)
     ]

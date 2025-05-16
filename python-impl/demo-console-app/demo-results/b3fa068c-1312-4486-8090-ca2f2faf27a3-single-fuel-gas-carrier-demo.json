@@ -1,0 +1,328 @@
+{
+  "results": [
+    {
+      "is_measured_year": true,
+      "is_estimated_year": false,
+      "year": 2019,
+      "required_cii": 7.169036365047443,
+      "attained_cii": 3.0555555555555554,
+      "attained_required_ratio": 0.4262156585580849,
+      "rating": 1,
+      "calculated_co2e_emissions": 27500000000.0,
+      "calculated_ship_capacity": 60000,
+      "calculated_transport_work": 9000000000,
+      "vector_boundaries_for_year": {
+        "year": 2019,
+        "ship_type": 20,
+        "weight_classification": {
+          "upper_limit": 0,
+          "lower_limit": 64999
+        },
+        "capacity_unit": 1,
+        "boundary_dd_vectors": {
+          "1": 6.093680910290327,
+          "2": 6.810584546795071,
+          "3": 7.59917854695029,
+          "4": 8.961295456309305
+        }
+      }
+    },
+    {
+      "is_measured_year": false,
+      "is_estimated_year": true,
+      "year": 2020,
+      "required_cii": 7.097346001396969,
+      "attained_cii": 3.0555555555555554,
+      "attained_required_ratio": 0.43052086723038885,
+      "rating": 1,
+      "calculated_co2e_emissions": 27500000000.0,
+      "calculated_ship_capacity": 60000,
+      "calculated_transport_work": 9000000000,
+      "vector_boundaries_for_year": {
+        "year": 2020,
+        "ship_type": 20,
+        "weight_classification": {
+          "upper_limit": 0,
+          "lower_limit": 64999
+        },
+        "capacity_unit": 1,
+        "boundary_dd_vectors": {
+          "1": 6.032744101187423,
+          "2": 6.74247870132712,
+          "3": 7.523186761480787,
+          "4": 8.87168250174621
+        }
+      }
+    },
+    {
+      "is_measured_year": false,
+      "is_estimated_year": true,
+      "year": 2021,
+      "required_cii": 7.025655637746494,
+      "attained_cii": 3.0555555555555554,
+      "attained_required_ratio": 0.4349139373041683,
+      "rating": 1,
+      "calculated_co2e_emissions": 27500000000.0,
+      "calculated_ship_capacity": 60000,
+      "calculated_transport_work": 9000000000,
+      "vector_boundaries_for_year": {
+        "year": 2021,
+        "ship_type": 20,
+        "weight_classification": {
+          "upper_limit": 0,
+          "lower_limit": 64999
+        },
+        "capacity_unit": 1,
+        "boundary_dd_vectors": {
+          "1": 5.97180729208452,
+          "2": 6.674372855859169,
+          "3": 7.447194976011284,
+          "4": 8.782069547183118
+        }
+      }
+    },
+    {
+      "is_measured_year": false,
+      "is_estimated_year": true,
+      "year": 2022,
+      "required_cii": 6.95396527409602,
+      "attained_cii": 3.0555555555555554,
+      "attained_required_ratio": 0.4393975861423556,
+      "rating": 1,
+      "calculated_co2e_emissions": 27500000000.0,
+      "calculated_ship_capacity": 60000,
+      "calculated_transport_work": 9000000000,
+      "vector_boundaries_for_year": {
+        "year": 2022,
+        "ship_type": 20,
+        "weight_classification": {
+          "upper_limit": 0,
+          "lower_limit": 64999
+        },
+        "capacity_unit": 1,
+        "boundary_dd_vectors": {
+          "1": 5.9108704829816165,
+          "2": 6.606267010391218,
+          "3": 7.371203190541781,
+          "4": 8.692456592620024
+        }
+      }
+    },
+    {
+      "is_measured_year": false,
+      "is_estimated_year": true,
+      "year": 2023,
+      "required_cii": 6.810584546795071,
+      "attained_cii": 3.0555555555555554,
+      "attained_required_ratio": 0.4486480616400894,
+      "rating": 1,
+      "calculated_co2e_emissions": 27500000000.0,
+      "calculated_ship_capacity": 60000,
+      "calculated_transport_work": 9000000000,
+      "vector_boundaries_for_year": {
+        "year": 2023,
+        "ship_type": 20,
+        "weight_classification": {
+          "upper_limit": 0,
+          "lower_limit": 64999
+        },
+        "capacity_unit": 1,
+        "boundary_dd_vectors": {
+          "1": 5.78899686477581,
+          "2": 6.470055319455317,
+          "3": 7.219219619602776,
+          "4": 8.51323068349384
+        }
+      }
+    },
+    {
+      "is_measured_year": false,
+      "is_estimated_year": true,
+      "year": 2024,
+      "required_cii": 6.667203819494121,
+      "attained_cii": 3.0555555555555554,
+      "attained_required_ratio": 0.45829640705170427,
+      "rating": 1,
+      "calculated_co2e_emissions": 27500000000.0,
+      "calculated_ship_capacity": 60000,
+      "calculated_transport_work": 9000000000,
+      "vector_boundaries_for_year": {
+        "year": 2024,
+        "ship_type": 20,
+        "weight_classification": {
+          "upper_limit": 0,
+          "lower_limit": 64999
+        },
+        "capacity_unit": 1,
+        "boundary_dd_vectors": {
+          "1": 5.667123246570003,
+          "2": 6.333843628519415,
+          "3": 7.067236048663768,
+          "4": 8.334004774367651
+        }
+      }
+    },
+    {
+      "is_measured_year": false,
+      "is_estimated_year": true,
+      "year": 2025,
+      "required_cii": 6.523823092193173,
+      "attained_cii": 3.0555555555555554,
+      "attained_required_ratio": 0.4683688555583351,
+      "rating": 1,
+      "calculated_co2e_emissions": 27500000000.0,
+      "calculated_ship_capacity": 60000,
+      "calculated_transport_work": 9000000000,
+      "vector_boundaries_for_year": {
+        "year": 2025,
+        "ship_type": 20,
+        "weight_classification": {
+          "upper_limit": 0,
+          "lower_limit": 64999
+        },
+        "capacity_unit": 1,
+        "boundary_dd_vectors": {
+          "1": 5.545249628364197,
+          "2": 6.197631937583514,
+          "3": 6.915252477724764,
+          "4": 8.154778865241466
+        }
+      }
+    },
+    {
+      "is_measured_year": false,
+      "is_estimated_year": true,
+      "year": 2026,
+      "required_cii": 6.380442364892224,
+      "attained_cii": 3.0555555555555554,
+      "attained_required_ratio": 0.47889399837987073,
+      "rating": 1,
+      "calculated_co2e_emissions": 27500000000.0,
+      "calculated_ship_capacity": 60000,
+      "calculated_transport_work": 9000000000,
+      "vector_boundaries_for_year": {
+        "year": 2026,
+        "ship_type": 20,
+        "weight_classification": {
+          "upper_limit": 0,
+          "lower_limit": 64999
+        },
+        "capacity_unit": 1,
+        "boundary_dd_vectors": {
+          "1": 5.423376010158391,
+          "2": 6.061420246647613,
+          "3": 6.7632689067857585,
+          "4": 7.975552956115281
+        }
+      }
+    },
+    {
+      "is_measured_year": false,
+      "is_estimated_year": true,
+      "year": 2027,
+      "required_cii": 6.2370616375912755,
+      "attained_cii": 3.0555555555555554,
+      "attained_required_ratio": 0.4899030558138907,
+      "rating": 1,
+      "calculated_co2e_emissions": 27500000000.0,
+      "calculated_ship_capacity": 60000,
+      "calculated_transport_work": 9000000000,
+      "vector_boundaries_for_year": {
+        "year": 2027,
+        "ship_type": 20,
+        "weight_classification": {
+          "upper_limit": 0,
+          "lower_limit": 64999
+        },
+        "capacity_unit": 1,
+        "boundary_dd_vectors": {
+          "1": 5.301502391952584,
+          "2": 5.925208555711712,
+          "3": 6.611285335846753,
+          "4": 7.796327046989094
+        }
+      }
+    },
+    {
+      "is_measured_year": false,
+      "is_estimated_year": true,
+      "year": 2028,
+      "required_cii": 6.093680910290327,
+      "attained_cii": 3.0555555555555554,
+      "attained_required_ratio": 0.5014301865389235,
+      "rating": 1,
+      "calculated_co2e_emissions": 27500000000.0,
+      "calculated_ship_capacity": 60000,
+      "calculated_transport_work": 9000000000,
+      "vector_boundaries_for_year": {
+        "year": 2028,
+        "ship_type": 20,
+        "weight_classification": {
+          "upper_limit": 0,
+          "lower_limit": 64999
+        },
+        "capacity_unit": 1,
+        "boundary_dd_vectors": {
+          "1": 5.179628773746778,
+          "2": 5.78899686477581,
+          "3": 6.459301764907747,
+          "4": 7.6171011378629085
+        }
+      }
+    },
+    {
+      "is_measured_year": false,
+      "is_estimated_year": true,
+      "year": 2029,
+      "required_cii": 5.950300182989378,
+      "attained_cii": 3.0555555555555554,
+      "attained_required_ratio": 0.5135128416362469,
+      "rating": 1,
+      "calculated_co2e_emissions": 27500000000.0,
+      "calculated_ship_capacity": 60000,
+      "calculated_transport_work": 9000000000,
+      "vector_boundaries_for_year": {
+        "year": 2029,
+        "ship_type": 20,
+        "weight_classification": {
+          "upper_limit": 0,
+          "lower_limit": 64999
+        },
+        "capacity_unit": 1,
+        "boundary_dd_vectors": {
+          "1": 5.057755155540971,
+          "2": 5.652785173839908,
+          "3": 6.307318193968741,
+          "4": 7.437875228736722
+        }
+      }
+    },
+    {
+      "is_measured_year": false,
+      "is_estimated_year": true,
+      "year": 2030,
+      "required_cii": 5.806919455688429,
+      "attained_cii": 3.0555555555555554,
+      "attained_required_ratio": 0.5261921710593641,
+      "rating": 1,
+      "calculated_co2e_emissions": 27500000000.0,
+      "calculated_ship_capacity": 60000,
+      "calculated_transport_work": 9000000000,
+      "vector_boundaries_for_year": {
+        "year": 2030,
+        "ship_type": 20,
+        "weight_classification": {
+          "upper_limit": 0,
+          "lower_limit": 64999
+        },
+        "capacity_unit": 1,
+        "boundary_dd_vectors": {
+          "1": 4.935881537335164,
+          "2": 5.516573482904008,
+          "3": 6.155334623029735,
+          "4": 7.258649319610536
+        }
+      }
+    }
+  ]
+}

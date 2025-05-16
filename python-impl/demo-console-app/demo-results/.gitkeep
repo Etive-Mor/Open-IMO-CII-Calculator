@@ -1,0 +1,2 @@
+# This directory will contain output JSON files from demo runs.
+# Files are named as {uuid}-single-fuel-demo.json or {uuid}-multi-fuel-demo.json
