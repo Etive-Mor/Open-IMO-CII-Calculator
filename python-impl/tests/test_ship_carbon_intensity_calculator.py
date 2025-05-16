@@ -6,12 +6,24 @@ from open_imo_cii_calculator.models.dto.fuel_type_consumption import FuelTypeCon
 
 class TestShipCarbonIntensityCalculator:
     def test_init(self):
-        """Test that the calculator initializes correctly"""
+        """
+        Test the initialization of the ShipCarbonIntensityCalculator.
+
+        Verifies:
+        - That the ShipCarbonIntensityCalculator object is created successfully.
+        """
         calculator = ShipCarbonIntensityCalculator()
         assert calculator is not None
     
     def test_calculate_attained_cii_rating_single_fuel(self, sample_ship_data, sample_fuel_consumption):
-        """Test calculation with a single fuel type"""
+        """
+        Test the calculate_attained_cii_rating method with a single fuel type.
+
+        Verifies:
+        - That the method returns a result object.
+        - That the result object has a 'results' attribute.
+        - This test uses sample data for ship parameters and fuel consumption.
+        """
         calculator = ShipCarbonIntensityCalculator()
         result = calculator.calculate_attained_cii_rating(
             sample_ship_data['ship_type'],

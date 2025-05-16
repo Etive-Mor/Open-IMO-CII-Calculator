@@ -14,13 +14,25 @@ class TestShipMassOfCo2EmissionsCalculatorService:
         ]
     )
     def test_get_mass_of_co2_emissions(self, fuel_type, fuel_consumption, expected_result):
-        """Test CO2 emission calculations for each fuel type"""
+        """
+        Test CO2 emission calculations for various fuel types.
+
+        Verifies:
+        - Correct calculation of CO2 emissions for different fuel types and consumption amounts.
+        - Uses parameterized tests to cover multiple scenarios.
+        """
         service = ShipMassOfCo2EmissionsCalculatorService()
         result = service.get_mass_of_co2_emissions(fuel_type, fuel_consumption)
         assert result == expected_result
     
     def test_negative_fuel_consumption_raises_error(self):
-        """Test that negative fuel consumption raises ValueError"""
+        """
+        Test that providing negative fuel consumption raises a ValueError.
+
+        Verifies:
+        - That a ValueError is raised when fuel consumption is negative.
+        - This ensures input validation for fuel consumption.
+        """
         service = ShipMassOfCo2EmissionsCalculatorService()
         with pytest.raises(ValueError):
             service.get_mass_of_co2_emissions(TypeOfFuel.DIESEL_OR_GASOIL, -100)
